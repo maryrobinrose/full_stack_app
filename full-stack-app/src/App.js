@@ -7,14 +7,20 @@ import {
 import axios from 'axios';
 
 class App extends Component () {
-  render () {
+  constructor() {
+    super();
     return (
-      state = {
+    this.state = {
         courses: []
-      }
-      componentDidMount() {
-        axios.get('http://localhost:5000/api/')
-      }
+    };
+    componentDidMount() {
+      axios.get('http://localhost:5000/api/')
+      .then (res => res.json())
+      .then((data) => {
+        this.setState({ courses: data })
+      })
+      .catch(console.log)
+    }
     /*<BrowserRouter>
         <div className="container">
 
