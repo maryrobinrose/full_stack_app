@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import Courses from './components/Courses';
+//import './App.css';
 import {
   BrowserRouter,
   Route
@@ -7,17 +8,21 @@ import {
 import axios from 'axios';
 
 class App extends Component {
+    //Store the output from API request
     state = {
-          courses: []
+      courses: []
     };
 
-
     componentDidMount() {
-      axios.get('http://localhost:5000/api/')
+      //Request the API
+      axios.get('http://localhost:5000/api/courses')
+      //Parse output to JSON
       .then (res => res.json())
+      //Set value of the state to the output from API
       .then((data) => {
         this.setState({ courses: data })
       })
+      //Log errors to console
       .catch(console.log)
     }
 
@@ -25,6 +30,7 @@ class App extends Component {
       return (
         <BrowserRouter>
           <div>
+            <Courses courses={this.state.courses} />
           </div>
         </BrowserRouter>
       );
