@@ -5,10 +5,10 @@ const Courses = ({ courses }) => {
       return (
         <div>
           <center><h1>Course List</h1></center>
-          {courses.map((course) => (
+          {courses.map((courses) => (
               <div>
-                <h5>{course.title}</h5>
-                <p>{course.description}</p>
+                <h5>{courses.title}</h5>
+                <p>{courses.description}</p>
               </div>
           ))}
         </div>
