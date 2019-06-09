@@ -22,10 +22,15 @@ class Courses extends Component {
       });
     }
 
+
     render() {
+      const { courses } = this.state;
       return (
           <div>
             <h1>Course List</h1>
+            {Object.keys(courses).map(key => {
+
+            })}
           </div>
       );
     }
