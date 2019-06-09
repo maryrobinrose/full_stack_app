@@ -1,18 +1,35 @@
 //Import React library
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const Courses = ({ courses }) => {
-      return (
-        <div>
-          <center><h1>Course List</h1></center>
-          {courses.map((courses) => (
-              <div>
-                <h5>{courses.title}</h5>
-                <p>{courses.description}</p>
-              </div>
-          ))}
-        </div>
-      )
+
+class Courses extends Component {
+    //Store the output from API request
+    state = {
+      courses: []
     };
+
+    componentDidMount() {
+      //Request the API
+      axios.get('http://localhost:5000/api/courses')
+      //Parse output to JSON
+      .then (response => {
+        this.setState({courses: response.data});
+      })
+      //Log errors
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+    }
+
+    render() {
+      return (
+          <div>
+            <h1>Course List</h1>
+          </div>
+      );
+    }
+
+  }
 
     export default Courses
