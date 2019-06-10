@@ -1,3 +1,15 @@
+/*  Provides the "Courses" screen by
+
+  -->> Retrieve the list of courses from the REST API's /api/courses route
+
+  -->> Render a list of courses
+
+  -->> Each course links to its respective "Course Detail" screen
+
+  -->> Render a link to the "Create Course" screen
+
+*/
+
 //Import React library
 import React, { Component } from 'react';
 import axios from 'axios';
