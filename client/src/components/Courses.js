@@ -15,7 +15,7 @@ class Courses extends Component {
       //Parse output to JSON
       .then (response => {
         this.setState({
-          courses: response.data
+          courses: response.data.data
         });
       })
       //Log errors
@@ -29,7 +29,7 @@ class Courses extends Component {
         return (
           <div>
             <h1>Course List</h1>
-            <h2></h2>
+
           </div>
         )
     }
