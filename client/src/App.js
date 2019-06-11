@@ -9,7 +9,7 @@ import {
 //Import Components
 import CourseDetail from './components/CourseDetail';
 import Courses from './components/Courses';
-import CreateCourse from './components/CreatCourse';
+import CreateCourse from './components/CreateCourse';
 import Header from './components/Header';
 import UpdateCourse from './components/UpdateCourse';
 import UserSignIn from './components/UserSignIn';
