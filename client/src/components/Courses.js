@@ -14,6 +14,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Header from './Header';
+
+
 
 class Courses extends Component {
     //Store the output from API request
@@ -23,11 +26,11 @@ class Courses extends Component {
 
     componentDidMount() {
       //Request the API
-      axios.get(`http://localhost:5000/api/courses`)
+      axios.get('http://localhost:5000/api/courses/')
       //Parse output to JSON
       .then (response => {
         this.setState({
-          courses: response.data.data
+          courses: response.data
         });
       })
       //Log errors
@@ -40,8 +43,7 @@ class Courses extends Component {
       console.log(this.state.courses);
         return (
           <div>
-            <h1>Course List</h1>
-
+            <h1>Courses</h1>
           </div>
         )
     }

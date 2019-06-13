@@ -1,5 +1,7 @@
 'use strict';
 
+const Course = require("./Course");
+
 module.exports = function(sequelize, DataTypes) {
   const User = sequelize.define('User', {
     id: {
@@ -47,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = (models) => {
 
-    User.hasMany(models.Course, {
+    models.User.hasMany(models.Course, {
       foreignKey: 'userId',
     });
   };

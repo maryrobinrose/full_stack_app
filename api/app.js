@@ -5,7 +5,7 @@ const express = require('express');
 const morgan = require('morgan');
 const Sequelize = require('sequelize');
 const models = require('./models').sequelize;
-const cors = require('cors');
+
 
 // construct the database
 const db = new Sequelize({
@@ -33,9 +33,6 @@ app.use(morgan('dev'));
 
 //Setup JSON body parser
 app.use(express.json());
-
-//Setup cors 
-app.use(cors());
 
 //Set up API routes
 app.use('/api', require('./routes/index'));
