@@ -12,8 +12,10 @@
 
 //Import React library
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+//Import components
 import Header from './Header';
 
 
@@ -41,12 +43,20 @@ class Courses extends Component {
 
     render() {
       console.log(this.state.courses);
-        return (
+      return (
+        <div className='bounds'>
+          {this.state.courses.map( (course, index) => (
           <div>
-            <h1>Courses</h1>
+            <Link>
+              <h2>Courses</h2>
+              <h3>{course.title}</h3>
+            </Link>
           </div>
-        )
+          ))}
+        </div>
+      )
     }
+
   }
 
 
