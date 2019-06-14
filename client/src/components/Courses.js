@@ -17,6 +17,7 @@ import axios from 'axios';
 
 //Import components
 import Header from './Header';
+import Course from './Course;'
 
 
 
@@ -30,34 +31,25 @@ class Courses extends Component {
       //Request the API
       axios.get('http://localhost:5000/api/courses/')
       //Parse output to JSON
-      .then (response => {
-        this.setState({
-          courses: response.data
-        });
+      .then (res => res.json())
+      .then ((data) => {
+        this.setState({ courses: data })
       })
       //Log errors
       .catch(error => {
         console.log('Error fetching and parsing data', error);
       });
-    }
 
     render() {
       console.log(this.state.courses);
       return (
-        <div className='bounds'>
-          {this.state.courses.map( (course, index) => (
-          <div>
-            <Link>
-              <h2>Courses</h2>
-              <h3>{course.title}</h3>
-            </Link>
-          </div>
-          ))}
+        <div>
+          <Course courses={this.state.courses} />
         </div>
       )
     }
 
-  }
+}
 
 
   export default Courses;
