@@ -21,6 +21,7 @@ class Courses extends Component {
       courses: []
     };
 
+    //When mounted
     componentDidMount() {
       //Request the API
       axios.get('http://localhost:5000/api/courses/')
@@ -50,7 +51,6 @@ class Courses extends Component {
         </div>
       )
     }
-
 }
 
 
