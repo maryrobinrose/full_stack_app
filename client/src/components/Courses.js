@@ -15,10 +15,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-//Import components
-import Header from './Header';
-
-
 class Courses extends Component {
     //Store the output from API request
     state = {
@@ -41,14 +37,16 @@ class Courses extends Component {
     render() {
       console.log(this.state.courses);
       return (
-        <div>
         <div className='bounds'>
-          //Map over courses
           {this.state.courses.map((course, index) => (
               <div className='grid-33' key={index}>
-
+                <Link className='course--module course--link' to={'/courses/' + course.id}>
+                  <h4 className='course--label'>Course</h4>
+                  <h3 className='course--title'>{course.title}</h3>
+                </Link>
+              </div>
           ))}
-          <Course courses={this.state.courses} />
+
         </div>
       )
     }
