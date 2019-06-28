@@ -9,8 +9,6 @@ const models = require('./models').sequelize;
 // load CORS
 const cors = require('cors');
 
-app.use(cors())
-
 // construct the database
 const db = new Sequelize({
   dialect: "sqlite",
@@ -37,6 +35,9 @@ app.use(morgan('dev'));
 
 //Setup JSON body parser
 app.use(express.json());
+
+//Setup cors 
+app.use(cors());
 
 //Set up API routes
 app.use('/api', require('./routes/index'));

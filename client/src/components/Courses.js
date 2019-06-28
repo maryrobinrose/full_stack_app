@@ -17,7 +17,6 @@ import axios from 'axios';
 
 //Import components
 import Header from './Header';
-import Course from '../components/Course';
 
 
 class Courses extends Component {
@@ -43,6 +42,12 @@ class Courses extends Component {
       console.log(this.state.courses);
       return (
         <div>
+        <div className='bounds'>
+          //Map over courses
+          {this.state.courses.map((course, index) => (
+              <div className='grid-33' key={index}>
+
+          ))}
           <Course courses={this.state.courses} />
         </div>
       )
