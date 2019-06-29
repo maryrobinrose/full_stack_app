@@ -13,11 +13,17 @@ class UserSignUp extends Component {
     validationErrors: ''
   };
 
+  //Handle imput changes
   onChange = e => {
     this.setState({[event.target.name]: event.target.value});
   };
 
+  onCancel = e => {
+    e.preventDefault();
+    this.props.history.push('/courses');
+  };
 
+  onSignUp =
 
 
 
