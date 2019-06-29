@@ -89,8 +89,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+        <Header />
           <Switch>
-            <Route exact path="/" component={Courses} />
+            <Route exact path='/courses' component={Courses} />
+            <Route exact path='/courses/:id' component={CourseDetail} />
           </Switch>
         </div>
       </BrowserRouter>
