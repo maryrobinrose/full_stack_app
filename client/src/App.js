@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import axios from 'axios';
 
 
 //Import Components
@@ -17,6 +18,13 @@ import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
 
 class App extends Component {
+
+  state = {
+    validationErrors: ''
+    //Add authenticated user data
+  }
+
+
   render() {
     return (
       <BrowserRouter>
