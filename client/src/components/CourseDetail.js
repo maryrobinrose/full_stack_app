@@ -14,8 +14,28 @@ class CourseDetail extends Component {
 
 
   componentDidMount() {
+    //Request the API and course details
+    axios.get('http://localhost:5000/api/courses/' + this.props.match.params.id)
 
+    .then (res => {
+      this.setState({
+        course: res.data,
+        user: res.data.user
+      });
+    })
+    //Log errors
+    .catch(error => {
+      if (error.response.status === 400) {
+        this.props.history.push('/notfound');
+      } else if (error.response.status = 500) {
+        this.props.history.push('/error');
+      }
+    });
   }
+
+
+
+
 }
 
 
