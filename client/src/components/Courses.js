@@ -27,6 +27,7 @@ class Courses extends Component {
       console.log(this.state.courses);
       return (
         <div className='bounds'>
+          {/*Map over and show courses with links*/}
           {this.state.courses.map((course, index) => (
               <div className='grid-33' key={index}>
                 <Link className='course--module course--link' to={'/courses/' + course.id}>
@@ -35,6 +36,13 @@ class Courses extends Component {
                 </Link>
               </div>
           ))}
+
+          {/*Link to Create Course*/}
+          <div className='grid-33'>
+            <Link className='course--module course--add--module' to='/courses/create'>
+              <h3 className='course--add-title'>New Course</h3>
+            </Link>
+          </div>
 
         </div>
       )
