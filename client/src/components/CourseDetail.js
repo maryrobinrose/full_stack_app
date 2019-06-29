@@ -33,6 +33,28 @@ class CourseDetail extends Component {
     });
   }
 
+  handleDeleteCourse = (e) => {
+    e.preventDefaults();
+
+    axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
+      method: 'DELETE',
+    })
+    .then (res => {
+      this.props.history.push('/courses');
+    })
+    .catch(error => {
+      if (error.response.status === 404) {
+        this.props.history.push('/notfound');
+      } else {
+        this.props.history.push('/error');
+      }
+    })
+  }
+
+
+
+
+
 
 
 
