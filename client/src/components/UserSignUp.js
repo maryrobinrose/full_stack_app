@@ -1,6 +1,7 @@
 //Import React library
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class UserSignUp extends Component {
 
@@ -15,15 +16,21 @@ class UserSignUp extends Component {
 
   //Handle imput changes
   onChange = e => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({[e.target.name]: e.target.value});
   };
 
+  //Handle cancel
   onCancel = e => {
     e.preventDefault();
     this.props.history.push('/courses');
   };
 
-  onSignUp =
+  //Handle submit
+  onSignUp = e => {
+    e.preventDefault();
+
+
+  }
 
 
 
