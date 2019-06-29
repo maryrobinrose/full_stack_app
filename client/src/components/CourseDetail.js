@@ -53,7 +53,12 @@ class CourseDetail extends Component {
 
   render() {
     return(
-      
+      <div className='actions--bar'>
+        <div className='bounds'>
+          <div className='grid-100'>
+          </div>
+        </div>
+      </div>
     )
   }
 
