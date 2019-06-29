@@ -29,6 +29,8 @@ class UserSignUp extends Component {
   onSignUp = e => {
     e.preventDefault();
 
+    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
+
     //If passwords don't match
     if (this.state.password != this.state.confirmPassword) {
       alert('Passwords are not a match');
