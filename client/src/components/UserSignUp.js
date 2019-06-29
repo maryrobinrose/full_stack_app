@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class UserSignUp extends Component {
+
   state = {
     firstName: '',
     lastName: '',
@@ -12,13 +13,15 @@ class UserSignUp extends Component {
     validationErrors: ''
   };
 
+  onChange = e => {
+    this.setState({[event.target.name]: event.target.value});
+  };
 
 
 
 
 
 
-  
 }
 
 
