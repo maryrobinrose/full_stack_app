@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   //Handle sign in
-  onSignIn = (e, user) => {
+  onSignIn = (e, user, email, password, name) => {
     if (e) {
       e.preventDefault();
     }
@@ -46,8 +46,22 @@ class App extends Component {
           emailAddress: res.data.emailAddress,
           error: {}
         });
-        
+        //Save user preferences locally in the browser
+        localStorage.setItem('username', email);
+        localStorage.setItem('id', user.id);
+        localStorage.setItem('password', password);
+        localStorage.setItem('name', name);
+
+        //Reset validation errors
+        this.setState({
+          validationErrors: ''
+        });
+
       }
+    })
+    //Catch errors
+    .catch(error => {
+
     })
   }
 
