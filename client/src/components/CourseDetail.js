@@ -51,6 +51,11 @@ class CourseDetail extends Component {
     })
   }
 
+  render() {
+    return(
+      
+    )
+  }
 
 
 
