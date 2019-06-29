@@ -15,15 +15,12 @@ class Courses extends Component {
       axios.get('http://localhost:5000/api/courses/')
 
       .then (res => {
-        this.setState({ courses: res.data })
+        this.setState(res.data)
       })
       //Log errors
       .catch(error => {
         console.log('Error fetching and parsing data', error);
-        if(err.response.status === 500) {
-            this.props.history.push('/error');
-        }
-      });
+      })
     }
 
     render() {
