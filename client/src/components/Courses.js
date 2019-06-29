@@ -20,7 +20,10 @@ class Courses extends Component {
       //Log errors
       .catch(error => {
         console.log('Error fetching and parsing data', error);
-      })
+        if(err.response.status === 500) {
+            this.props.history.push('/error');
+        }
+      });
     }
 
     render() {
