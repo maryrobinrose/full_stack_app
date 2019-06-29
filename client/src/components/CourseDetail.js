@@ -5,17 +5,16 @@ import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
 class CourseDetail extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
+
+      state = {
         course: [],
         user: []
       };
-      this.handleDelete = this.handleDelete.bind(this);
-  }
+
+
 
   componentDidMount() {
-    
+
   }
 }
 
