@@ -72,6 +72,18 @@ class App extends Component {
     });
   }
 
+  onSignOut() {
+    //Clear user preferences
+    localStorage.clear();
+
+    //Clear validation errors
+    this.setState({
+      validationErrors: ''
+    });
+
+    //Bring user back to main
+    this.props.history.push('/courses')
+  }
 
   render() {
     return (
