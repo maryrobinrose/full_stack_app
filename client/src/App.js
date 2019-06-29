@@ -24,6 +24,33 @@ class App extends Component {
     //Add authenticated user data
   }
 
+  //Handle sign in
+  onSignIn = (e, user) => {
+    if (e) {
+      e.preventDefault();
+    }
+    //Request user info
+    axios.get('http://localhost:5000/api/users', {
+      auth: {
+        username: user.emailAddress,
+        password: user.password
+      }
+    })
+    //Once request is made
+    .then (res => {
+      if (res.status === 200) {
+        this.setState({
+          user: res.data,
+          loggedIn: true,
+          password: res.data.password,
+          emailAddress: res.data.emailAddress,
+          error: {}
+        });
+        
+      }
+    })
+  }
+
 
   render() {
     return (
