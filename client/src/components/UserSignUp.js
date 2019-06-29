@@ -29,6 +29,29 @@ class UserSignUp extends Component {
   onSignUp = e => {
     e.preventDefault();
 
+    //If passwords don't match
+    if (this.state.password != this.state.confirmPassword) {
+      alert('Passwords are not a match');
+      //If passwords do match
+    } else {
+      //Request the user
+      axios.post('http://localhost:5000/api/users', {firstName, lastName, emailAddress, password})
+        .then (res => {
+          //If the response is successful
+          if (res.status === 201) {
+            //Reset validation errors to empty
+            this.setState({
+              validationErrors: ''
+            })
+            //Sign in user
+            this.props.signIn(null, emailAddress, password);
+          }
+        })
+        //Catch errors
+        .catch(error => {
+
+        })
+    }
 
   }
 
