@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   //Handle sign in
-  onSignIn = (e, user, email, password, name) => {
+  onSignIn = (e, user, email, password, name, from) => {
     if (e) {
       e.preventDefault();
     }
@@ -38,6 +38,7 @@ class App extends Component {
     })
     //Once request is made
     .then (res => {
+      //If OK
       if (res.status === 200) {
         this.setState({
           user: res.data,
@@ -52,17 +53,23 @@ class App extends Component {
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
-        //Reset validation errors
-        this.setState({
-          validationErrors: ''
-        });
+        this.props.hitsory.push(from);
 
+      } else {
+        //If not OK
+        this.props.history.push('/notfound');
       }
     })
     //Catch errors
     .catch(error => {
-
-    })
+      if(error.response.status === 401) {
+        this.setState({
+          error: error.response
+        });
+      } else if (error.response.status === 500) {
+        this.props.history.push('/error');
+      }
+    });
   }
 
 
