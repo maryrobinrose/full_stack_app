@@ -77,15 +77,27 @@ class CreateCourse extends Component {
                   name='description'
                   className=''
                   placeholder='Course Description'
-                  onChange={this.onSubmit}>
-                </textarea>
+                  onChange={this.onSubmit} />
               </div>
+          </div>
+          <div className='grid=25 grid-right'>
+            <div className='course--stats'>
+              <ul className='course--stats--list'>
+                <li className='class--stats--list--item'>
+                  <h4>Estimated Time</h4>
+                  <div>
+                    <input
+
+                    />
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </form>
       </div>
     )
   }
-
 }
 
 export default CreateCourse;
