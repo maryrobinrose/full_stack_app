@@ -19,10 +19,14 @@ import UserSignUp from './components/UserSignUp';
 
 class App extends Component {
 
-  state = {
-    validationErrors: ''
-    //Add authenticated user data
+  constructor() {
+    super();
+  this.state = {};
+  //Bind method https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+  this.signIn = this.signIn.bind(this);
+
   }
+
 
   //Handle sign in
   onSignIn = (e, user, email, password, name, from) => {
@@ -89,10 +93,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-        <Header />
+          <Header />
           <Switch>
-            <Route exact path='/courses' component={Courses} />
+            <Route exact path='/' component={Courses} />
             <Route exact path='/courses/:id' component={CourseDetail} />
+            <Route exact path='/signin' component={UserSignIn} />
           </Switch>
         </div>
       </BrowserRouter>
