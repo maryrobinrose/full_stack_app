@@ -56,6 +56,22 @@ class CreateCourse extends Component {
           {this.validationErrors()}
         </div>
         <form onSubmit={this.onSubmit}>
+          <div className='grid-66'>
+            <div className='course--header'>
+              <h4 className='course--label'>Course</h4>
+              <div>
+                <input
+                  id='title'
+                  name='title'
+                  type='text'
+                  className='input-title course--title--input'
+                  placeholder='Course Title'
+                  onChange={this.handleInput}
+                />
+              </div>
+              
+            </div>
+          </div>
         </form>
       </div>
     )
