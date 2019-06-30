@@ -26,7 +26,7 @@ class UserSignUp extends Component {
   };
 
   //Handle submit
-  onSignUp = e => {
+  onSignUp(e) {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
@@ -62,6 +62,14 @@ class UserSignUp extends Component {
     }
   }
 
+  render() {
+    const {firstName, lastName, emailAddress, password, validationErrors} = this.state;
+
+    return(
+      <div className="bounds">
+      </div>
+    )
+  }
 
 
 
