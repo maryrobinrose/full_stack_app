@@ -4,21 +4,22 @@ import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
 
-  if()
-
-    /*//If user is logged in
-    if (localStorage.getItem()) {
-      return(
+  //If user is logged in
+  if() {
+    return(
       <div className='header'>
           <div className='bounds header-bounds'>
             <NavLink to='/' className='header--logo'>Courses</NavLink>
             <nav>
               <span>Welcome {localStorage.getItem('name')}!</span>
             </nav>
+          </div>
       </div>
+    )
 
-      //If user is not logged in
-    } else {
+    //If user is not logged in
+  } else {
+    return(
       <div className='header'>
           <div className='bounds header-bounds'>
             <NavLink to='/' className='header--logo'>Courses</NavLink>
@@ -28,7 +29,8 @@ const Header = () => {
             </nav>
           </div>
       </div>
-    }*/
+    )
+  }
 
 }
 
