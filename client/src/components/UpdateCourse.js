@@ -17,13 +17,21 @@ class UpdateCourse extends Component {
   }
 
   componentDidMount() {
-    this.getCourse();
+    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
+      .then(res => {
+        this.setState({
+          id: res.data.id,
+          title: res.data.title,
+          description: res.data.description,
+          estimatedTime: res.data.estimatedTime,
+          materialdsNeeded: res.data.materialdsNeeded,
+          userId: res.data.userId,
+          validationErrors: ''
+        })
+
+      })
   }
 
-  getCourse = () => {
-    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
-      .then(res)
-  }
 
 }
 
