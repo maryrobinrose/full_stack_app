@@ -3,15 +3,17 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 const Header = () => {
-  return (
 
-    //If user is logged in
+  if()
+
+    /*//If user is logged in
     if (localStorage.getItem()) {
+      return(
       <div className='header'>
           <div className='bounds header-bounds'>
             <NavLink to='/' className='header--logo'>Courses</NavLink>
             <nav>
-              <span>Welcome {localStorage.getItem('name')}</span>
+              <span>Welcome {localStorage.getItem('name')}!</span>
             </nav>
       </div>
 
@@ -26,10 +28,8 @@ const Header = () => {
             </nav>
           </div>
       </div>
-    }
+    }*/
 
-
-  );
 }
 
 
