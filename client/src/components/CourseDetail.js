@@ -57,7 +57,7 @@ class CourseDetail extends Component {
       <div className='actions--bar'>
         <div className='bounds'>
           <div className='grid-100'>
-            <Link className='button button-secondary' to='/courses'>Return to List</Link>
+            <Link className='button button-secondary' to='/'>Return to List</Link>
             <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
             <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
           </div>
