@@ -37,7 +37,15 @@ class CreateCourse extends Component {
         materialdsNeeded: this.state.materialdsNeeded
       }
     })
-
+    .then(alert('Your course has been created'))
+    .then(() => {
+      this.props.push('/')
+    })
+    .catch(error => {
+      this.setState({
+        errors: error.response.data.errors
+      })
+    })
   }
 
 }
