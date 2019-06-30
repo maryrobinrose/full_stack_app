@@ -66,7 +66,15 @@ class UserSignUp extends Component {
     const {firstName, lastName, emailAddress, password, validationErrors} = this.state;
 
     return(
-      <div className="bounds">
+      <div className='bounds'>
+        <div className='grid-33 centered signin'>
+          <h1>Sign Up</h1>
+          <div>
+          {this.state.validationErrors && (this.validationErrors())}
+            <form onSubmit={this.onSubmit}>
+            </form>
+          </div>
+        </div>
       </div>
     )
   }
