@@ -16,6 +16,15 @@ class UpdateCourse extends Component {
     validationErrors: ''
   }
 
+  componentDidMount() {
+    this.getCourse();
+  }
+
+  getCourse = () => {
+    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
+      .then(res)
+  }
+
 }
 
 export default UpdateCourse;
