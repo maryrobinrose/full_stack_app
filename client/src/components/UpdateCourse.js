@@ -94,6 +94,14 @@ class UpdateCourse extends Component {
                 <p>By{localStorage.getItem('name')}</p>
               </div>
               <div className='course--description'>
+                <textarea
+                  id='description'
+                  name='description'
+                  className=''
+                  placeholder='Course Description'
+                  value={this.state.description}
+                  onChange={this.onChange}
+                />
               </div>
             </div>
           </form>
