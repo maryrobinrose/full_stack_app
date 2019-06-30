@@ -16,6 +16,10 @@ class UpdateCourse extends Component {
     validationErrors: ''
   }
 
+  onChange = e => {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
   componentDidMount() {
     axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
       .then(res => {
