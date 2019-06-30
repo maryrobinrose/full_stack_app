@@ -12,6 +12,7 @@ const Header = () => {
             <NavLink to='/' className='header--logo'>Courses</NavLink>
             <nav>
               <span>Welcome {localStorage.getItem('name')}!</span>
+              <Link to='/signout' className='signout'>Sign Out</Link>
             </nav>
           </div>
       </div>
