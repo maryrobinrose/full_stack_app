@@ -48,6 +48,19 @@ class CreateCourse extends Component {
     })
   }
 
+  render() {
+    return(
+      <div className='bounds course--detail'>
+        <h1>Create Course</h1>
+        <div>
+          {this.validationErrors()}
+        </div>
+        <form onSubmit={this.onSubmit}>
+        </form>
+      </div>
+    )
+  }
+
 }
 
 export default CreateCourse;
