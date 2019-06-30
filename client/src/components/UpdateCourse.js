@@ -28,7 +28,11 @@ class UpdateCourse extends Component {
           userId: res.data.userId,
           validationErrors: ''
         })
-
+      })
+      .catch(error => {
+        this.setState({
+          errors: error.response.data.errors
+        })
       })
   }
 
