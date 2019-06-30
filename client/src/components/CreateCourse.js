@@ -18,10 +18,26 @@ class CreateCourse extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  //Handle created course
   onSubmit = e => {
     e.preventDefault();
 
-    axios({})
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/api/courses',
+      auth: {
+        username: localStorage.getItem('emailAddress'),
+        password: localStorage.getItem('password')
+      },
+      data: {
+        user: localStorage.getItem('id'),
+        title: this.state.title,
+        description: this.state.description,
+        estimatedTime: this.state.estimatedTime,
+        materialdsNeeded: this.state.materialdsNeeded
+      }
+    })
+
   }
 
 }
