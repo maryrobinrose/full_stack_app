@@ -5,6 +5,7 @@ import { NavLink, Link } from 'react-router-dom';
 const Header = ({signOut}) => {
 
   //If user is signed in
+  //parse JSON to string, constructing value https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
   if(JSON.parse(localStorage.getItem('IsLoggedIn'))) {
     return(
       <div className='header'>
