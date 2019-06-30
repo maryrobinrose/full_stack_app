@@ -66,11 +66,20 @@ class CreateCourse extends Component {
                   type='text'
                   className='input-title course--title--input'
                   placeholder='Course Title'
-                  onChange={this.handleInput}
+                  onChange={this.onSubmit}
                 />
               </div>
-              
+              <p>By{localStorage.getItem('name')}</p>
             </div>
+              <div className='course--description'>
+                <textarea
+                  id='description'
+                  name='description'
+                  className=''
+                  placeholder='Course Description'
+                  onChange={this.onSubmit}>
+                </textarea>
+              </div>
           </div>
         </form>
       </div>
