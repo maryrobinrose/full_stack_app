@@ -74,7 +74,14 @@ class UpdateCourse extends Component {
 
   render() {
     return(
-
+      <div className='bounds course--detail'>
+        <h1>Update Course</h1>
+        <div>
+        {this.state.validationErrors && (this.validationErrors())}
+          <form onSubmit={this.onSubmit}>
+          </form>
+        </div>
+      </div>
     )
   }
 
