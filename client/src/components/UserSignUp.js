@@ -72,6 +72,15 @@ class UserSignUp extends Component {
           <div>
           {this.state.validationErrors && (this.validationErrors())}
             <form onSubmit={this.onSubmit}>
+              <div>
+                <input
+                  id='firstName'
+                  name='firstName'
+                  className=''
+                  placeholder='First Name'
+                  onChange={this.handleInput}
+                />
+              </div>
             </form>
           </div>
         </div>
