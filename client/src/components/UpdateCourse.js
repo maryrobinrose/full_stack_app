@@ -40,6 +40,24 @@ class UpdateCourse extends Component {
       })
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+      axios({
+        method: 'put',
+        url: 'http://localhost:5000/api/courses/' + this.props.match.params.id,
+        auth: {
+          username: localStorage.getItem('emailAddress'),
+          password: localStorage.getItem('password')
+        },
+        data: {
+          id: this.state.id,
+          title: this.state.title,
+          description: this.state.description,
+          estimatedTime: this.state.estimatedTime,
+          materialdsNeeded: this.state.materialsNeeded
+        }
+      })
+  }
 
 }
 
