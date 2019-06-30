@@ -64,6 +64,7 @@ class UserSignUp extends Component {
 
   render() {
     const {firstName, lastName, emailAddress, password, validationErrors} = this.state;
+    const errors = this.state.errors;
 
     return(
       <div className='bounds'>
@@ -71,15 +72,50 @@ class UserSignUp extends Component {
           <h1>Sign Up</h1>
           <div>
           {this.state.validationErrors && (this.validationErrors())}
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSignUp}>
               <div>
                 <input
                   id='firstName'
                   name='firstName'
                   className=''
+                  type='text'
                   placeholder='First Name'
                   onChange={this.handleInput}
                 />
+              </div>
+              <div>
+                <input
+                  id='lastName'
+                  name='lastName'
+                  className=''
+                  type='text'
+                  placeholder='Last Name'
+                  onChange={this.handleInput}
+                />
+              </div>
+              <div>
+                <input
+                  id='password'
+                  name='password'
+                  className=''
+                  type='password'
+                  placeholder='Password'
+                  onChange={this.handleInput}
+                />
+              </div>
+              <div>
+                <input
+                  id='confirmPassword'
+                  name='confirmPassword'
+                  className=''
+                  type='password'
+                  placeholder='Confirm Password'
+                  onChange={this.handleInput}
+                />
+              </div>
+              <div className='grid-100 pad-bottom'>
+                <button className='button' type='submit'>Sign Up</button>
+                <Link className='button button-secondary' to='/'>Cancel</Link>
               </div>
             </form>
           </div>
