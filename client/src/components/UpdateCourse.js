@@ -57,6 +57,25 @@ class UpdateCourse extends Component {
           materialdsNeeded: this.state.materialsNeeded
         }
       })
+      .then (res => {
+        this.props.history.push('/courses/' + this.props.match.params.id);
+      })
+      .catch(error => {
+        this.setState({
+          errors: error.response.data.errors
+        })
+      })
+  }
+
+  onCancel = e => {
+    e.preventDefault();
+    this.props.history.push('/');
+  }
+
+  render() {
+    return(
+
+    )
   }
 
 }
