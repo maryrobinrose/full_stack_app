@@ -104,6 +104,24 @@ class UpdateCourse extends Component {
                 />
               </div>
             </div>
+            <div className='grid-25 grid-right'>
+              <div className='course--stats'>
+                <ul className='courses--stats--list'>
+                  <li className='course--stats--list--item'>
+                    <h4>Estimated Time</h4>
+                    <input
+                      id='estimatedTime'
+                      name='estimatedTime'
+                      type='text'
+                      className='course--time--input'
+                      placeholder='Estimated Time'
+                      value={this.state.estimatedTime}
+                      onChange={this.onChange} 
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
           </form>
         </div>
       </div>
