@@ -38,7 +38,7 @@ class CourseDetail extends Component {
         } else if (error.response.status === 500) {
           this.props.history.push('/error');
         }
-      })
+      });
   }
 
   //Delete course
