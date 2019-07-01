@@ -75,6 +75,10 @@ class CourseDetail extends Component {
             <div className='grid-100'>
 
               {/*Add authenticated*/}
+              <UserContext.Consumer>{ ({user, emailAddress, password}) => (
+
+              )}
+              </UserContext.Consumer>
 
               {/*Navigation Buttons*/}
               <span>
