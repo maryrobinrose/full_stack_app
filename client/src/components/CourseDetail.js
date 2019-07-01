@@ -77,15 +77,20 @@ class CourseDetail extends Component {
 
               {/*Add authentication*/}
               <UserContext.Consumer>{ ({user, emailAddress, password}) => (
-                localStorage.getItem('id') ? (
+                ( localStorage.getItem('id') ) ? (
 
-
-
+                <span>
+                  {/*Update Course*/}
                   <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
 
+                  {/*Delete Course*/}
                   <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+                </span>
+              ) : (
+                <span></span>
+              )
 
-              )}</UserContext.Consumer>
+            )}</UserContext.Consumer>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
             </div>
