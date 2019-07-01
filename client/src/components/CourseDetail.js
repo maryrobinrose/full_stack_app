@@ -59,7 +59,7 @@ class CourseDetail extends Component {
     .catch(error => {
       if (error.response.status === 404) {
         this.props.history.push('/notfound');
-      } else {
+      } else if (error.response.status === 500) {
         this.props.history.push('/error');
       }
     })
