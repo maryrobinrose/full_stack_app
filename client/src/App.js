@@ -21,6 +21,7 @@ import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
 import PrivateRoute from './components/PrivateRoute';
 
+//Global state
 class App extends Component {
 
   //Set state
@@ -32,7 +33,7 @@ class App extends Component {
 
 
   //Handle sign in
-  onSignIn = (e, user, email, password, name, from) => {
+  onSignIn = (e, user, email, password, name, props) => {
     if (e) {
       e.preventDefault();
     }
@@ -60,7 +61,7 @@ class App extends Component {
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
-        this.props.hitsory.push(from);
+        this.props.hitsory.push(props);
 
       } else {
         //If not OK
