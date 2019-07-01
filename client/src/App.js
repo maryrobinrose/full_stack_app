@@ -95,7 +95,9 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path='/' component={Courses} />
+            <PrivateRoute exact path='/create' component = {CreateCourse} />
             <Route exact path='/courses/:id' component={CourseDetail} />
+            <PrivateRoute exact path='/courses/:id/update' component= {UpdateCourse} />
             <Route exact path='/courses/:id/update' component={UpdateCourse} />
             <Route exact path='/signin' component={UserSignIn} />
             <Route exact path='/signout' component={UserSignOut} />
