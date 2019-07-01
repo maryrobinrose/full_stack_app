@@ -1,3 +1,4 @@
+//Imports
 import React, { Component } from 'react';
 import {
   BrowserRouter,
@@ -5,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from './components/UserContext';
 
 
 //Import Components

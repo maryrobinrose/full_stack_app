@@ -6,6 +6,7 @@ import axios from 'axios';
 
 class CourseDetail extends Component {
 
+
       state = {
         course: [],
         user: []
