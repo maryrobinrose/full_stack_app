@@ -6,17 +6,16 @@ import axios from 'axios';
 
 class CourseDetail extends Component {
 
-
       state = {
-        course: [],
-        user: []
+        course: {},
+        user: ''
       };
 
 
 
   componentDidMount() {
     //Request the API and course details
-    axios.get('http://localhost:5000/api/courses/' + this.props.match.params.id)
+    axios.get('http://localhost:5000/api/courses' + this.props.match.id)
 
     .then (res => {
       this.setState({
