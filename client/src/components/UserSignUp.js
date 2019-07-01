@@ -93,6 +93,16 @@ class UserSignUp extends Component {
               </div>
               <div>
                 <input
+                  id='emailAddress'
+                  name='emailAddress'
+                  className=''
+                  type='text'
+                  placeholder='Email Address'
+                  onChange={this.handleInput}
+                />
+              </div>
+              <div>
+                <input
                   id='password'
                   name='password'
                   className=''
@@ -117,8 +127,7 @@ class UserSignUp extends Component {
               </div>
             </form>
           </div>
-          <p>&nbsp;</p>
-          <p>Already have an account? <Link to='/signin'>Click here</Link> to sign in.</p>
+          <p>Already have a user account?<Link to='/signin'>Click here</Link> to sign in!</p>
         </div>
       </div>
     )
