@@ -34,6 +34,11 @@ class CourseDetail extends Component {
       //Log errors
       .catch(error => {
         console.log('Error fetching and parsing data', error);
+        if(error.response.status === 400){
+          this.props.history.push('/notfound')
+        } else if (error.response.status === 500) {
+          this.props.history.push('/error');
+        }
       });
   }
 
