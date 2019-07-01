@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
+import UserContext from './UserContext';
 
 class CourseDetail extends Component {
 
@@ -79,15 +80,18 @@ class CourseDetail extends Component {
 On the "Course Detail" screen, add rendering logic so that the "Update Course" and "Delete Course" buttons only display if:
 There's an authenticated user.
 And the authenticated user's ID matches that of the user who owns the course.*/}
-              <span>
-              {(localStorage.getItem('id') )}
-              </span>
+              <UserContext.Consumer>{ ({user, emailAddress, password}) => (
+                localStorage.getItem('id') ? (
 
-              {/*Navigation Buttons*/}
-              <span>
+
+              )}</UserContext.Consumer>
+
+
+
                 <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+
                 <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-              </span>
+              
               <Link className='button button-secondary' to='/'>Return to List</Link>
             </div>
           </div>
