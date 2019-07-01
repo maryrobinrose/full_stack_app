@@ -76,6 +76,11 @@ class CourseDetail extends Component {
                 <Link className='button button-secondary' to='/'>Return to List</Link>
                 <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
                 <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+
+                <h4>Materials Needed</h4>
+                <ul>
+                <ReactMarkdown source={this.state.course.materialsNeeded} />
+                </ul>
             </div>
           </div>
         </div>
