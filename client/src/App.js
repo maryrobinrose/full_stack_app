@@ -16,6 +16,7 @@ import UpdateCourse from './components/UpdateCourse';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
+import PrivateRoute from './components/PrivateRoute';
 
 class App extends Component {
 
