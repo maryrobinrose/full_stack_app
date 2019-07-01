@@ -20,6 +20,7 @@ import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
 import PrivateRoute from './components/PrivateRoute';
+import Error from './components/Error';
 
 //Global state
 class App extends Component {
