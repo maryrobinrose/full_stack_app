@@ -110,6 +110,7 @@ class App extends Component {
                 <Route exact path='/' render={() => <Redirect to='courses'/>} />
 
                 {/*Routes for Courses*/}
+                <Route exact path='/courses' render={() => <Courses />} />
                 <PrivateRoute exact path='/create' component = {CreateCourse} />
                 <Route exact path='/courses/:id' component={CourseDetail} />
                 <PrivateRoute exact path='/courses/:id/update' component= {UpdateCourse} />
