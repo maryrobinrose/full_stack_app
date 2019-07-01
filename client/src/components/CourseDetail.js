@@ -73,6 +73,8 @@ class CourseDetail extends Component {
           <div className='bounds'>
             <div className='grid-100'>
 
+              {/*Add authenticated*/}
+
               {/*Navigation Buttons*/}
               <span>
                 <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
@@ -82,15 +84,23 @@ class CourseDetail extends Component {
             </div>
           </div>
         </div>
+
+        {/*Course Title*/}
         <div className='bounds course--detail'>
           <div className='grid-66'>
             <div className='course--header'>
               <h4 className='course-label'>Course</h4>
               <h3 className='course--title'>{this.state.course.title}</h3>
-              <p>By {this.state.username}</p>
+              <p>By {localStorage.getItem('name')}</p>
             </div>
           </div>
         </div>
+
+        {/*Course Description*/}
+        <div className='course--description'>
+          <ReactMarkdown soure={this.state.course.description} />
+        </div>
+
                 <h4>Materials Needed</h4>
                 <ul>
                 <ReactMarkdown source={this.state.course.materialsNeeded} />
