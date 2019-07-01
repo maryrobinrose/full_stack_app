@@ -21,7 +21,8 @@ import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
 import PrivateRoute from './components/PrivateRoute';
 import Error from './components/Error';
-import NotFound from './components/NotFound'
+import NotFound from './components/NotFound';
+import Forbidden from './components/Forbidden';
 
 //Global state
 class App extends Component {
