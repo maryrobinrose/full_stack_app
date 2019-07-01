@@ -36,7 +36,7 @@ class App extends Component {
 
 
   //Handle sign in
-  onSignIn = (e, user, email, password, name, props) => {
+  onSignIn = (e, user, email, emailAddress, password, name, props) => {
     if (e) {
       e.preventDefault();
     }
@@ -125,6 +125,7 @@ class App extends Component {
                 {/*Route for errors*/}
                 <Route exact path="/error" render={() => <Error />} />
                 <Route exact path='/notfound' component = {NotFound} />
+                <Route exact path='/forbidden' component = {Forbidden} />
 
               </Switch>
           </div>
