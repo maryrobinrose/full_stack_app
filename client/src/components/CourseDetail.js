@@ -15,7 +15,7 @@ class CourseDetail extends Component {
   //When the componenet mounts, get course details
   componentDidMount() {
     this.getCourse();
-  };
+  }
 
   //Get course details
   getCourse = () => {
@@ -27,7 +27,7 @@ class CourseDetail extends Component {
         const course = res.data;
         this.setState({
           course,
-          user: course.User.firstName + ' ' + course.User.lastName
+          username: course.User.firstName + ' ' + course.User.lastName
         });
       })
 
@@ -43,11 +43,15 @@ class CourseDetail extends Component {
   }
 
   //Delete course
-  handleDeleteCourse = (e) => {
+  handleDeleteCourse = (e, emailAddress, password) => {
     e.preventDefault();
 
     axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
       method: 'DELETE',
+      auth: {
+        username: emailAddress,
+        password: password
+      }
     })
     .then (res => {
       this.props.history.push('/courses');
