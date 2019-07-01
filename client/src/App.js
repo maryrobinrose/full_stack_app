@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import axios from 'axios';
 import UserContext from './components/UserContext';
