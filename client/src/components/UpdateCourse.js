@@ -116,11 +116,27 @@ class UpdateCourse extends Component {
                       className='course--time--input'
                       placeholder='Estimated Time'
                       value={this.state.estimatedTime}
-                      onChange={this.onChange} 
+                      onChange={this.onChange}
                     />
+                  </li>
+                  <li className='course--stats--list--item'>
+                    <h4>Materials Needed</h4>
+                    <div>
+                      <textarea
+                        value={this.state.materialdsNeeded}
+                        onChange={e => this.change(e)}
+                        id='materialdsNeeded'
+                        name='materialdsNeeded'
+                        placeholder='Materials Needed'
+                      />
+                    </div>
                   </li>
                 </ul>
               </div>
+            </div>
+            <div className='grid-100 pad-bottom'>
+              <button className='button' type='submit'>Update Course</button>
+              <NavLink to='/' className='button button-secondary'>Cancel</NavLink> 
             </div>
           </form>
         </div>
