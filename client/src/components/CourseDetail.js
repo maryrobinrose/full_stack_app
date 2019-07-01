@@ -12,10 +12,9 @@ class CourseDetail extends Component {
       };
 
 
-
   componentDidMount() {
     //Request the API and course details
-    axios.get('http://localhost:5000/api/courses' + this.props.match.id)
+    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
 
     .then (res => {
       this.setState({
@@ -25,12 +24,16 @@ class CourseDetail extends Component {
     })
     //Log errors
     .catch(error => {
-      console.log('Error fetching and parsing data', error);
+      if(error.response.status === 400) {
+        this.props.histoy.push('/notfound');
+      } else if (error.response.status === 500) {
+        this.props.history.push('/error');
+      }
     })
   }
 
   handleDeleteCourse = (e) => {
-    e.preventDefaults();
+    e.preventDefault();
 
     axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
       method: 'DELETE',
