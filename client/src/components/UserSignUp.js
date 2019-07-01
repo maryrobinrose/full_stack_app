@@ -32,7 +32,7 @@ class UserSignUp extends Component {
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
 
     //If passwords don't match
-    if (this.state.password != this.state.confirmPassword) {
+    if (this.state.password !== this.state.confirmPassword) {
       alert('Passwords are not a match');
       //If passwords do match
     } else {

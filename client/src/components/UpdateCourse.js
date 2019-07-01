@@ -1,6 +1,6 @@
 //Import React library
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 class UpdateCourse extends Component {
@@ -136,7 +136,7 @@ class UpdateCourse extends Component {
             </div>
             <div className='grid-100 pad-bottom'>
               <button className='button' type='submit'>Update Course</button>
-              <NavLink to='/' className='button button-secondary'>Cancel</NavLink> 
+              <NavLink to='/' className='button button-secondary'>Cancel</NavLink>
             </div>
           </form>
         </div>

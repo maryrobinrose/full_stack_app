@@ -1,5 +1,5 @@
 //Import React library
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 //https://reacttraining.com/react-router/web/example/auth-workflow
