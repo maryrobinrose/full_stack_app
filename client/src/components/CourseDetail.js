@@ -75,6 +75,10 @@ class CourseDetail extends Component {
             <div className='grid-100'>
 
               {/*Add authenticated*/}
+              {/*Restrict access to updating and deleting courses
+On the "Course Detail" screen, add rendering logic so that the "Update Course" and "Delete Course" buttons only display if:
+There's an authenticated user.
+And the authenticated user's ID matches that of the user who owns the course.*/}
               <span>
               {(localStorage.getItem('id') )}
               </span>
