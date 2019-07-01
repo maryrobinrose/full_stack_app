@@ -65,7 +65,7 @@ class CreateCourse extends Component {
                   name='title'
                   type='text'
                   className='input-title course--title--input'
-                  placeholder='Course Title'
+                  placeholder='Course title...'
                   onChange={this.onSubmit}
                 />
               </div>
@@ -76,7 +76,7 @@ class CreateCourse extends Component {
                   id='description'
                   name='description'
                   className=''
-                  placeholder='Course Description'
+                  placeholder='Course Description...'
                   onChange={this.onSubmit} />
               </div>
           </div>
@@ -105,7 +105,7 @@ class CreateCourse extends Component {
                       onChange={e => this.change(e)}
                       id='materialdsNeeded'
                       name='materialdsNeeded'
-                      placeholder='Materials Needed'
+                      placeholder='List materials...'
                     />
                   </div>
                 </li>
