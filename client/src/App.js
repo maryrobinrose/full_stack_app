@@ -116,9 +116,9 @@ class App extends Component {
                 <Route exact path='/courses/:id/update' component={UpdateCourse} />
 
                 {/*Sign In, Out, and Up routes */}
-                <Route path='/signin' component={UserSignIn} />
-                <Route exact path='/signout' component={UserSignOut} />
-                <Route exact path='/signup' component={UserSignUp} />
+                <Route path='/signin' render={() => <UserSignIn/>} />
+                <Route path='/signout' render={() => <UserSignOut/>} />
+                <Route path='/signup' render={() => <UserSignUp/>} />
 
                 {/*Route for errors*/}
                 <Route exact path="/error" render={() => <Error />} />
