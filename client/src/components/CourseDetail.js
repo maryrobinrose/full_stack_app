@@ -113,10 +113,12 @@ class CourseDetail extends Component {
           <ReactMarkdown soure={this.state.course.description} />
         </div>
 
-        {/*Estimated Time*/}
+        {/*Side Bar*/}
         <div className='grid-25 grid-right'>
           <div className='course--stats'>
             <ul className='course--stats--list'>
+            
+            {/*Estimated Time*/}
               <li className='course--stats--list--item'>
                 <h4>Estimated Time</h4>
                 <h3>{this.state.course.estimatedTime}</h3>
