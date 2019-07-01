@@ -75,23 +75,18 @@ class CourseDetail extends Component {
           <div className='bounds'>
             <div className='grid-100'>
 
-              {/*Add authenticated*/}
-              {/*Restrict access to updating and deleting courses
-On the "Course Detail" screen, add rendering logic so that the "Update Course" and "Delete Course" buttons only display if:
-There's an authenticated user.
-And the authenticated user's ID matches that of the user who owns the course.*/}
+              {/*Add authentication*/}
               <UserContext.Consumer>{ ({user, emailAddress, password}) => (
                 localStorage.getItem('id') ? (
 
 
+
+                  <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+
+                  <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+
               )}</UserContext.Consumer>
 
-
-
-                <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
-
-                <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-              
               <Link className='button button-secondary' to='/'>Return to List</Link>
             </div>
           </div>
