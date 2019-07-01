@@ -21,8 +21,8 @@ const Header = () => {
             <div className='bounds header-bounds'>
               <NavLink to='/' className='header--logo'>Courses</NavLink>
               <nav>
-              <Link className='signin' to={'/UserSignIn'}>Sign In</Link>
-              <Link className='signup' to={'/UserSignUp'}>Sign Up</Link>
+              <Link className='signin' to={'/signin'}>Sign In</Link>
+              <Link className='signup' to={'/signup'}>Sign Up</Link>
               </nav>
             </div>
         </div>
