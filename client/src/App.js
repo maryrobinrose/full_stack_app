@@ -104,16 +104,24 @@ class App extends Component {
           <div className='bounds'>
             <Header />
               <Switch>
-                <Route exact path='/' component={Courses} />
 
+                {/*Redirects route to /courses*/}
+                <Route exact path='/' render={() => <Redirect to='courses'/>} />
+
+                {/*Routes for Courses*/}
                 <PrivateRoute exact path='/create' component = {CreateCourse} />
                 <Route exact path='/courses/:id' component={CourseDetail} />
                 <PrivateRoute exact path='/courses/:id/update' component= {UpdateCourse} />
                 <Route exact path='/courses/:id/update' component={UpdateCourse} />
 
+                {/*Sign In, Out, and Up routes */}
                 <Route path='/signin' component={UserSignIn} />
                 <Route exact path='/signout' component={UserSignOut} />
                 <Route exact path='/signup' component={UserSignUp} />
+
+                {/*Route for errors*/}
+                <Route exact path="/error" render={() => <Error />} />
+
               </Switch>
           </div>
         </BrowserRouter>
