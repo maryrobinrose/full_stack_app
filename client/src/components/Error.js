@@ -6,8 +6,7 @@ const Error = (error) => {
     <div id='root'>
       <div className='bounds'>
         <h1>Error</h1>
-          <p>An unexpected error has occured.</p>
-          <Link className='button button-secondary' to='/courses'>Return to List</Link>
+          <p>Sorry! We just encountered an unexpected error.</p>
       </div>
     </div>
   )
