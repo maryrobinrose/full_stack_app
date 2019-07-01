@@ -11,8 +11,11 @@ class CourseDetail extends Component {
         user: ''
       };
 
-
   componentDidMount() {
+    this.getCourse();
+  }
+
+  getCourse = () => {
     //Request the API and course details
     axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
 
@@ -32,6 +35,7 @@ class CourseDetail extends Component {
     })
   }
 
+  //Delete course
   handleDeleteCourse = (e) => {
     e.preventDefault();
 
