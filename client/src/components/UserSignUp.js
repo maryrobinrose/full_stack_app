@@ -29,7 +29,7 @@ class UserSignUp extends Component {
   onSignUp(e) {
     e.preventDefault();
 
-    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
+    const {firstName, lastName, emailAddress, password} = this.state;
 
     //If passwords don't match
     if (this.state.password !== this.state.confirmPassword) {
@@ -63,8 +63,6 @@ class UserSignUp extends Component {
   }
 
   render() {
-    const {firstName, lastName, emailAddress, password, validationErrors} = this.state;
-    const errors = this.state.errors;
 
     return(
       <div className='bounds'>
