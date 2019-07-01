@@ -46,7 +46,7 @@ class UserSignIn extends Component {
               </div>
             </form>
           </div>
-          <p>If you don't have a user account yet, <Link to='/UserSignUp'>click here</Link> to sign up.</p>
+          <p>Don't have a user account? <Link to='/UserSignUp'>Click here</Link> to sign up!</p>
         </div>
       </div>
     )
