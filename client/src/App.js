@@ -21,6 +21,7 @@ import UserSignOut from './components/UserSignOut';
 import UserSignUp from './components/UserSignUp';
 import PrivateRoute from './components/PrivateRoute';
 import Error from './components/Error';
+import NotFound from './components/NotFound'
 
 //Global state
 class App extends Component {
@@ -122,6 +123,7 @@ class App extends Component {
 
                 {/*Route for errors*/}
                 <Route exact path="/error" render={() => <Error />} />
+                <Route exact path='/notfound' component = {NotFound} />
 
               </Switch>
           </div>
