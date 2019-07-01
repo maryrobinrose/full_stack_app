@@ -6,33 +6,39 @@ import axios from 'axios';
 
 class CourseDetail extends Component {
 
-      state = {
-        course: {},
-        user: ''
-      };
+  //Set state
+  state = {
+    course: {},
+    user: ''
+  };
 
+  //When the componenet mounts, get course details
   componentDidMount() {
     this.getCourse();
-  }
+  };
 
+  //Get course details
   getCourse = () => {
     //Request the API and course details
-    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
+    axios.get('http://localhost:5000/api/courses/' + this.props.match.params.id)
 
-    .then (res => {
-      this.setState({
-        course: res.data,
-        user: res.data.user
-      });
-    })
-    //Log errors
-    .catch(error => {
-      if(error.response.status === 400) {
-        this.props.histoy.push('/notfound');
-      } else if (error.response.status === 500) {
-        this.props.history.push('/error');
-      }
-    })
+      //When data is received
+      .then (res => {
+        const course = res.data;
+        this.setState({
+          course,
+          user: course.User.firstName + ' ' + course.User.lastName
+        });
+      })
+
+      //Log errors
+      .catch(error => {
+        if(error.response.status === 400) {
+          this.props.histoy.push('/notfound');
+        } else if (error.response.status === 500) {
+          this.props.history.push('/error');
+        }
+      })
   }
 
   //Delete course
