@@ -69,6 +69,7 @@ class CourseDetail extends Component {
   render() {
     return(
       <div>
+
         <div className='actions--bar'>
           <div className='bounds'>
             <div className='grid-100'>
@@ -109,15 +110,17 @@ class CourseDetail extends Component {
                 <h4>Estimated Time</h4>
                 <h3>{this.state.course.estimatedTime}</h3>
               </li>
+
+              {/*Materials Needed*/}
+              <li className='course--stats--list--item'>
+                <h4>Materials Needed</h4>
+                <ul>
+                  <ReactMarkdown source={this.state.course.materialsNeeded} />
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
-
-                <h4>Materials Needed</h4>
-                <ul>
-                <ReactMarkdown source={this.state.course.materialsNeeded} />
-                </ul>
-
       </div>
     )
   }
