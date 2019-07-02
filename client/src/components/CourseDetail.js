@@ -89,7 +89,7 @@ class CourseDetail extends Component {
               ) : (
                 <span></span>
               )
-            
+
             )}</UserContext.Consumer>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
@@ -103,7 +103,7 @@ class CourseDetail extends Component {
             <div className='course--header'>
               <h4 className='course-label'>Course</h4>
               <h3 className='course--title'>{this.state.course.title}</h3>
-              <p>By {localStorage.getItem('name')}</p>
+              <p>By {this.state.username}</p>
             </div>
           </div>
         </div>
