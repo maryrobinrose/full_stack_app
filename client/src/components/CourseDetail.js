@@ -69,7 +69,7 @@ class CourseDetail extends Component {
 
   //Create authentication for Delte & Update buttons
   isLoggedIn() {
-    if () {
+    if (this.props.isLoggedIn && this.state.username === this.props.username) {
       return (
         <span>
           {/*Update Course*/}
@@ -91,16 +91,8 @@ class CourseDetail extends Component {
           <div className='bounds'>
             <div className='grid-100'>
 
-              {/*Add authentication*/}
-              <UserContext.Consumer>{ ({username, emailAddress, password}) => (
-                ( username && (username.id === this.state.course.userId) ) ? (
+              {this.isLoggedIn()}
 
-
-              ) : (
-                <span></span>
-              )
-
-            )}</UserContext.Consumer>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
             </div>
