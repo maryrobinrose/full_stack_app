@@ -6,7 +6,7 @@ import UserContext from './UserContext';
 class UserSignIn extends Component {
 
   state = {
-    //empty strings
+    //Set to empty strings
     emailAddress: '',
     password: ''
   };
