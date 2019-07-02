@@ -21,16 +21,12 @@ class UserSignIn extends Component {
   render(){
     return(
       <UserContext.Consumer>
-      {/*Add Authentication*/}
-
-      {({}) => (
-
-
+      {({signIn}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign In</h1>
             <div>
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={e => this.handleSubmit(e, signIn, this.state.emailAddress, this.state.password)}>
                 <div><input
                   id='emaillAddress'
                   name = 'emailAddress'
