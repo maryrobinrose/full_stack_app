@@ -26,7 +26,7 @@ class UserSignUp extends Component {
   };
 
   //Handle submit
-  onSignUp(e) {
+  handleSignUp(e) {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password} = this.state;
@@ -70,7 +70,7 @@ class UserSignUp extends Component {
           <h1>Sign Up</h1>
           <div>
           {this.state.validationErrors && (this.validationErrors())}
-            <form onSubmit={this.onSignUp}>
+            <form onSubmit={this.handleSignUp}>
               <div>
                 <input
                   id='firstName'
