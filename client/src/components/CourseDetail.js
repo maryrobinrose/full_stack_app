@@ -69,7 +69,7 @@ class CourseDetail extends Component {
 
   //Create authentication for Delte & Update buttons
   isLoggedIn() {
-    if (this.props.isLoggedIn && this.state.username === this.props.username) {
+    if (this.props.isLoggedIn && this.state.username === this.props.authenticated) {
       return (
         <span>
           {/*Update Course*/}
