@@ -10,7 +10,7 @@ class CourseDetail extends Component {
   //Set state
   state = {
     course: {},
-    user: ''
+    username: ''
   };
 
   //When the componenet mounts, get course details
@@ -43,6 +43,7 @@ class CourseDetail extends Component {
       });
   }
 
+
   //Delete course
   handleDeleteCourse = (e, emailAddress, password) => {
     e.preventDefault();
@@ -66,6 +67,8 @@ class CourseDetail extends Component {
     })
   };
 
+  //Create authentication for Delte & Update buttons
+
 
   render() {
     return(
@@ -76,8 +79,8 @@ class CourseDetail extends Component {
             <div className='grid-100'>
 
               {/*Add authentication*/}
-              <UserContext.Consumer>{ ({user, emailAddress, password}) => (
-                ( user && (user.id === this.state.course.userId) ) ? (
+              <UserContext.Consumer>{ ({username, emailAddress, password}) => (
+                ( username && (username.id === this.state.course.userId) ) ? (
 
                 <span>
                   {/*Update Course*/}
