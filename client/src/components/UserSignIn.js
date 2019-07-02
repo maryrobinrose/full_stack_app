@@ -12,7 +12,7 @@ class UserSignIn extends Component {
   };
 
   //Handle imput changes
-  onChange = e => {
+  handleInput = e => {
     e.preventDefault();
     //Uses input's name and value to set state
     this.setState({[e.target.name]: e.target.value});
@@ -22,6 +22,10 @@ class UserSignIn extends Component {
     return(
       <UserContext.Consumer>
       {/*Add Authentication*/}
+
+      {({}) => (
+
+
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign In</h1>
@@ -33,7 +37,7 @@ class UserSignIn extends Component {
                   type='text'
                   className=''
                   placeholder='Email Address' value={this.state.emailAddress}
-                  onChange={e => this.change(e)}
+                  onChange={this.handleInput}
                 /></div>
                 <div><input
                   id='password'
@@ -41,7 +45,7 @@ class UserSignIn extends Component {
                   type='password'
                   className=''
                   placeholder='Password' value={this.state.password}
-                  onChange={e => this.change(e)}
+                  onChange={this.handleInput}
                 /></div>
                 <div className="grid-100 pad-bottom">
                   <button className="button" type="submit">Sign In</button>
@@ -52,6 +56,7 @@ class UserSignIn extends Component {
             <p>Don't have a user account? <Link to='/signup'>Click here</Link> to sign up!</p>
           </div>
         </div>
+      )}
       </UserContext.Consumer>
     )
   }
