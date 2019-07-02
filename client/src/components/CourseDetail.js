@@ -68,6 +68,19 @@ class CourseDetail extends Component {
   };
 
   //Create authentication for Delte & Update buttons
+  isLoggedIn() {
+    if () {
+      return (
+        <span>
+          {/*Update Course*/}
+          <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+
+          {/*Delete Course*/}
+          <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+        </span>
+      )
+    }
+  }
 
 
   render() {
@@ -82,13 +95,7 @@ class CourseDetail extends Component {
               <UserContext.Consumer>{ ({username, emailAddress, password}) => (
                 ( username && (username.id === this.state.course.userId) ) ? (
 
-                <span>
-                  {/*Update Course*/}
-                  <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
 
-                  {/*Delete Course*/}
-                  <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-                </span>
               ) : (
                 <span></span>
               )
