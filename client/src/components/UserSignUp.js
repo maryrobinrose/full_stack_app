@@ -15,18 +15,18 @@ class UserSignUp extends Component {
   };
 
   //Handle imput changes
-  onChange = e => {
+  handleInput = e => {
     this.setState({[e.target.name]: e.target.value});
   };
 
   //Handle cancel
-  onCancel = e => {
+  handleCancel = e => {
     e.preventDefault();
     this.props.history.push('/courses');
   };
 
   //Handle submit
-  handleSignUp(e) {
+  handleSignUp = e => {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password} = this.state;
