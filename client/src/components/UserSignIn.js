@@ -18,6 +18,11 @@ class UserSignIn extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
+  //Handle submit
+  handleSubmit = e => {
+    e.preventDefault();
+  }
+
   render(){
     return(
       <UserContext.Consumer>
