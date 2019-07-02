@@ -64,7 +64,7 @@ class App extends Component {
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
-        this.props.hitsory.push(props);
+        this.props.history.push(props);
 
       } else {
         //If not OK
