@@ -11,7 +11,7 @@ class UserSignIn extends Component {
     password: ''
   };
 
-  //Handle imput changes
+  //Handle imput changes, set state value of each input field as value of changes
   handleInput = e => {
     e.preventDefault();
     //Uses input's name and value to set state
@@ -19,9 +19,11 @@ class UserSignIn extends Component {
   };
 
   //Handle submit
-  handleSubmit = (e, signin) => {
+  handleSubmit = (e, signin, emailAddress, password) => {
     e.preventDefault();
-    signin(e, this.state);
+    signin(e, emailAddress, password);
+    console.log("Sign in success");
+    this.props.history.push('/courses');
   }
 
   render(){
