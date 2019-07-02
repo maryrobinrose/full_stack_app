@@ -51,6 +51,7 @@ class CreateCourse extends Component {
     return(
       <div className='bounds course--detail'>
         <h1>Create Course</h1>
+        {/*Add validation errors*/}
         <div>
         </div>
         <form onSubmit={this.onSubmit}>
