@@ -32,7 +32,7 @@ class UserSignIn extends Component {
                   name = 'emailAddress'
                   type='text'
                   className=''
-                  placeholder='Email Address' value={this.state.emailAddress}
+                  placeholder='Email Address'
                   onChange={this.handleInput}
                 /></div>
                 <div><input
@@ -40,7 +40,7 @@ class UserSignIn extends Component {
                   name = 'password'
                   type='password'
                   className=''
-                  placeholder='Password' value={this.state.password}
+                  placeholder='Password' 
                   onChange={this.handleInput}
                 /></div>
                 <div className="grid-100 pad-bottom">
