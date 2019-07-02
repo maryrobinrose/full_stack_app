@@ -36,7 +36,7 @@ class UserSignIn extends Component {
             <div>
               <form onSubmit={e => this.handleSubmit(e, signIn, this.state.emailAddress, this.state.password)}>
                 <div><input
-                  id='emaillAddress'
+                  id='emailAddress'
                   name = 'emailAddress'
                   type='text'
                   className=''
