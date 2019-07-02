@@ -5,13 +5,13 @@ import UserContext from './UserContext';
 
 const Header = () => {
   return (
-    <UserContext.Consumer>{ ({Authenticated, signOut, user}) => (
+    <UserContext.Consumer>{ ({authenticated, signOut, user}) => (
       localStorage.getItem('username') ? (
         <div className='header'>
           <div className='bounds'>
             <NavLink to='/' className='header--logo'>Courses</NavLink>
             <nav>
-              <span>Welcome {user.firstName} {user.lastName}!</span>
+              <span>Welcome !</span>
               <Link to='/signout' className='signout'>Sign Out</Link>
             </nav>
           </div>

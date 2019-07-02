@@ -100,8 +100,14 @@ class App extends Component {
     return (
       <UserContext.Provider
         value={{
+          user: this.state.user,
+          emailAddress: this.state.emailAddress,
+          password: this.state.password,
+          authenticated: this.state.authenticated,
+          actions: {
           signIn: this.onSignIn.bind(this),
           signOut: this.onSignOut.bind(this)
+          }
         }}>
         <BrowserRouter>
           <div className='bounds'>
