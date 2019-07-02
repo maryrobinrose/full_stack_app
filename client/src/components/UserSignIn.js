@@ -19,9 +19,9 @@ class UserSignIn extends Component {
   };
 
   //Handle submit
-  handleSubmit = (e, signin, emailAddress, password) => {
+  handleSubmit = (e, signIn, emailAddress, password) => {
     e.preventDefault();
-    signin(e, emailAddress, password);
+    signIn(e, emailAddress, password);
     console.log("Sign in success");
     this.props.history.push('/courses');
   }
