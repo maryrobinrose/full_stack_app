@@ -19,9 +19,9 @@ class UserSignIn extends Component {
   };
 
   //Handle submit
-  handleSubmit = e => {
+  /*handleSubmit = (e, signin) => {
     e.preventDefault();
-  }
+  }*/
 
   render(){
     return(
