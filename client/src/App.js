@@ -29,9 +29,10 @@ class App extends Component {
 
   //Set state
   state = {
-    validationErrors: '',
-    //Authenticated user data
-    authenticatedUser: {}
+    authenticated: false,
+    emailAddress: '',
+    user: {},
+    password: '',
   }
 
 
