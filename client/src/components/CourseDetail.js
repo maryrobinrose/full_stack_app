@@ -76,8 +76,8 @@ class CourseDetail extends Component {
             <div className='grid-100'>
 
               {/*Add authentication*/}
-              <UserContext.Consumer>{ ({user, emailAddress, password, authenticated}) => (
-                {( authenticated && (user.id === this.state.course.userId) ) ? (
+              <UserContext.Consumer>{ ({user, emailAddress, password}) => (
+                ( user && (user.id === this.state.course.userId) ) ? (
 
                 <span>
                   {/*Update Course*/}
@@ -89,7 +89,7 @@ class CourseDetail extends Component {
               ) : (
                 <span></span>
               )
-            }
+            
             )}</UserContext.Consumer>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
