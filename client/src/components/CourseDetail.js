@@ -25,7 +25,7 @@ class CourseDetail extends Component {
 
       //When data is received
       .then (res => {
-        const course = res.data;
+        const course = res.data.course;
         this.setState({
           course,
           username: course.User.firstName + ' ' + course.User.lastName
@@ -64,7 +64,7 @@ class CourseDetail extends Component {
         this.props.history.push('/error');
       }
     })
-  }
+  };
 
 
   render() {
@@ -76,8 +76,8 @@ class CourseDetail extends Component {
             <div className='grid-100'>
 
               {/*Add authentication*/}
-              <UserContext.Consumer>{ ({user, emailAddress, password}) => (
-                ( localStorage.getItem('id') ) ? (
+              <UserContext.Consumer>{ ({user, emailAddress, password, authenticated}) => (
+                {( authenticated && (user.id === this.state.course.userId) ) ? (
 
                 <span>
                   {/*Update Course*/}
@@ -89,7 +89,7 @@ class CourseDetail extends Component {
               ) : (
                 <span></span>
               )
-
+            }
             )}</UserContext.Consumer>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
@@ -136,7 +136,7 @@ class CourseDetail extends Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 
