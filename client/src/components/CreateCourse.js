@@ -10,7 +10,6 @@ class CreateCourse extends Component {
     description: '',
     estimatedTime: '',
     materialdsNeeded: '',
-    validationErrors: '',
   }
 
   //Handle user changes
@@ -53,7 +52,6 @@ class CreateCourse extends Component {
       <div className='bounds course--detail'>
         <h1>Create Course</h1>
         <div>
-          {this.validationErrors()}
         </div>
         <form onSubmit={this.onSubmit}>
           <div className='grid-66'>
