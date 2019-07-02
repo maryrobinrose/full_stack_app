@@ -35,28 +35,33 @@ class UserSignIn extends Component {
             <h1>Sign In</h1>
             <div>
               <form onSubmit={e => signIn(e, this.state.emailAddress, this.state.password)}>
-                <div><input
+                <div>
+                  <input
                   id='emailAddress'
                   name = 'emailAddress'
                   type='text'
                   className=''
                   placeholder='Email Address'
                   onChange={this.handleInput}
-                /></div>
-                <div><input
+                  />
+                </div>
+                <div>
+                  <input
                   id='password'
                   name = 'password'
                   type='password'
                   className=''
                   placeholder='Password'
                   onChange={this.handleInput}
-                /></div>
+                  />
+                </div>
                 <div className="grid-100 pad-bottom">
                   <button className="button" type="submit">Sign In</button>
                   <Link to='/' className="button button-secondary">Cancel</Link>
                 </div>
               </form>
             </div>
+            <p>&nbsp;</p>
             <p>Don't have a user account? <Link to='/signup'>Click here</Link> to sign up!</p>
           </div>
         </div>

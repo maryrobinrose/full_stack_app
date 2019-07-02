@@ -1,7 +1,6 @@
 import React from 'react';
 
-//React Contect API
+//React Context API
 const UserContext = React.createContext();
-
 
 export default UserContext;
