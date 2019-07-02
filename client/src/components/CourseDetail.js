@@ -15,11 +15,11 @@ class CourseDetail extends Component {
 
   //When the componenet mounts, get course details
   componentDidMount() {
-    this.getCourse();
+    this.handleCourse();
   }
 
   //Get course details
-  getCourse = () => {
+  handleCourse = () => {
     //Request the API and course details
     axios.get('http://localhost:5000/api/courses/' + this.props.match.params.id)
 
@@ -117,7 +117,7 @@ class CourseDetail extends Component {
         <div className='grid-25 grid-right'>
           <div className='course--stats'>
             <ul className='course--stats--list'>
-            
+
             {/*Estimated Time*/}
               <li className='course--stats--list--item'>
                 <h4>Estimated Time</h4>

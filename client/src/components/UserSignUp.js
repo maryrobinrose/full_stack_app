@@ -69,7 +69,6 @@ class UserSignUp extends Component {
         <div className='grid-33 centered signin'>
           <h1>Sign Up</h1>
           <div>
-          {this.state.validationErrors && (this.validationErrors())}
             <form onSubmit={this.handleSignUp}>
               <div>
                 <input
