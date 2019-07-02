@@ -40,7 +40,7 @@ class UserSignIn extends Component {
                   name = 'password'
                   type='password'
                   className=''
-                  placeholder='Password' 
+                  placeholder='Password'
                   onChange={this.handleInput}
                 /></div>
                 <div className="grid-100 pad-bottom">
@@ -56,8 +56,6 @@ class UserSignIn extends Component {
       </UserContext.Consumer>
     )
   }
-
-
 }
 
 export default UserSignIn;
