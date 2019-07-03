@@ -53,6 +53,12 @@ class UpdateCourse extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    if () {
+
+    } else if () {
+
+    } else {
       axios({
         method: 'put',
         url: 'http://localhost:5000/api/courses/' + this.props.match.params.id,
@@ -76,6 +82,9 @@ class UpdateCourse extends Component {
           errors: error.response.data.errors
         })
       })
+    }
+
+
   }
 
   onCancel = e => {
