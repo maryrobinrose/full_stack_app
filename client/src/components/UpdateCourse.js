@@ -54,6 +54,8 @@ class UpdateCourse extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    const {title, description} = this.state;
+
     if (title === '') {
       this.setState({validationErrors: 'Please enter a title.'})
     } else if (description === '') {
@@ -91,7 +93,7 @@ class UpdateCourse extends Component {
 
   onCancel = e => {
     e.preventDefault();
-    this.props.history.push('/');
+    this.props.history.push('/courses');
   }
 
   render() {
