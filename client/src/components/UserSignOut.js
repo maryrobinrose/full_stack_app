@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 class UserSignOut extends Component {
   render() {
-    return(<Redirect to='/' />);
+    return(<Redirect to='/courses' />);
   }
 }
 
