@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <UserContext.Consumer>{ ({authenticated, signOut, user}) => (
 
-        localStorage.getItem('username') ? (
+
         <div className='header'>
           <div className='bounds'>
             <h1 className='header--logo'>
@@ -19,6 +19,7 @@ const Header = () => {
                 <span>Welcome {user.firstName} {user.lastName}!</span>
                 <Link to='/signout' className='signout'>Sign Out</Link>
               </nav>
+
           )
           :
           (
