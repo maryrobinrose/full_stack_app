@@ -32,6 +32,10 @@ class CreateCourse extends Component {
       this.setState({
         showError: 'Please enter a description.'
       })
+    /*} else if (description === '' && title === '') {
+      this.setState({
+        showError: 'Please enter a description and a title.'
+      })*/
     } else {
       axios({
         method: 'post',
