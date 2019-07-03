@@ -79,7 +79,7 @@ class CreateCourse extends Component {
           </div>
         ) : ''}
 
-          <form onSubmit={e => this.onSubmit(e, localStorage.getItem('username'), localStorage.getItem('password'))}>
+          <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'))}>
             <div className='grid-66'>
               <div className='course--header'>
                 <h4 className='course--label'>Course</h4>
@@ -90,7 +90,7 @@ class CreateCourse extends Component {
                     type='text'
                     className='input-title course--title--input'
                     placeholder='Course title...'
-                    onChange={this.onSubmit}
+                    onChange={this.handleChange}
                   />
                 </div>
                 <p>By {this.state.username}</p>
@@ -101,7 +101,7 @@ class CreateCourse extends Component {
                     name='description'
                     className=''
                     placeholder='Course Description...'
-                    onChange={this.onSubmit} />
+                    onChange={this.handleChange} />
                 </div>
             </div>
             <div className='grid-25 grid-right'>
