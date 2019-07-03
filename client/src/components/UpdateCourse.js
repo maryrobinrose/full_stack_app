@@ -63,7 +63,7 @@ class UpdateCourse extends Component {
         method: 'put',
         url: 'http://localhost:5000/api/courses/' + this.props.match.params.id,
         auth: {
-          username: localStorage.getItem('emailAddress'),
+          username: localStorage.getItem('username'),
           password: localStorage.getItem('password')
         },
         data: {
@@ -78,9 +78,11 @@ class UpdateCourse extends Component {
         this.props.history.push('/courses/' + this.props.match.params.id);
       })
       .catch(error => {
-        this.setState({
-          errors: error.response.data.errors
-        })
+        if (error.response.status === 400) {
+          this.props.history.push('./notfound')
+        } else if (error.response.status === 500){
+          this.props.history.push('./error')
+        }
       })
     }
 
