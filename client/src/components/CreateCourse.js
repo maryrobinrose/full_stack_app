@@ -74,12 +74,10 @@ class CreateCourse extends Component {
             <div class="validation-errors">
               <ul>
                 <li>{validationErrors}</li>
-                <li>Please provide a value for "Description"</li>
               </ul>
             </div>
           </div>
         ) : ''}
-        
         </div>
         <form onSubmit={this.onSubmit}>
           <div className='grid-66'>
