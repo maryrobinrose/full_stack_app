@@ -18,13 +18,6 @@ class UserSignIn extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
-  //Handle submit -- Don't need because of context?
-  /*handleSubmit = (e, signIn, emailAddress, password) => {
-    e.preventDefault();
-    signIn(e, emailAddress, password);
-    console.log("Sign in success");
-    this.props.history.push('/courses');
-  }*/
 
   render(){
     return(
