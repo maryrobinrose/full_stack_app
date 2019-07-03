@@ -24,7 +24,7 @@ class UpdateCourse extends Component {
   handleCourse = e => {
     axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
       .then(res => {
-        if() {
+        if(res.data.userId !== parseInt(localStorage.getItem('id'))) {
 
         } else {
           this.setState({
