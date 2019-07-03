@@ -31,7 +31,7 @@ class UserSignIn extends Component {
             {/*How to make this different from title and description errors?*/}
             {validationErrors ? (
               <div>
-                <h2 className="validation--errors--label">Validation errors</h2>
+                <h2 className="validation--errors--label">Error</h2>
                 <div className="validation-errors">
                   <ul>
                     <li>{validationErrors}</li>
@@ -40,7 +40,7 @@ class UserSignIn extends Component {
               </div>
             ) : ''}
 
-              <form onSubmit={e => signIn(e, this.state.emailAddress, this.state.password)}>
+              <form onSubmit={e => signIn(e,  this.state.emailAddress, this.state.password)}>
 
                 <div>
                   <input
