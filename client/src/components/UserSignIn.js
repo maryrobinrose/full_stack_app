@@ -28,6 +28,7 @@ class UserSignIn extends Component {
             <h1>Sign In</h1>
             <div>
 
+            {/*How to make this different from title and description errors?*/}
             {validationErrors ? (
               <div>
                 <h2 className="validation--errors--label">Validation errors</h2>
