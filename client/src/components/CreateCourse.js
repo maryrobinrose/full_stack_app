@@ -21,6 +21,12 @@ class CreateCourse extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    if(title='') {
+      this.setState({
+        
+      })
+    }
+
     axios({
       method: 'post',
       url: 'http://localhost:5000/api/courses',
