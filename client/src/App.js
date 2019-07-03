@@ -52,7 +52,7 @@ class App extends Component {
     .then (res => {
       //If OK
       if (res.status === 200) {
-        const name = user.firstName + ' ' + user.lastName;
+        const name = res.data.firstName + ' ' + res.data.lastName;
         this.setState({
           user: res.data,
           authenticated: true,
@@ -62,11 +62,11 @@ class App extends Component {
         });
         //Save user preferences locally in the browser
         localStorage.setItem('username', email);
-        localStorage.setItem('id', user.id);
+        localStorage.setItem('id', res.data.id);
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
-        this.props.history.push(props);
+        //this.props.history.push(props);
 
       } else {
         //If not OK
