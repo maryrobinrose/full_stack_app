@@ -62,7 +62,7 @@ class CreateCourse extends Component {
 
   render() {
 
-    const {validationErrors} = this.state;
+    const {validationErrors, title, description, estimatedTime, materialsNeeded} = this.state;
 
     return(
       <div className='bounds course--detail'>
@@ -79,7 +79,7 @@ class CreateCourse extends Component {
           </div>
         ) : ''}
 
-          <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'))}>
+          <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'), title, description, estimatedTime, materialsNeeded)}>
             <div className='grid-66'>
               <div className='course--header'>
                 <h4 className='course--label'>Course</h4>
