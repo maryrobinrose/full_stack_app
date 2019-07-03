@@ -122,13 +122,12 @@ class CreateCourse extends Component {
                   <li className='course--stats--list--item'>
                     <h4>Materials Needed</h4>
                     <div>
-                      <textarea
-                        value={this.state.materialdsNeeded}
-                        onChange={e => this.change(e)}
-                        id='materialdsNeeded'
-                        name='materialdsNeeded'
-                        placeholder='List materials...'
-                      />
+                    <textarea
+                      id='materialsNeeded'
+                      name='materialsNeeded'
+                      className=''
+                      placeholder='List materials...'
+                      onChange={this.handleChange} />
                     </div>
                   </li>
                 </ul>
