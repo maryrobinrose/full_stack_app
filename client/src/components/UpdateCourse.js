@@ -25,7 +25,7 @@ class UpdateCourse extends Component {
     axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
       .then(res => {
         if(res.data.userId !== parseInt(localStorage.getItem('id'))) {
-
+          this.props.history.push('./forbidden')
         } else {
           this.setState({
             id: res.data.id,
