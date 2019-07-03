@@ -12,7 +12,7 @@ class UserSignUp extends Component {
     emailAddress: '',
     password: '',
     confirmPassword: '',
-    validationErrors: ''
+    showError: ''
   };
 
   //Handle input changes
@@ -30,11 +30,11 @@ class UserSignUp extends Component {
     //If passwords don't match
     if (password === '') {
       this.setState({
-        validationErrors: 'Please enter a password.'
+        showError: 'Please enter a password.'
       });
     } else if (password !== confirmPassword) {
       this.setState({
-        validationErrors: 'Passwords do not match.'
+        showError: 'Passwords do not match.'
       });
       //If passwords do match
     } else {
@@ -44,7 +44,7 @@ class UserSignUp extends Component {
           //If the response is successful
           if (res.status === 201) {
             this.setState({
-              validationErrors: ''
+              showError: ''
             })
             //Sign in user
             this.props.signIn(null, emailAddress, password);
@@ -54,7 +54,7 @@ class UserSignUp extends Component {
         .catch(error => {
           if (error.response.status === 400) {
             this.setState({
-              validationErrors: error.response.data.message,
+              showError: error.response.data.message,
             });
           } else if (error.response.status === 500) {
             this.props.history.push('/error');
@@ -65,22 +65,22 @@ class UserSignUp extends Component {
 
   render() {
 
-    const {validationErrors, firstName, lastName, emailAddress, password} = this.state;
+    const {showError, firstName, lastName, emailAddress, password} = this.state;
 
     return(
       //<UserContext.Consumer>
-      //{({signUp, validationErrors}) => (
+      //{({signUp, showError}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign Up</h1>
             <div>
 
-            {validationErrors ? (
+            {showError ? (
               <div>
                 <h2 className="validation--errors--label">Error</h2>
                 <div className="validation-errors">
                   <ul>
-                    <li>{validationErrors}</li>
+                    <li>{showError}</li>
                   </ul>
                 </div>
               </div>

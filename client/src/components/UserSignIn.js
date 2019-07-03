@@ -22,19 +22,19 @@ class UserSignIn extends Component {
   render(){
     return(
       <UserContext.Consumer>
-      {({signIn, validationErrors}) => (
+      {({signIn, showError}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign In</h1>
             <div>
 
             {/*How to make this different from title and description errors?*/}
-            {validationErrors ? (
+            {showError ? (
               <div>
                 <h2 className="validation--errors--label">Error</h2>
                 <div className="validation-errors">
                   <ul>
-                    <li>{validationErrors}</li>
+                    <li>{showError}</li>
                   </ul>
                 </div>
               </div>

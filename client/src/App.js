@@ -69,7 +69,7 @@ class App extends Component {
         //this.props.history.push(props);
 
         this.setSet ({
-          validationErrors: ''
+          showError: ''
         })
 
       }
@@ -92,7 +92,7 @@ class App extends Component {
 
     //Clear validation errors
     this.setState({
-      validationErrors: ''
+      showError: ''
     });
 
     //Bring user back to main

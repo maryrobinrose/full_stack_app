@@ -13,7 +13,7 @@ class UpdateCourse extends Component {
     materialdsNeeded: '',
     userid: '',
     createdBy: '',
-    validationErrors: ''
+    showError: ''
   }
 
   componentDidMount() {
@@ -33,7 +33,7 @@ class UpdateCourse extends Component {
             estimatedTime: res.data.estimatedTime,
             materialdsNeeded: res.data.materialdsNeeded,
             userId: res.data.userId,
-            validationErrors: ''
+            showError: ''
           })
         }
       })
@@ -56,9 +56,9 @@ class UpdateCourse extends Component {
     const {title, description} = this.state;
 
     if (title === '') {
-      this.setState({validationErrors: 'Please enter a title.'})
+      this.setState({showError: 'Please enter a title.'})
     } else if (description === '') {
-      this.setState({validationErrors: 'Please enter a description.'})
+      this.setState({showError: 'Please enter a description.'})
     } else {
       axios({
         method: 'put',
@@ -93,19 +93,19 @@ class UpdateCourse extends Component {
 
   render() {
 
-    const {validationErrors, title, description, estimatedTime, materialsNeeded} = this.state;
+    const {showError, title, description, estimatedTime, materialsNeeded} = this.state;
 
     return(
       <div className='bounds course--detail'>
         <h1>Update Course</h1>
         <div>
 
-        {validationErrors ? (
+        {showError ? (
           <div>
             <h2 className="validation--errors--label">Validation errors</h2>
             <div className="validation-errors">
               <ul>
-                <li>{validationErrors}</li>
+                <li>{showError}</li>
               </ul>
             </div>
           </div>

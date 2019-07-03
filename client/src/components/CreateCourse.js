@@ -10,7 +10,7 @@ class CreateCourse extends Component {
     description: '',
     estimatedTime: '',
     materialdsNeeded: '',
-    validationErrors: '',
+    showError: '',
   }
 
   //Handle user changes
@@ -26,11 +26,11 @@ class CreateCourse extends Component {
 
     if(title === '') {
       this.setState({
-        validationErrors: 'Please enter a title.'
+        showError: 'Please enter a title.'
       })
     } else if (description === '') {
       this.setState({
-        validationErrors: 'Please enter a description.'
+        showError: 'Please enter a description.'
       })
     } else {
       axios({
@@ -62,18 +62,18 @@ class CreateCourse extends Component {
 
   render() {
 
-    const {validationErrors, title, description, estimatedTime, materialsNeeded} = this.state;
+    const {showError, title, description, estimatedTime, materialsNeeded} = this.state;
 
     return(
       <div className='bounds course--detail'>
         <h1>Create Course</h1>
         <div>
-        {validationErrors ? (
+        {showError ? (
           <div>
             <h2 className="validation--errors--label">Validation errors</h2>
             <div className="validation-errors">
               <ul>
-                <li>{validationErrors}</li>
+                <li>{showError}</li>
               </ul>
             </div>
           </div>
