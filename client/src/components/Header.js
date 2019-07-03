@@ -6,16 +6,18 @@ import UserContext from './UserContext';
 const Header = () => {
   return (
     <UserContext.Consumer>{ ({authenticated, signOut, user}) => (
+
         <div className='header'>
           <div className='bounds'>
             <h1 className='header--logo'>
-            <NavLink to='/' className='header--logo'>Courses</NavLink>
+              <NavLink to='/courses' className='header--logo'>Courses</NavLink>
             </h1>
-            {(authenticated) ? (
-            <nav>
-              <span>Welcome {user.firstName} {user.lastName}!</span>
-              <Link to='/signout' className='signout'>Sign Out</Link>
-            </nav>
+            {(authenticated) ?
+            (
+              <nav>
+                <span>Welcome {user.firstName} {user.lastName}!</span>
+                <Link to='/signout' className='signout'>Sign Out</Link>
+              </nav>
           )
           :
           (
