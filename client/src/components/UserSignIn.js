@@ -27,7 +27,7 @@ class UserSignIn extends Component {
           <div className='grid-33 centered signin'>
             <h1>Sign In</h1>
             <div>
-            
+
             {validationErrors ? (
               <div>
                 <h2 className="validation--errors--label">Validation errors</h2>
@@ -40,6 +40,7 @@ class UserSignIn extends Component {
             ) : ''}
 
               <form onSubmit={e => signIn(e, this.state.emailAddress, this.state.password)}>
+
                 <div>
                   <input
                   id='emailAddress'
@@ -62,7 +63,7 @@ class UserSignIn extends Component {
                 </div>
                 <div className="grid-100 pad-bottom">
                   <button className="button" type="submit">Sign In</button>
-                  <Link to='/' className="button button-secondary">Cancel</Link>
+                  <Link to='/courses' className="button button-secondary">Cancel</Link>
                 </div>
               </form>
             </div>
