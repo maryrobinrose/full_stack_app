@@ -72,7 +72,8 @@ class UpdateCourse extends Component {
           title: this.state.title,
           description: this.state.description,
           estimatedTime: this.state.estimatedTime,
-          materialdsNeeded: this.state.materialsNeeded
+          materialdsNeeded: this.state.materialsNeeded,
+          userId: this.state.userId
         }
       })
       .then (res => {
