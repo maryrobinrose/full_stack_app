@@ -22,11 +22,23 @@ class UserSignIn extends Component {
   render(){
     return(
       <UserContext.Consumer>
-      {({signIn}) => (
+      {({signIn, validationErrors}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign In</h1>
             <div>
+            
+            {validationErrors ? (
+              <div>
+                <h2 className="validation--errors--label">Validation errors</h2>
+                <div className="validation-errors">
+                  <ul>
+                    <li>{validationErrors}</li>
+                  </ul>
+                </div>
+              </div>
+            ) : ''}
+
               <form onSubmit={e => signIn(e, this.state.emailAddress, this.state.password)}>
                 <div>
                   <input
