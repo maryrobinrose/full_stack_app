@@ -44,8 +44,8 @@ class App extends Component {
     //Request user info
     axios.get('http://localhost:5000/api/users', {
       auth: {
-        username: user.emailAddress,
-        password: user.password
+        username: emailAddress,
+        password: password
       }
     })
     //Once request is made
@@ -85,7 +85,7 @@ class App extends Component {
       }
     });
   }
-  
+
   onSignOut() {
     //Clear user preferences
     localStorage.clear();
