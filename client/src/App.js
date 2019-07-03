@@ -30,8 +30,7 @@ class App extends Component {
   //Set state
   state = {
     authenticated: false,
-    authenticatedUser: {},
-    emailAddress: '',
+    username: '',
     user: {},
     password: '',
   }
@@ -53,11 +52,12 @@ class App extends Component {
     .then (res => {
       //If OK
       if (res.status === 200) {
+        const name = user.firstName + ' ' + user.lastName;
         this.setState({
           user: res.data,
-          loggedIn: true,
+          authenticated: true,
           password: res.data.password,
-          emailAddress: res.data.emailAddress,
+          username: res.data.emailAddress,
           error: {}
         });
         //Save user preferences locally in the browser
