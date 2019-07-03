@@ -150,20 +150,21 @@ class UpdateCourse extends Component {
                       name='estimatedTime'
                       type='text'
                       className='course--time--input'
-                      placeholder='Estimated Time'
-                      value={this.state.estimatedTime}
-                      onChange={this.onChange}
+                      placeholder='Hours'
+                      onChange={this.handleSubmit}
+                      value={this.course.estimatedTime}
                     />
                   </li>
                   <li className='course--stats--list--item'>
                     <h4>Materials Needed</h4>
                     <div>
                       <textarea
-                        value={this.state.materialdsNeeded}
-                        onChange={e => this.change(e)}
                         id='materialdsNeeded'
                         name='materialdsNeeded'
                         placeholder='Materials Needed'
+                        className=''
+                        onChange={this.handleSubmit}
+                        value={this.course.materialsNeeded}
                       />
                     </div>
                   </li>
