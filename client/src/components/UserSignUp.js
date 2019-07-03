@@ -17,7 +17,7 @@ class UserSignUp extends Component {
 
   //Handle input changes
   handleInput = e => {
-    e.preventDefault();
+    //e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   };
 
@@ -143,7 +143,7 @@ class UserSignUp extends Component {
                 </div>
               </form>
             </div>
-            <p>Already have a user account?<Link to='/signin'>Click here</Link> to sign in!</p>
+            <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
           </div>
         </div>
       //)}</UserContext.Consumer>
