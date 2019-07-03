@@ -69,20 +69,6 @@ class CourseDetail extends Component {
     })
   };
 
-  //Create authentication for Delte & Update buttons
-  /*isLoggedIn() {
-    if (this.props.isLoggedIn && this.state.createdBy === this.props.authenticated) {
-      return (
-      <span>
-        {/*Update Course
-        <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
-        {/*Delete Course*
-        <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-      </span>
-      )
-    }
-  }*/
-
 
   render() {
 
