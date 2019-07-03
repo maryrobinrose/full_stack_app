@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-//import UserContext from './UserContext';
+import UserContext from './UserContext';
 
 class UserSignUp extends Component {
 
@@ -68,8 +68,8 @@ class UserSignUp extends Component {
     const {showError, firstName, lastName, emailAddress, password} = this.state;
 
     return(
-      //<UserContext.Consumer>
-      //{({signUp, showError}) => (
+      <UserContext.Consumer>
+      {({signUp}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign Up</h1>
@@ -146,7 +146,7 @@ class UserSignUp extends Component {
             <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
           </div>
         </div>
-      //)}</UserContext.Consumer>
+      )}</UserContext.Consumer>
     )
   }
 }
