@@ -91,7 +91,7 @@ class UpdateCourse extends Component {
 
   }
 
-  onCancel = e => {
+  handleCancel = e => {
     e.preventDefault();
     this.props.history.push('/courses');
   }
