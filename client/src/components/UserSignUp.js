@@ -23,7 +23,7 @@ class UserSignUp extends Component {
   handleSignUp = e => {
     e.preventDefault();
 
-    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
+    const {firstName, lastName, emailAddress, password} = this.state;
 
     //If passwords don't match
     if (this.state.password !== this.state.confirmPassword) {
