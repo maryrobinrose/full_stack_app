@@ -14,7 +14,7 @@ class UserSignUp extends Component {
     validationErrors: ''
   };
 
-  //Handle imput changes
+  //Handle input changes
   handleInput = e => {
     this.setState({[e.target.name]: e.target.value});
   };
@@ -23,7 +23,7 @@ class UserSignUp extends Component {
   handleSignUp = e => {
     e.preventDefault();
 
-    const {firstName, lastName, emailAddress, password} = this.state;
+    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
 
     //If passwords don't match
     if (this.state.password !== this.state.confirmPassword) {
@@ -116,7 +116,7 @@ class UserSignUp extends Component {
               </div>
               <div className='grid-100 pad-bottom'>
                 <button className='button' type='submit'>Sign Up</button>
-                <Link className='button button-secondary' to='/'>Cancel</Link>
+                <Link className='button button-secondary' to='/courses'>Cancel</Link>
               </div>
             </form>
           </div>
