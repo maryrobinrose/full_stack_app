@@ -70,8 +70,8 @@ class CreateCourse extends Component {
         <div>
         {validationErrors ? (
           <div>
-            <h2 class="validation--errors--label">Validation errors</h2>
-            <div class="validation-errors">
+            <h2 className="validation--errors--label">Validation errors</h2>
+            <div className="validation-errors">
               <ul>
                 <li>{validationErrors}</li>
               </ul>
@@ -79,7 +79,7 @@ class CreateCourse extends Component {
           </div>
         ) : ''}
         </div>
-        <form onSubmit={e => this.onSubmit(e)}>
+        <form onSubmit={e => this.onSubmit(e, localStorage.getItem('username'))}>
           <div className='grid-66'>
             <div className='course--header'>
               <h4 className='course--label'>Course</h4>
