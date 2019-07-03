@@ -122,9 +122,11 @@ class UpdateCourse extends Component {
                     type='text'
                     className='input-title course--title--input'
                     placeholder='Course Title'
+                    onChange={this.handleSubmit}
+                    value={this.course.title}
                   />
                 </div>
-                <p>By{localStorage.getItem('name')}</p>
+                <p>By {this.state.username}</p>
               </div>
               <div className='course--description'>
                 <textarea
@@ -133,7 +135,8 @@ class UpdateCourse extends Component {
                   className=''
                   placeholder='Course Description'
                   value={this.state.description}
-                  onChange={this.onChange}
+                  onChange={this.handleSubmit}
+                  value-{this.course.description}
                 />
               </div>
             </div>
