@@ -61,11 +61,14 @@ class CreateCourse extends Component {
   }
 
   render() {
+
+    const {validationErrors} = this.state;
+
     return(
       <div className='bounds course--detail'>
         <h1>Create Course</h1>
-        {/*Add validation errors*/}
         <div>
+        {validationErrors}
         </div>
         <form onSubmit={this.onSubmit}>
           <div className='grid-66'>
