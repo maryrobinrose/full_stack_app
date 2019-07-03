@@ -19,12 +19,6 @@ class UserSignUp extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
-  //Handle cancel
-  handleCancel = e => {
-    e.preventDefault();
-    this.props.history.push('/courses');
-  };
-
   //Handle submit
   handleSignUp = e => {
     e.preventDefault();
