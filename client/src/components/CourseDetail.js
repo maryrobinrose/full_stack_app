@@ -10,7 +10,9 @@ class CourseDetail extends Component {
   //Set state
   state = {
     course: {},
-    username: ''
+    courseId: '',
+    createdBy: '',
+    //username: ''
   };
 
   //When the componenet mounts, get course details
@@ -68,19 +70,19 @@ class CourseDetail extends Component {
   };
 
   //Create authentication for Delte & Update buttons
-  isLoggedIn() {
-    if (this.props.isLoggedIn && this.state.username === this.props.authenticated) {
+  /*isLoggedIn() {
+    if (this.props.isLoggedIn && this.state.createdBy === this.props.authenticated) {
       return (
-        <span>
-          {/*Update Course*/}
-          <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+      <span>
+        {/*Update Course
+        <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
 
-          {/*Delete Course*/}
-          <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-        </span>
+        {/*Delete Course*
+        <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+      </span>
       )
     }
-  }
+  }*/
 
 
   render() {
@@ -91,8 +93,15 @@ class CourseDetail extends Component {
           <div className='bounds'>
             <div className='grid-100'>
 
-              {this.isLoggedIn()}
+              //{this.isLoggedIn()}
 
+              <span>
+                {/*Update Course*/}
+                <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+
+                {/*Delete Course*/}
+                <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+              </span>
 
               <Link className='button button-secondary' to='/'>Return to List</Link>
             </div>

@@ -30,6 +30,7 @@ class App extends Component {
   //Set state
   state = {
     authenticated: false,
+    authenticatedUser: {},
     emailAddress: '',
     user: {},
     password: '',
