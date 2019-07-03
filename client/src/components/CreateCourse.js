@@ -10,6 +10,7 @@ class CreateCourse extends Component {
     description: '',
     estimatedTime: '',
     materialdsNeeded: '',
+    validationErrors: '',
   }
 
   //Handle user changes
@@ -21,38 +22,42 @@ class CreateCourse extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const {title} = this.state;
+    const {title, description} = this.state;
 
-    if(title='') {
+    if(title === '') {
       this.setState({
-
+        validationErrors: 'Please enter a title.'
+      })
+    } else if (description === '') {
+      this.setState({
+        validationErrors: 'Please enter a description.'
+      })
+    } else {
+      axios({
+        method: 'post',
+        url: 'http://localhost:5000/api/courses',
+        auth: {
+          username: localStorage.getItem('emailAddress'),
+          password: localStorage.getItem('password')
+        },
+        data: {
+          user: localStorage.getItem('id'),
+          title: this.state.title,
+          description: this.state.description,
+          estimatedTime: this.state.estimatedTime,
+          materialdsNeeded: this.state.materialdsNeeded
+        }
+      })
+      .then(alert('Your course has been created'))
+      .then(() => {
+        this.props.push('/')
+      })
+      .catch(error => {
+        this.setState({
+          errors: error.response.data.errors
+        })
       })
     }
-
-    axios({
-      method: 'post',
-      url: 'http://localhost:5000/api/courses',
-      auth: {
-        username: localStorage.getItem('emailAddress'),
-        password: localStorage.getItem('password')
-      },
-      data: {
-        user: localStorage.getItem('id'),
-        title: this.state.title,
-        description: this.state.description,
-        estimatedTime: this.state.estimatedTime,
-        materialdsNeeded: this.state.materialdsNeeded
-      }
-    })
-    .then(alert('Your course has been created'))
-    .then(() => {
-      this.props.push('/')
-    })
-    .catch(error => {
-      this.setState({
-        errors: error.response.data.errors
-      })
-    })
   }
 
   render() {
