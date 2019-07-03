@@ -53,8 +53,8 @@ class CourseDetail extends Component {
     axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
       method: 'DELETE',
       auth: {
-        username: emailAddress,
-        password: password
+        username: localStorage.getItem('username'),
+        password: localStorage.getItem('password')
       }
     })
     .then (res => {
@@ -85,66 +85,75 @@ class CourseDetail extends Component {
 
 
   render() {
+
+    const {createdBy} = this.state;
+
     return(
-      <div>
 
-        <div className='actions--bar'>
-          <div className='bounds'>
-            <div className='grid-100'>
+        <div>
+          <div className='actions--bar'>
+            <div className='bounds'>
+              <div className='grid-100'>
 
-            
+              {(localStorage.getItem('id') !== '') && parseInt(localStorage.getItem('id')) === createdBy ? (
 
-              <span>
-                {/*Update Course*/}
-                <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+                <span>
+                  {/*Update Course*/}
+                  <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
 
-                {/*Delete Course*/}
-                <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-              </span>
+                  {/*Delete Course*/}
+                  <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+                </span>
+                ) : (
 
-              <Link className='button button-secondary' to='/'>Return to List</Link>
+                  <span></span>
+
+                )
+              }
+                <Link className='button button-secondary' to='/'>Return to List</Link>
+              </div>
+            </div>
+          </div>
+
+          {/*Course Title*/}
+          <div className='bounds course--detail'>
+            <div className='grid-66'>
+              <div className='course--header'>
+                <h4 className='course-label'>Course</h4>
+                <h3 className='course--title'>{this.state.course.title}</h3>
+                <p>By {this.state.username}</p>
+              </div>
+            </div>
+          </div>
+
+          {/*Course Description*/}
+          <div className='course--description'>
+            <ReactMarkdown soure={this.state.course.description} />
+          </div>
+
+          {/*Side Bar*/}
+          <div className='grid-25 grid-right'>
+            <div className='course--stats'>
+              <ul className='course--stats--list'>
+
+              {/*Estimated Time*/}
+                <li className='course--stats--list--item'>
+                  <h4>Estimated Time</h4>
+                  <h3>{this.state.course.estimatedTime}</h3>
+                </li>
+
+                {/*Materials Needed*/}
+                <li className='course--stats--list--item'>
+                  <h4>Materials Needed</h4>
+                  <ul>
+                    <ReactMarkdown source={this.state.course.materialsNeeded} />
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
-        {/*Course Title*/}
-        <div className='bounds course--detail'>
-          <div className='grid-66'>
-            <div className='course--header'>
-              <h4 className='course-label'>Course</h4>
-              <h3 className='course--title'>{this.state.course.title}</h3>
-              <p>By {this.state.username}</p>
-            </div>
-          </div>
-        </div>
-
-        {/*Course Description*/}
-        <div className='course--description'>
-          <ReactMarkdown soure={this.state.course.description} />
-        </div>
-
-        {/*Side Bar*/}
-        <div className='grid-25 grid-right'>
-          <div className='course--stats'>
-            <ul className='course--stats--list'>
-
-            {/*Estimated Time*/}
-              <li className='course--stats--list--item'>
-                <h4>Estimated Time</h4>
-                <h3>{this.state.course.estimatedTime}</h3>
-              </li>
-
-              {/*Materials Needed*/}
-              <li className='course--stats--list--item'>
-                <h4>Materials Needed</h4>
-                <ul>
-                  <ReactMarkdown source={this.state.course.materialsNeeded} />
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     )
   };
 }
