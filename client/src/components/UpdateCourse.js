@@ -16,11 +16,12 @@ class UpdateCourse extends Component {
     validationErrors: ''
   }
 
-  handleChange = e => {
-    this.setState({[e.target.name]: e.target.value});
-  }
 
   componentDidMount() {
+    this.handleCourse();
+  }
+
+  handleCourse = e => {
     axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
       .then(res => {
         this.setState({
@@ -40,7 +41,11 @@ class UpdateCourse extends Component {
       })
   }
 
-  onSubmit = e => {
+  handleChange = e => {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
+  handleSubmit = e => {
     e.preventDefault();
       axios({
         method: 'put',
