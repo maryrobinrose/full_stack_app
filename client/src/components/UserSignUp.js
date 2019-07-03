@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from './UserContext';
 
 class UserSignUp extends Component {
 
@@ -23,7 +24,7 @@ class UserSignUp extends Component {
   handleSignUp = e => {
     e.preventDefault();
 
-    const {firstName, lastName, emailAddress, password} = this.state;
+    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
 
     //If passwords don't match
     if (this.state.password !== this.state.confirmPassword) {
@@ -61,82 +62,85 @@ class UserSignUp extends Component {
     const {validationErrors} = this.state;
 
     return(
-      <div className='bounds'>
-        <div className='grid-33 centered signin'>
-          <h1>Sign Up</h1>
-          <div>
-
-          {validationErrors ? (
+      <UserContext.Consumer>
+      {({signOut, validationErrors}) => (
+        <div className='bounds'>
+          <div className='grid-33 centered signin'>
+            <h1>Sign Up</h1>
             <div>
-              <h2 className="validation--errors--label">Validation errors</h2>
-              <div className="validation-errors">
-                <ul>
-                  <li>{validationErrors}</li>
-                </ul>
-              </div>
-            </div>
-          ) : ''}
 
-            <form onSubmit={this.handleSignUp}>
+            {validationErrors ? (
               <div>
-                <input
-                  id='firstName'
-                  name='firstName'
-                  className=''
-                  type='text'
-                  placeholder='First Name'
-                  onChange={this.handleInput}
-                />
+                <h2 className="validation--errors--label">Validation errors</h2>
+                <div className="validation-errors">
+                  <ul>
+                    <li>{validationErrors}</li>
+                  </ul>
+                </div>
               </div>
-              <div>
-                <input
-                  id='lastName'
-                  name='lastName'
-                  className=''
-                  type='text'
-                  placeholder='Last Name'
-                  onChange={this.handleInput}
-                />
-              </div>
-              <div>
-                <input
-                  id='emailAddress'
-                  name='emailAddress'
-                  className=''
-                  type='text'
-                  placeholder='Email Address'
-                  onChange={this.handleInput}
-                />
-              </div>
-              <div>
-                <input
-                  id='password'
-                  name='password'
-                  className=''
-                  type='password'
-                  placeholder='Password'
-                  onChange={this.handleInput}
-                />
-              </div>
-              <div>
-                <input
-                  id='confirmPassword'
-                  name='confirmPassword'
-                  className=''
-                  type='password'
-                  placeholder='Confirm Password'
-                  onChange={this.handleInput}
-                />
-              </div>
-              <div className='grid-100 pad-bottom'>
-                <button className='button' type='submit'>Sign Up</button>
-                <Link className='button button-secondary' to='/courses'>Cancel</Link>
-              </div>
-            </form>
+            ) : ''}
+
+              <form onSubmit={this.handleSignUp}>
+                <div>
+                  <input
+                    id='firstName'
+                    name='firstName'
+                    className=''
+                    type='text'
+                    placeholder='First Name'
+                    onChange={this.handleInput}
+                  />
+                </div>
+                <div>
+                  <input
+                    id='lastName'
+                    name='lastName'
+                    className=''
+                    type='text'
+                    placeholder='Last Name'
+                    onChange={this.handleInput}
+                  />
+                </div>
+                <div>
+                  <input
+                    id='emailAddress'
+                    name='emailAddress'
+                    className=''
+                    type='text'
+                    placeholder='Email Address'
+                    onChange={this.handleInput}
+                  />
+                </div>
+                <div>
+                  <input
+                    id='password'
+                    name='password'
+                    className=''
+                    type='password'
+                    placeholder='Password'
+                    onChange={this.handleInput}
+                  />
+                </div>
+                <div>
+                  <input
+                    id='confirmPassword'
+                    name='confirmPassword'
+                    className=''
+                    type='password'
+                    placeholder='Confirm Password'
+                    onChange={this.handleInput}
+                  />
+                </div>
+                <div className='grid-100 pad-bottom'>
+                  <button className='button' type='submit'>Sign Up</button>
+                  <Link className='button button-secondary' to='/courses'>Cancel</Link>
+                </div>
+              </form>
+            </div>
+            <p>Already have a user account?<Link to='/signin'>Click here</Link> to sign in!</p>
           </div>
-          <p>Already have a user account?<Link to='/signin'>Click here</Link> to sign in!</p>
         </div>
-      </div>
+      )}</UserContext.Consumer>
     )
   }
 }
