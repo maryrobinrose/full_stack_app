@@ -16,7 +16,6 @@ class UpdateCourse extends Component {
     validationErrors: ''
   }
 
-
   componentDidMount() {
     this.handleCourse();
   }
@@ -89,11 +88,6 @@ class UpdateCourse extends Component {
     }
 
 
-  }
-
-  handleCancel = e => {
-    e.preventDefault();
-    this.props.history.push('/courses');
   }
 
   render() {
