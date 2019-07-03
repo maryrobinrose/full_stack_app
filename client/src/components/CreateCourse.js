@@ -79,7 +79,7 @@ class CreateCourse extends Component {
           </div>
         ) : ''}
         </div>
-        <form onSubmit={e => this.onSubmit(e, localStorage.getItem('username'))}>
+        <form onSubmit={e => this.onSubmit(e, localStorage.getItem('username'), localStorage.getItem('password'))}>
           <div className='grid-66'>
             <div className='course--header'>
               <h4 className='course--label'>Course</h4>
