@@ -21,9 +21,11 @@ class CreateCourse extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    const {title} = this.state;
+
     if(title='') {
       this.setState({
-        
+
       })
     }
 
