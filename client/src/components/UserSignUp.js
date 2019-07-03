@@ -28,8 +28,14 @@ class UserSignUp extends Component {
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
 
     //If passwords don't match
-    if (this.state.password !== this.state.confirmPassword) {
-      alert('Passwords are not a match');
+    if (password === '') {
+      this.setState({
+        validationErrors: 'Please enter a password.'
+      });
+    } else if (password !== confirmPassword) {
+      this.setState({
+        validationErrors: 'Passwords do not match.'
+      });
       //If passwords do match
     } else {
       //Request the user
@@ -37,7 +43,6 @@ class UserSignUp extends Component {
         .then (res => {
           //If the response is successful
           if (res.status === 201) {
-            //Reset validation errors to empty
             this.setState({
               validationErrors: ''
             })
