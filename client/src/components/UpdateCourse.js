@@ -134,7 +134,6 @@ class UpdateCourse extends Component {
                   name='description'
                   className=''
                   placeholder='Course Description'
-                  value={this.state.description}
                   onChange={this.handleSubmit}
                   value={this.course.description}
                 />
