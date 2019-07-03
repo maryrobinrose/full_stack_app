@@ -54,10 +54,10 @@ class UpdateCourse extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if () {
-
-    } else if () {
-
+    if (title === '') {
+      this.setState({validationErrors: 'Please enter a title.'})
+    } else if (description === '') {
+      this.setState({validationErrors: 'Please enter a description.'})
     } else {
       axios({
         method: 'put',
