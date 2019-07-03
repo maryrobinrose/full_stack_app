@@ -68,9 +68,10 @@ class App extends Component {
 
         //this.props.history.push(props);
 
-      } else {
-        //If not OK
-        this.props.history.push('/notfound');
+        this.setSet ({
+          validationErrors: ''
+        })
+
       }
     })
     //Catch errors
@@ -83,6 +84,9 @@ class App extends Component {
         this.props.history.push('/error');
       }
     });
+  } else {
+    //If not OK
+    this.props.history.push('/notfound');
   }
 
   onSignOut() {
