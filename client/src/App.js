@@ -84,11 +84,8 @@ class App extends Component {
         this.props.history.push('/error');
       }
     });
-  } else {
-    //If not OK
-    this.props.history.push('/notfound');
   }
-
+  
   onSignOut() {
     //Clear user preferences
     localStorage.clear();
