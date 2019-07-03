@@ -16,7 +16,7 @@ class UpdateCourse extends Component {
     validationErrors: ''
   }
 
-  onChange = e => {
+  handleChange = e => {
     this.setState({[e.target.name]: e.target.value});
   }
 
