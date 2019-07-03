@@ -111,14 +111,12 @@ class CreateCourse extends Component {
                     <h4>Estimated Time</h4>
                     <div>
                       <input
-                        value={this.state.estimatedTime}
-                        onChange={e => this.change(e)}
                         id='estimatedTime'
                         name='estimatedTime'
+                        className=''
                         type='text'
-                        className='course--time--input'
                         placeholder='Hours'
-                      />
+                        onChange={this.handleChange} />
                     </div>
                   </li>
                   <li className='course--stats--list--item'>
