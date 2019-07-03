@@ -17,7 +17,7 @@ const Header = () => {
             (
               <nav>
                 <span>Welcome {user.firstName} {user.lastName}!</span>
-                <Link to='/signout' className='signout'>Sign Out</Link>
+                <Link to='/signout' onClick= {signOut} className='signout'>Sign Out</Link>
               </nav>
 
           )
