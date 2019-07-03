@@ -17,6 +17,7 @@ class UserSignUp extends Component {
 
   //Handle input changes
   handleInput = e => {
+    e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   };
 
