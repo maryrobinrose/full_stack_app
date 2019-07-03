@@ -79,7 +79,7 @@ class CreateCourse extends Component {
           </div>
         ) : ''}
         </div>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={e => this.onSubmit(e)}>
           <div className='grid-66'>
             <div className='course--header'>
               <h4 className='course--label'>Course</h4>
