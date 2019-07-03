@@ -92,11 +92,25 @@ class UpdateCourse extends Component {
   }
 
   render() {
+
+    const {validationErrors} = this.state;
+
     return(
       <div className='bounds course--detail'>
         <h1>Update Course</h1>
         <div>
-        {this.state.validationErrors && (this.validationErrors())}
+
+        {validationErrors ? (
+          <div>
+            <h2 className="validation--errors--label">Validation errors</h2>
+            <div className="validation-errors">
+              <ul>
+                <li>{validationErrors}</li>
+              </ul>
+            </div>
+          </div>
+        ) : ''}
+
           <form onSubmit={this.onSubmit}>
             <div className='grid-66'>
               <div className='course--header'>
