@@ -58,11 +58,25 @@ class UserSignUp extends Component {
 
   render() {
 
+    const {validationErrors} = this.state;
+
     return(
       <div className='bounds'>
         <div className='grid-33 centered signin'>
           <h1>Sign Up</h1>
           <div>
+
+          {validationErrors ? (
+            <div>
+              <h2 className="validation--errors--label">Validation errors</h2>
+              <div className="validation-errors">
+                <ul>
+                  <li>{validationErrors}</li>
+                </ul>
+              </div>
+            </div>
+          ) : ''}
+
             <form onSubmit={this.handleSignUp}>
               <div>
                 <input
