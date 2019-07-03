@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import UserContext from './UserContext';
+//import UserContext from './UserContext';
 
 class UserSignUp extends Component {
 
