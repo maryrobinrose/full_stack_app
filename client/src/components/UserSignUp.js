@@ -65,11 +65,11 @@ class UserSignUp extends Component {
 
   render() {
 
-    const {validationErrors} = this.state;
+    const {validationErrors, firstName, lastName, emailAddress, password} = this.state;
 
     return(
-      <UserContext.Consumer>
-      {({signOut, validationErrors}) => (
+      //<UserContext.Consumer>
+      //{({signUp, validationErrors}) => (
         <div className='bounds'>
           <div className='grid-33 centered signin'>
             <h1>Sign Up</h1>
@@ -77,7 +77,7 @@ class UserSignUp extends Component {
 
             {validationErrors ? (
               <div>
-                <h2 className="validation--errors--label">Validation errors</h2>
+                <h2 className="validation--errors--label">Error</h2>
                 <div className="validation-errors">
                   <ul>
                     <li>{validationErrors}</li>
@@ -86,7 +86,7 @@ class UserSignUp extends Component {
               </div>
             ) : ''}
 
-              <form onSubmit={this.handleSignUp}>
+              <form onSubmit={e => this.handleSignUp(e, firstName, lastName,emailAddress, password)}>
                 <div>
                   <input
                     id='firstName'
@@ -146,7 +146,7 @@ class UserSignUp extends Component {
             <p>Already have a user account?<Link to='/signin'>Click here</Link> to sign in!</p>
           </div>
         </div>
-      )}</UserContext.Consumer>
+      //)}</UserContext.Consumer>
     )
   }
 }
