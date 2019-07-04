@@ -74,7 +74,7 @@ class App extends Component {
     .catch(error => {
       if(error.response.status === 401) {
         this.setState({
-          error: error.response
+          showError: error
         });
       } else if (error.response.status === 500) {
         this.props.history.push('/error');
