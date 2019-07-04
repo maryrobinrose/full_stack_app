@@ -54,7 +54,17 @@ class CreateCourse extends Component {
       })
       .then(alert('Your course has been created'))
       .then(() => {
-        this.props.push('/')
+        //Reset inputs
+        this.setState({
+          id: '',
+          title: '',
+          description: '',
+          estimatedTime: '',
+          materialsNeeded: '',
+          showError: ''
+        });
+
+        this.props.history.push('/courses');
       })
       .catch(error => {
         this.setState({
