@@ -102,9 +102,7 @@ class App extends Component {
   render() {
     return (
 
-      {/*Allows consuming components to subscribe to context changes*/}
       <UserContext.Provider
-      {/* render based on the context value */}
         value={{
           user: this.state.user,
           emailAddress: this.state.emailAddress,
