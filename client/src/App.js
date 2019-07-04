@@ -39,9 +39,9 @@ class App extends Component {
 
   //Handle sign in
   onSignIn = (e, user, emailAddress, password, name, props) => {
-    if (e) {
+    /*if (e) {
       e.preventDefault();
-    }
+    }*/
     //Request user info
     axios.get('http://localhost:5000/api/users', {
       auth: {
@@ -53,15 +53,13 @@ class App extends Component {
     .then (res => {
       //If OK
       if (res.status === 200) {
-        const name = res.data.firstName + ' ' + res.data.lastName;
-
-        /*this.setState({
-          user: res.data,
-          authenticated: true,
-          password: res.data.password,
-          username: res.data.emailAddress,
-          error: {}
-        });*/
+        const user = res.data;
+        const name = user.firstName + ' ' + user.lastName;
+        this.setState({
+          user,
+          password: user.password,
+          username: user.emailAddress,
+        });
 
         //Save user preferences locally in the browser
         localStorage.setItem('username', emailAddress);
@@ -95,6 +93,7 @@ class App extends Component {
   onSignOut = () => {
     //Clear user info
     localStorage.clear();
+    console.log('User is signed out');
 
     //Clear state
     this.setState({
