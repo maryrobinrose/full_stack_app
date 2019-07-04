@@ -54,18 +54,16 @@ class App extends Component {
       //If OK
       if (res.status === 200) {
         const name = res.data.firstName + ' ' + res.data.lastName;
-        this.setState({
-          user: res.data,
-          authenticated: true,
-          password: res.data.password,
-          username: res.data.emailAddress,
-          error: {}
-        });
+
         //Save user preferences locally in the browser
         localStorage.setItem('username', email);
         localStorage.setItem('id', res.data.id);
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
+
+        this.setState({
+          showError: ''
+        });
 
         //this.props.history.push(props);
 
