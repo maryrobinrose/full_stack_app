@@ -65,7 +65,7 @@ class App extends Component {
           showError: ''
         })
 
-        //Direct user to main page
+        //Bring user back to main
         this.props.history.push('/courses');
 
       }
@@ -100,14 +100,14 @@ class App extends Component {
 
       <UserContext.Provider
         value={{
-          user: this.state.user,
+          /*user: this.state.user,
           emailAddress: this.state.emailAddress,
           password: this.state.password,
           authenticated: this.state.authenticated,
-          actions: {
+          actions: {*/
           signIn: this.onSignIn.bind(this),
-          signOut: this.onSignOut.bind(this)
-          }
+          signOut: this.onSignOut.bind(this),
+          showError: this.state.showError
         }}>
         <BrowserRouter>
           <div className='bounds'>
