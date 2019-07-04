@@ -92,13 +92,16 @@ class App extends Component {
     });
   }
 
-  onSignOut() {
-    //Clear user preferences
+  onSignOut = () => {
+    //Clear user info
     localStorage.clear();
 
-    //Clear validation errors
+    //Clear state
     this.setState({
-      showError: ''
+      userData: {},
+      username: '',
+      password: '',
+      authenticated: false
     });
 
     //Bring user back to main
