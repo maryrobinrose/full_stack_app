@@ -5,7 +5,7 @@ import UserContext from './UserContext';
 
 const Header = () => {
   return (
-    <UserContext.Consumer>{ ({authenticated, signOut, user}) => (
+    <UserContext.Consumer>{ ({signOut}) => (
 
       localStorage.getItem('username') ? (
 
@@ -29,12 +29,12 @@ const Header = () => {
           </div>
         </div>
 
-          )
-          :
-          (
+        )
+        :
+        (
 
-            <div className='header'>
-              <div className='bounds'>
+        <div className='header'>
+          <div className='bounds'>
 
               {/*Link back to main Courses*/}
               <h1 className='header--logo'>
@@ -42,13 +42,16 @@ const Header = () => {
               </h1>
 
               <nav>
+                {/*Link to Sign In Page*/}
                 <Link className='signin' to={'/signin'}>Sign In</Link>
+                {/*Link to Sign Out Page*/}
                 <Link className='signup' to={'/signup'}>Sign Up</Link>
               </nav>
-              
-              </div>
-            </div>
-          )
+
+          </div>
+        </div>
+
+        )
     )}
     </UserContext.Consumer>
   )
