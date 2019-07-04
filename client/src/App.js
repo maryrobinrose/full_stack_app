@@ -39,9 +39,9 @@ class App extends Component {
 
   //Handle sign in
   onSignIn = (e, user, emailAddress, password, name, props) => {
-    /*if (e) {
+    if (e) {
       e.preventDefault();
-    }*/
+    }
     //Request user info
     axios.get('http://localhost:5000/api/users', {
       auth: {
@@ -59,7 +59,8 @@ class App extends Component {
           user,
           password: user.password,
           username: user.emailAddress,
-          showError: ''
+          showError: '',
+          authenticated: true
         });
 
         //Save user preferences locally in the browser
@@ -111,14 +112,14 @@ class App extends Component {
 
       <UserContext.Provider
         value={{
-          /*user: this.state.user,
+          user: this.state.user,
           emailAddress: this.state.emailAddress,
           password: this.state.password,
           authenticated: this.state.authenticated,
-          actions: {*/
+          actions: {
           signIn: this.onSignIn.bind(this),
           signOut: this.onSignOut.bind(this)
-          //}
+          }
         }}>
         <BrowserRouter>
           <div className='bounds'>
