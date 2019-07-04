@@ -29,11 +29,11 @@ class App extends Component {
 
   //Set state
   state = {
-    //authenticated: false,
-    //username: '',
+    showError: '',
     userData: {},
-    //password: '',
-    showError: ''
+    username: '',
+    password: '',
+    authenticated: false
   }
 
 
