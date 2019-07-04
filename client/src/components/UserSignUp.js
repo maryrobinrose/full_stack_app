@@ -17,7 +17,6 @@ class UserSignUp extends Component {
 
   //Handle input changes
   handleInput = e => {
-    //e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   };
 
@@ -27,7 +26,7 @@ class UserSignUp extends Component {
   }
 
   //Handle submit
-  handleSignUp = e => {
+  handleSignUp = (e, signIn) => {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
@@ -48,6 +47,7 @@ class UserSignUp extends Component {
         .then (res => {
           //If the response is successful
           if (res.status === 201) {
+            //Remove show error
             this.setState({
               showError: ''
             })
@@ -57,13 +57,10 @@ class UserSignUp extends Component {
         })
         //Catch errors
         .catch(error => {
-          if (error.response.status === 400) {
-            this.setState({
-              showError: error.response.data.message,
-            });
-          } else if (error.response.status === 500) {
-            this.props.history.push('/error');
-          }
+          this.setState({
+            error: error.response
+          })
+
         });
     }
   }
