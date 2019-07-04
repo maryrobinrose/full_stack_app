@@ -22,7 +22,7 @@ class UserSignUp extends Component {
 
   handleCancel = e => {
     e.preventDefault();
-    this.props.history.push('./courses');
+    this.props.history.push('/courses');
   }
 
   //Handle submit

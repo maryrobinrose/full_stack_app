@@ -127,7 +127,7 @@ class CreateCourse extends Component {
                       <input
                         id='estimatedTime'
                         name='estimatedTime'
-                        className=''
+                        className='course--time--input'
                         type='text'
                         placeholder='Hours'
                         onChange={this.handleChange} />
