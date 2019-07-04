@@ -53,7 +53,7 @@ class CreateCourse extends Component {
           materialsNeeded
         }
       })
-      .then(alert('Your course has been created'))
+      //.then(alert('Your course has been created'))
       .then(() => {
         //Reset inputs
         this.setState({
