@@ -41,7 +41,7 @@ class CreateCourse extends Component {
         method: 'post',
         url: 'http://localhost:5000/api/courses',
         auth: {
-          username: localStorage.getItem('emailAddress'),
+          username: localStorage.getItem('username'),
           password: localStorage.getItem('password')
         },
         data: {
