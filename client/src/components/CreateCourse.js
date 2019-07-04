@@ -22,7 +22,7 @@ class CreateCourse extends Component {
   handleCreate = e => {
     e.preventDefault();
 
-    const {title, description} = this.state;
+    const {title, description, estimatedTime, materialsNeeded} = this.state;
 
     if(title === '') {
       this.setState({
