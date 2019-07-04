@@ -136,12 +136,12 @@ class CreateCourse extends Component {
                   <li className='course--stats--list--item'>
                     <h4>Materials Needed</h4>
                     <div>
-                    <textarea
-                      id='materialsNeeded'
-                      name='materialsNeeded'
-                      className=''
-                      placeholder='List materials...'
-                      onChange={this.handleChange} />
+                      <textarea
+                        id='materialsNeeded'
+                        name='materialsNeeded'
+                        className=''
+                        placeholder='List materials...'
+                        onChange={this.handleChange} />
                     </div>
                   </li>
                 </ul>
@@ -152,7 +152,7 @@ class CreateCourse extends Component {
               <button className='button' type='submit'>Create Course</button>
 
               {/*Cancel button*/}
-              <NavLink to='/' className='button button-secondary'>Cancel</NavLink>
+              <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
             </div>
           </form>
         </div>
