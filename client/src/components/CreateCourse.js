@@ -46,10 +46,10 @@ class CreateCourse extends Component {
         },
         data: {
           user: localStorage.getItem('id'),
-          title: this.state.title,
-          description: this.state.description,
-          estimatedTime: this.state.estimatedTime,
-          materialdsNeeded: this.state.materialdsNeeded
+          title,
+          description,
+          estimatedTime,
+          materialsNeeded
         }
       })
       .then(alert('Your course has been created'))
