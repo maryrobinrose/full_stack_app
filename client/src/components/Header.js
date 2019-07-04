@@ -16,7 +16,7 @@ const Header = () => {
             {(authenticated) ?
             (
               <nav>
-                <span>Welcome {user.firstName} {user.lastName}!</span>
+                <span>Welcome {localStorage.getItem('name')}!</span>
                 <Link to='/signout' onClick= {signOut} className='signout'>Sign Out</Link>
               </nav>
 
