@@ -63,7 +63,7 @@ class CreateCourse extends Component {
           materialsNeeded: '',
           showError: ''
         });
-
+        //Send user back to main
         this.props.history.push('/courses');
       })
       .catch(error => {

@@ -58,9 +58,8 @@ class UserSignUp extends Component {
         //Catch errors
         .catch(error => {
           this.setState({
-            error: error.response
+            errors: error.response.data.errors
           })
-
         });
     }
   }
