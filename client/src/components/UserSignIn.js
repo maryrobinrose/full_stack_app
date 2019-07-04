@@ -28,10 +28,9 @@ class UserSignIn extends Component {
             <h1>Sign In</h1>
             <div>
 
-            {/*How to make this different from title and description errors?*/}
             {showError ? (
               <div>
-                <h2 className="validation--errors--label">Error</h2>
+                <h2 className="validation--errors--label">Validation Error</h2>
                 <div className="validation-errors">
                   <ul>
                     <li>{showError}</li>
@@ -40,8 +39,10 @@ class UserSignIn extends Component {
               </div>
             ) : ''}
 
+              {/*Sign in with user credentials*/}
               <form onSubmit={e => signIn(e,  this.state.emailAddress, this.state.password)}>
 
+                {/*Enter Email Address*/}
                 <div>
                   <input
                   id='emailAddress'
@@ -52,6 +53,8 @@ class UserSignIn extends Component {
                   onChange={this.handleInput}
                   />
                 </div>
+
+                {/*Enter Password*/}
                 <div>
                   <input
                   id='password'
@@ -62,10 +65,16 @@ class UserSignIn extends Component {
                   onChange={this.handleInput}
                   />
                 </div>
+
                 <div className="grid-100 pad-bottom">
+
+                  {/*Sign in on Submit*/}
                   <button className="button" type="submit">Sign In</button>
+
+                  {/*Go back to Main Courses*/}
                   <Link to='/courses' className="button button-secondary">Cancel</Link>
                 </div>
+
               </form>
             </div>
             <p>&nbsp;</p>
