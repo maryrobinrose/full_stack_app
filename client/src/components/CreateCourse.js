@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class CreateCourse extends Component {
 
@@ -161,4 +162,4 @@ class CreateCourse extends Component {
   }
 }
 
-export default CreateCourse;
+export default withRouter (CreateCourse);
