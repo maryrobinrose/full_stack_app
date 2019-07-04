@@ -33,6 +33,7 @@ class App extends Component {
     username: '',
     user: {},
     password: '',
+    showError: ''
   }
 
 
