@@ -59,23 +59,22 @@ class App extends Component {
           user,
           password: user.password,
           username: user.emailAddress,
+          showError: ''
         });
 
         //Save user preferences locally in the browser
-        localStorage.setItem('username', emailAddress);
-        localStorage.setItem('id', res.data.id);
+        localStorage.setItem('username', user);
+        localStorage.setItem('id', user.id);
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
 
-
-        this.setSet ({
-          showError: ''
-        })
-
         //Brin user back to Main Courses
         this.props.history.push('/courses');
 
+      } else {
+        localStorage.clear();
+        this.props.history.push('/signup');
       }
     })
     //Catch errors
@@ -112,14 +111,14 @@ class App extends Component {
 
       <UserContext.Provider
         value={{
-          user: this.state.user,
+          /*user: this.state.user,
           emailAddress: this.state.emailAddress,
           password: this.state.password,
           authenticated: this.state.authenticated,
-          actions: {
+          actions: {*/
           signIn: this.onSignIn.bind(this),
           signOut: this.onSignOut.bind(this)
-          }
+          //}
         }}>
         <BrowserRouter>
           <div className='bounds'>
