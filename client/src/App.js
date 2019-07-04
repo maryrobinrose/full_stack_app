@@ -61,15 +61,12 @@ class App extends Component {
         localStorage.setItem('password', password);
         localStorage.setItem('name', name);
 
-        this.setState({
-          showError: ''
-        });
-
-        //this.props.history.push(props);
-
         this.setSet ({
           showError: ''
         })
+
+        //Direct user to main page
+        this.props.history.push('/courses');
 
       }
     })
