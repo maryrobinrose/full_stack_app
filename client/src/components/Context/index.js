@@ -28,9 +28,33 @@ export class Provider extends Component {
     }
   }
 
-  //Add Sign In
-  handleSignIn  = () {
+  //Handle User Sign In
+  handleSignIn  = (userUsername, userPassword, props) {
 
+    //Request user info from API using axios
+    axios({
+      method: 'GET',
+      url: 'http://localhost:5000/api/users',
+      responseType: 'json',
+      auth: {
+        username: userUsername,
+        password: userPassword
+      }
+    })
+    .then (res => {
+      let user = res.data;
+      let userName = `${user.firstName} ${user.lastName}`;
+      this.setState({
+        authenticated: true,
+        username: user.emailAddress,
+        password: userPassword,
+        name: userName,
+        userId: user.id
+      })
+    })
+    .catch(error => {
+      
+    })
   }
 
 }
