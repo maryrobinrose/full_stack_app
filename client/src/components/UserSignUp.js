@@ -1,6 +1,6 @@
 //Import React library
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import UserContext from './UserContext';
 
@@ -21,16 +21,13 @@ class UserSignUp extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
-  handleCancel = e => {
-    e.preventDefault();
-    this.props.history.push('/courses');
-  }
 
   //Handle submit
-  handleSignUp = (e, signIn) => {
+  handleSignUp = (e, signIn, props) => {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
+
 
     //If passwords don't match
     if (password === '') {
@@ -63,7 +60,6 @@ class UserSignUp extends Component {
           } else  {
             this.props.history.push('/error');
           }
-
         });
     }
   }
@@ -168,4 +164,4 @@ class UserSignUp extends Component {
 }
 
 
-export default UserSignUp;
+export default withRouter(UserSignUp);
