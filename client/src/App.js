@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-import UserContext from './components/UserContext';
+import { Provider } from './Context';
 
 
 //Import Components
@@ -110,7 +110,7 @@ class App extends Component {
   render() {
     return (
 
-      <UserContext.Provider
+      <Provider
         value={{
           user: this.state.user,
           emailAddress: this.state.emailAddress,
@@ -148,7 +148,7 @@ class App extends Component {
               </Switch>
           </div>
         </BrowserRouter>
-      </UserContext.Provider>
+      </Provider>
     );
   }
 }

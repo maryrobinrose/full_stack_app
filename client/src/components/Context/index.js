@@ -9,11 +9,14 @@ and Treehouses's React Context API Course
 import React { Component } from 'react';
 import axios from 'axios';
 
-//React Context API
-const Context = React.createContext();
+//Sets up Provider and Consumer
+const CoursesContext = React.createContext();
+
+//export const Provider = CoursesContext.Provider;
+//export const Consumer = CoursesContext.Consumer;
 
 //Provider is used as high as possible in the component tree. It allows Consumer to subscribe to context changes
-export const Provider extends Component {
+export class Provider extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,4 +33,4 @@ export const Provider extends Component {
 }
 
 //Consumer access the Proivder to get the data it needs and helps avoid prop drilling
-export const Consumer = Context.Consumer;
+export const Consumer = CourseContext.Consumer;
