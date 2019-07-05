@@ -102,12 +102,12 @@ export class Provider extends Component {
           signOut: this.handleSignOut
         }
       }}>
-        //Displays what's included between opening and closing tags when invoking a component 
+        //Displays what's included between opening and closing tags when invoking a component
         {this.props.children}
       </CoursesContext.Provider>
     )
   }
 }
 
-//Consumer access the Provider to get the data it needs and helps avoid prop drilling
+//Consumer accesses the Provider to get the data it needs and helps avoid prop drilling
 export const Consumer = CoursesContext.Consumer;
