@@ -17,6 +17,7 @@ class UserSignUp extends Component {
 
   //Handle input changes
   handleInput = e => {
+    e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   };
 
@@ -57,16 +58,19 @@ class UserSignUp extends Component {
         })
         //Catch errors
         .catch(error => {
-          this.setState({
-            errors: error.response.data.errors
-          })
+          if (error.response) {
+            this.setState({error: error.response.data.message})
+          } else  {
+            this.props.history.push('/error');
+          }
+
         });
     }
   }
 
   render() {
 
-    const {showError, firstName, lastName, emailAddress, password} = this.state;
+    const {showError} = this.state;
 
     return(
       <UserContext.Consumer>
@@ -87,7 +91,8 @@ class UserSignUp extends Component {
               </div>
             ) : ''}
 
-              <form onSubmit={e => this.handleSignUp(e, firstName, lastName,emailAddress, password)}>
+              <form onSubmit={e => this.handleSignUp(e, this.state)}>
+
                 <div>
                   <input
                     id='firstName'
@@ -98,6 +103,7 @@ class UserSignUp extends Component {
                     onChange={this.handleInput}
                   />
                 </div>
+
                 <div>
                   <input
                     id='lastName'
@@ -108,6 +114,7 @@ class UserSignUp extends Component {
                     onChange={this.handleInput}
                   />
                 </div>
+
                 <div>
                   <input
                     id='emailAddress'
@@ -118,6 +125,7 @@ class UserSignUp extends Component {
                     onChange={this.handleInput}
                   />
                 </div>
+
                 <div>
                   <input
                     id='password'
@@ -128,6 +136,7 @@ class UserSignUp extends Component {
                     onChange={this.handleInput}
                   />
                 </div>
+
                 <div>
                   <input
                     id='confirmPassword'
@@ -138,14 +147,20 @@ class UserSignUp extends Component {
                     onChange={this.handleInput}
                   />
                 </div>
+
                 <div className='grid-100 pad-bottom'>
+
                   <button className='button' type='submit'>Sign Up</button>
+
                   <Link className='button button-secondary' to='/courses'>Cancel</Link>
                 </div>
+
               </form>
+
             </div>
             <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
           </div>
+
         </div>
       )}</UserContext.Consumer>
     )
