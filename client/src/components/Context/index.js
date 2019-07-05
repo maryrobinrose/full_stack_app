@@ -29,6 +29,9 @@ export class Provider extends Component {
   }
 
   //Add Sign In
+  handleSignIn  = () {
+
+  }
 
 }
 
