@@ -12,13 +12,13 @@ import axios from 'axios';
 //Sets up Provider and Consumer
 const CoursesContext = React.createContext();
 
-//export const Provider = CoursesContext.Provider;
-//export const Consumer = CoursesContext.Consumer;
-
 //Provider is used as high as possible in the component tree. It allows Consumer to subscribe to context changes
 export class Provider extends Component {
+
   constructor() {
     super();
+
+    //Set starting state to empty
     this.state = {
       authenticated: false,
       username: '',
@@ -38,12 +38,13 @@ export class Provider extends Component {
       url: 'http://localhost:5000/api/users',
       //Bring back the json data
       responseType: 'json',
+      //Authorize user by using their log in
       auth: {
         username: userUsername,
         password: userPassword
       }
     })
-    //On completion of receiving data
+    //On completion of receiving user data
     .then (res => {
 
       //Declare variables
@@ -59,7 +60,8 @@ export class Provider extends Component {
         userId: user.id
       })
     })
-    //Catches any errors
+
+    //Catch any errors
     .catch(error => {
       //If there's a problem receiving the user's info
       if (error.response.status = 401) {
@@ -70,7 +72,40 @@ export class Provider extends Component {
     })
   }
 
+  //Handle User Sign Out
+  handleSignOut = () => {
+
+      //Reset state to hold no info
+      this.setState({
+        authenticated: false,
+        username: '',
+        password: '',
+        name: '',
+        userId: null
+      })
+  }
+
+  //Show what has just been created
+  render() {
+    return(
+      //Enclose return in context
+      //Value prop provides actual data that needs to be shared
+      <CoursesContext.Provider value={{
+        authenticated: this.state.authenticated,
+        username: this.state.username,
+        password: this.state.password,
+        name: this.state.name,
+        userId: this.state.userId,
+        actions: {
+          signIn: this.handleSignIn,
+          signOut: this.handleSignOut
+        }
+      }}>
+
+      </CoursesContext.Provider>
+    )
+  }
 }
 
-//Consumer access the Proivder to get the data it needs and helps avoid prop drilling
+//Consumer access the Provider to get the data it needs and helps avoid prop drilling
 export const Consumer = CoursesContext.Consumer;
