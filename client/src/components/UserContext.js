@@ -5,6 +5,7 @@ and Treehouses's React Context API Course
 
 //**Provides a way to pass data to components without having to pass props manually at every level**//
 
+//Imports
 import React { Component } from 'react';
 import axios from 'axios';
 
@@ -17,4 +18,5 @@ export const Provider = UserContext.Provider
 
 export const Consumer = UserContext.Consumer
 
+//Export component 
 export default UserContext;
