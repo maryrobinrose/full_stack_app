@@ -1,11 +1,11 @@
 //Connect to React and routes
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import UserContext from './UserContext';
+import { Provider } from './components/Context';
 
 const Header = () => {
   return (
-    <UserContext.Consumer>{ ({signOut}) => (
+    <Consumer>{ ({signOut}) => (
 
       localStorage.getItem('username') ? (
 
@@ -53,7 +53,7 @@ const Header = () => {
 
         )
     )}
-    </UserContext.Consumer>
+    </Consumer>
   )
 }
 

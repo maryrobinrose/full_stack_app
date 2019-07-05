@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
-import { Provider } from './Context';
+import { Provider } from './components/Context';
 
 
 //Import Components
