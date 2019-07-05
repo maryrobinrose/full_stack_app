@@ -1,5 +1,6 @@
 /*This was created with help from:
 https://www.taniarascia.com/using-context-api-in-react/
+https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891
 and Treehouses's React Context API Course
 */
 
@@ -101,7 +102,8 @@ export class Provider extends Component {
           signOut: this.handleSignOut
         }
       }}>
-
+        //Displays what's included between opening and closing tags when invoking a component 
+        {this.props.children}
       </CoursesContext.Provider>
     )
   }
