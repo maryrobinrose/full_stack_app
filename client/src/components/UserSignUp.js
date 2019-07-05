@@ -46,7 +46,7 @@ class UserSignUp extends Component {
           //If the response is successful
           if (res.status === 201) {
             //Remove show error
-            this.setState({
+             this.setState({
               showError: ''
             })
             //Sign in user
