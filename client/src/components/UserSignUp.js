@@ -66,7 +66,7 @@ class UserSignUp extends Component {
 
   render() {
 
-    const {showError} = this.state;
+    const {showError, firstName, lastName, emailAddress, password} = this.state;
 
     return(
       <UserContext.Consumer>
@@ -87,7 +87,7 @@ class UserSignUp extends Component {
               </div>
             ) : ''}
 
-              <form onSubmit={e => this.handleSignUp(e, this.state)}>
+              <form onSubmit={e => this.handleSignUp(e, firstName, lastName, emailAddress, password)}>
 
                 <div>
                   <input
@@ -146,8 +146,10 @@ class UserSignUp extends Component {
 
                 <div className='grid-100 pad-bottom'>
 
+                  {/*Submit Button*/}
                   <button className='button' type='submit'>Sign Up</button>
 
+                  {/*Cancel Button*/}
                   <Link className='button button-secondary' to='/courses'>Cancel</Link>
                 </div>
 
