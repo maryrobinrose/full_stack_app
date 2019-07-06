@@ -123,35 +123,39 @@ class CreateCourse extends Component {
 
                   {/*Course Time*/}
                   <div className='grid-25 grid-right'>
-                    <h4>Estimated Time</h4>
-                      <input
-                        id='estimatedTime'
-                        name='estimatedTime'
-                        className='course--time--input'
-                        type='text'
-                        placeholder='Hours'
-                        ref={this.time}
-                        />
+                    <div class='course--stats'>
+                      <h4>Estimated Time</h4>
+                        <input
+                          id='estimatedTime'
+                          name='estimatedTime'
+                          className='course--time--input'
+                          type='text'
+                          placeholder='Hours'
+                          ref={this.time}
+                          />
 
-                    {/*Course Materials*/}
-                    <h4>Materials Needed</h4>
-                      <textarea
-                        id='materialsNeeded'
-                        name='materialsNeeded'
-                        placeholder='List materials...'
-                        ref={this.materials}
-                        />
+                      {/*Course Materials*/}
+                      <h4>Materials Needed</h4>
+                        <textarea
+                          id='materialsNeeded'
+                          name='materialsNeeded'
+                          placeholder='List materials...'
+                          ref={this.materials}
+                          />
 
+                    </div>
                   </div>
                 </div>
 
+                {/*Buttons*/}
                 <div className='grid-100 pad-bottom'>
                     {/*Create Course button*/}
                     <button className='button' type='submit'>Create Course</button>
 
                     {/*Cancel button*/}
                     <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
-                  </div>
+                </div>
+
               </form>
             </div>
           );
