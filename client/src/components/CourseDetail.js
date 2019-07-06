@@ -37,7 +37,6 @@ class CourseDetail extends Component {
   //Get course details
   handleGetCourse = () => {
 
-
     //Request the API and course details by the course's id using the GET method
     fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
 
@@ -47,11 +46,11 @@ class CourseDetail extends Component {
         response.json())
 
       //Set the state to hold user's received data
-      .then(resData => {
+      .then(responseData => {
         //Set state using user's data
         this.setState({
-          course: resData.course,
-          user: resData.course.user
+          course: responseData.course,
+          user: responseData.course.user
         });
       })
 
@@ -70,8 +69,8 @@ class CourseDetail extends Component {
 
     //Destructure
     //Allows us to extract multiple pieces of data from an array and assign them their own variables
-    const {firstName, lastName} = this.state.user;
     const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
+    const {firstName, lastName} = this.state.user;
     const ownsCourse = `${firstName} ${lastName}`;
 
 
