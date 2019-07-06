@@ -7,7 +7,7 @@ https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
 
 //Imports
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { Consumer } from '../components/Context';
