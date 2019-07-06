@@ -72,19 +72,16 @@ class CourseDetail extends Component {
 
 
     return(
-        <div>
-        //Enclose return in Consumer
-          <Consumer>
-            //Render props - returns a React element
-            {({ username, password, userID }) => {
+      <div>
+        {/*Enclose return in Consumer*/}
+        <Consumer>
+            {/*Render props - returns a React element*/}
+            {({ username, password, userId }) => {
 
-              //If the user is the owner of the course
               let isOwner = () => {
-                //Declare variables for authenticated owner
                 let ownerId = this.state.course.userId;
                 let authUserId = userId;
 
-                //If the user id matches user id of the course
                 if (ownerId === authUserId) {
                   return true;
                 } else {
@@ -94,68 +91,83 @@ class CourseDetail extends Component {
 
               //Handle Delete Course
               const handleDeleteCourse = () => {
+                  //If the user owns the course
+                  if (isOwner()) {
 
-
-                axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
-                  method: 'DELETE',
-                  auth: {
-                    username: localStorage.getItem('username'),
-                    password: localStorage.getItem('password')
+                    //Request to delete it
+                    axios({
+                    //Use delete method
+                    method: 'DELETE',
+                    url: `http://localhost:5000/api/courses/${this.props.match.params.id}`,
+                    //Authorize user by using their log in
+                    auth: {
+                      username: username,
+                      password: password
+                      }
+                    })
+                    //Take user back to main courses page
+                    .then (res => {
+                      this.props.history.push('/courses');
+                    })
+                    //Catch any errors
+                    .catch(error => {
+                      //Take user to error page
+                      this.props.history.push('/error');
+                    })
+                  } else {
+                    //Take user to forbidden page
+                    this.props.history.push('/forbidden');
                   }
-                })
-                .then (res => {
-                  this.props.history.push('/courses');
-                })
-                .catch(error => {
-                  if (error.response.status === 404) {
-                    this.props.history.push('/notfound');
-                  } else if (error.response.status === 500) {
-                    this.props.history.push('/error');
-                  }
-                })
-              };
+              }
 
-            }
+    return(
 
             <div className='actions--bar'>
               <div className='bounds'>
                 <div className='grid-100'>
+                  <ul clasName='button-list'>
 
-                {(localStorage.getItem('id') !== '') && parseInt(localStorage.getItem('id')) === createdBy ? (
+                    {/*If the user is the owner, show the update course option*/}
+                    <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
+                      <Link to={`/courses${id}/update`}>
+                        <div className='button-text'>Update Course</div>
+                      </Link>
+                    </li>
 
-                  <span>
-                    {/*Update Course*/}
-                    <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+                    {/*If the user is the owner, show the delete course option*/}
+                    <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
+                    <button onClick={handleDeleteCourse} className='button-primary'>
+                        <div>Delete Course</div>
+                      </button>
+                    </li>
 
-                    {/*Delete Course*/}
-                    <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-                  </span>
-                  ) : (
-
-                    <span></span>
-
-                  )
-                }
-                  <Link className='button button-secondary' to='/'>Return to List</Link>
+                    {/*Return to List button*/}
+                    <li classname='button button-secondary'>
+                      <Link to='/courses'>Return to List</Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
+          );
+        }}
+        </Consumer>
 
-            {/*Course Title*/}
-            <div className='bounds course--detail'>
-              <div className='grid-66'>
-                <div className='course--header'>
-                  <h4 className='course-label'>Course</h4>
-                  <h3 className='course--title'>{this.state.course.title}</h3>
-                  <p>By {this.state.username}</p>
-                </div>
+          {/*Course Title*/}
+          <div className='bounds course--detail'>
+            <div className='grid-66'>
+              <div className='course--header'>
+                <h4 className='course-label'>Course</h4>
+                <h3 className='course--title'>{this.state.course.title}</h3>
+                <p>By {this.state.username}</p>
               </div>
             </div>
+          </div>
 
-            {/*Course Description*/}
-            <div className='course--description'>
-              <ReactMarkdown soure={this.state.course.description} />
-            </div>
+          {/*Course Description*/}
+          <div className='course--description'>
+            <ReactMarkdown soure={this.state.course.description} />
+          </div>
 
             {/*Side Bar*/}
             <div className='grid-25 grid-right'>
@@ -176,13 +188,12 @@ class CourseDetail extends Component {
                     </ul>
                   </li>
                 </ul>
+
               </div>
             </div>
-          </Consumer>
         </div>
-
     )
-  };
+  }
 }
 
 
