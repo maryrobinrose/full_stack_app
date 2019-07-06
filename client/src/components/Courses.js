@@ -13,9 +13,11 @@ class Courses extends Component {
     componentDidMount() {
       //Request the API
       axios.get('http://localhost:5000/api/courses/')
-
-      .then (res => {
-        this.setState(res.data)
+    
+      .then (resData => {
+        this.setState({
+          courses: resData.courses
+        });
       })
       //Log errors
       .catch(error => {
