@@ -39,11 +39,11 @@ class CourseDetail extends Component {
 
 
     //Request the API and course details by the course's id using the GET method
-    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+    fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
 
       //On completion of receiving user data
       .then (response =>
-        //Reurns as promise
+        //Reurns as promise (only with fetch, not axios)
         response.json())
 
       //Set the state to hold user's received data

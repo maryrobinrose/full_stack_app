@@ -18,7 +18,7 @@ class Courses extends Component {
       //Request the API
       fetch('http://localhost:5000/api/courses/')
 
-      //Returns a promise
+      //Returns a promise (only works with fetch, not axios)
       .then(response => response.json())
 
       .then (resData => {
