@@ -7,7 +7,7 @@ https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
 
 //Imports
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { Consumer } from '../components/Context';
@@ -71,11 +71,11 @@ class CreateCourse extends Component {
                 let errors = error.response.data.errors;
                 let errorMessage = errors.map(
                   (error, index) => (
-                    <li key={index}>{error}</li>
+                    <li className='validation-error' key={index}>{error}</li>
                   )
                 );
                 this.setState({
-                  errors: errorMessage
+                  error: errorMessage
                 });
               }
             });
@@ -83,90 +83,83 @@ class CreateCourse extends Component {
 
 
 
-        return (
-
-          <div className='bounds course--detail'>
+          return (
+            <div className='bounds course--detail'>
 
               {/*Create Form*/}
               <form onSubmit={handleCreate}>
                 <h1>Create Course</h1>
-                  <ul>{this.state.errors}</ul>
 
+                {/*Show Errors*/}
+                <ul>{this.state.errors}</ul>
 
-                  <div className='grid-66'>
-
-                    {/*Course Input*/}
-                    <div className='course--header'>
+                <div className='grid-66'>
+                  <div className='course--header'>
 
                     {/*Course Title*/}
-                      <h4 className='course--label'>Course</h4>
-                        <input
-                          id='title'
-                          name='title'
-                          type='text'
-                          className='input-title course--title--input'
-                          placeholder='Course title...'
-                          ref={this.title}
-                        />
+                    <h4 className='course--label'>Course</h4>
+                      <input
+                        id='title'
+                        name='title'
+                        type='text'
+                        className='input-title course--title--input'
+                        placeholder='Course title...'
+                        ref={this.title}
+                      />
 
-                      <p>By {name}</p>
+                    {/*Course Creator*/}
+                    <p>By {name}</p>
 
-                      <div className='course--description'>
-                        <textarea
-                          id='description'
-                          name='description'
-                          placeholder='Course Description...'
-                          ref={this.description}
-                          />
-                      </div>
-
-
-                  <div className='grid-25 grid-right'>
-                    <div className='course--stats'>
-                      <ul className='course--stats--list'>
-                        <li className='class--stats--list--item'>
-                          <h4>Estimated Time</h4>
-
-                            <input
-                              id='estimatedTime'
-                              name='estimatedTime'
-                              className='course--time--input'
-                              type='text'
-                              placeholder='Hours'
-                              ref={this.time}
-                              />
-                        </li>
-
-                        <li className='course--stats--list--item'>
-                          <h4>Materials Needed</h4>
-
-                            <textarea
-                              id='materialsNeeded'
-                              name='materialsNeeded'
-                              placeholder='List materials...'
-                              ref={this.materials}
-                              />
-                        </li>
-
-                      </ul>
+                    {/*Course Description*/}
+                    <div className='course--description'>
+                      <textarea
+                            id='description'
+                            name='description'
+                            placeholder='Course Description...'
+                            ref={this.description}
+                            />
                     </div>
                   </div>
 
-                <div className='grid-100 pad-bottom'>
-                  {/*Create Course button*/}
-                  <button className='button' type='submit'>Create Course</button>
+                  {/*Course Time*/}
+                  <div className='grid-25 grid-right'>
+                    <h4>Estimated Time</h4>
+                      <input
+                        id='estimatedTime'
+                        name='estimatedTime'
+                        className='course--time--input'
+                        type='text'
+                        placeholder='Hours'
+                        ref={this.time}
+                        />
 
-                  {/*Cancel button*/}
-                  <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+                    {/*Course Materials*/}
+                    <h4>Materials Needed</h4>
+                      <textarea
+                        id='materialsNeeded'
+                        name='materialsNeeded'
+                        placeholder='List materials...'
+                        ref={this.materials}
+                        />
+
+                  </div>
                 </div>
 
+                <div className='grid-100 pad-bottom'>
+                    {/*Create Course button*/}
+                    <button className='button' type='submit'>Create Course</button>
+
+                    {/*Cancel button*/}
+                    <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+                  </div>
               </form>
-          </div>
+            </div>
           );
-        }}
-        </Consumer>
+				}}
+			</Consumer>
     );
   }
 }
+
 
 export default withRouter (CreateCourse);
