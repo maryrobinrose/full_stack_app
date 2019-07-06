@@ -18,8 +18,9 @@ class Courses extends Component {
     componentDidMount() {
       //Request the API
       axios.get('http://localhost:5000/api/courses/')
-      //Grab json
-      .then(res => res.json())
+
+      //Returns a promise
+      .then(response => response.json())
 
       .then (resData => {
         this.setState({
@@ -28,8 +29,11 @@ class Courses extends Component {
       })
       //Log errors
       .catch(error => {
-        console.log('Error fetching and parsing data', error);
-        //this.props.history.push('/error');
+        //Not working
+        /*if (error) {
+          //Then take user to the Not Found page
+          this.props.history.push('/notfound');
+        }*/
       })
     }
 

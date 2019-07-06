@@ -1,5 +1,6 @@
 /*This was created with help from:
 https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0
+https://stackoverflow.com/questions/37555031/why-does-json-return-a-promise
 and Treehouses's React Context API Course
 */
 
@@ -36,13 +37,14 @@ class CourseDetail extends Component {
   //Get course details
   handleGetCourse = () => {
 
+
     //Request the API and course details by the course's id using the GET method
     axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
 
       //On completion of receiving user data
-      .then (res =>
-        //Grab the json
-        res.json())
+      .then (response =>
+        //Reurns as promise
+        response.json())
 
       //Set the state to hold user's received data
       .then(resData => {
