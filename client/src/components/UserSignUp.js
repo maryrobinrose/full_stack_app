@@ -29,81 +29,78 @@ class UserSignUp extends Component {
   password = React.createRef();
   confirmPassword = React.createRef();
 
-
-  //Handle submit
-  /*handleSignUp = (e, signIn, props) => {
-    e.preventDefault();
-
-    const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
-
-
-    //If passwords don't match
-    if (password === '') {
-      this.setState({
-        showError: 'Please enter a password.'
-      });
-    } else if (password !== confirmPassword) {
-      this.setState({
-        showError: 'Passwords do not match.'
-      });
-      //If passwords do match
-    } else {
-      //Request the user
-      axios.post('http://localhost:5000/api/users', {firstName, lastName, emailAddress, password})
-        .then (res => {
-          //If the response is successful
-          if (res.status === 201) {
-            //Remove show error
-             this.setState({
-              showError: ''
-            })
-            //Sign in user
-            this.props.signIn(null, emailAddress, password);
-          }
-        })
-        //Catch errors
-        .catch(error => {
-          if (error.response) {
-            this.setState({error: error.response.data.message})
-          } else  {
-            this.props.history.push('/error');
-          }
-        });
-    }
-  }*/
-
   render() {
 
     return(
       <Consumer>
       { ({changes}) => {
 
-        //Handle input changes
+        //Handle input changes when user submits the form
         const handleInput = e => {
           e.preventDefault();
 
+          //Set errors to empty
           this.setState({
             errors: []
           });
 
-          
+          //Set values of each user input
+          let userFirstName = this.firstName.current.value;
+          let userLastName = this.lastName.current.value;
+          let userEmailAddress = this.emailAddress.current.value;
+          let userPassword = this.password.current.value;
+          let userConfirmPassword = this.confirmPassword.current.value;
 
+          //If passwords are not a match
+          if (userPassword !== userConfirmPassword) {
 
+            let passwordsNoMatch = <li className='validation-error'>Passwords must match.</li>
+
+            //Show errors
+            this.setState(prevState => ({
+              errors: [
+                ...prevState.errors
+                [passwordsNoMatch]
+              ]
+            }));
+          } else {
+            //Request the user
+            axios({
+              method: 'POST',
+              url: 'http://localhost:5000/api/users',
+              data: {
+                firstName: userFirstName,
+                lastName: userLastName,
+                emailAddress: userEmailAddress,
+                password: userPassword
+              }
+            })
+            .then( () => {
+              changes.signIn(
+                userEmailAddress,
+                userPassword,
+                this.props
+              );
+            })
+            .catch(error => {
+              if (error.response) {
+                this.setState({error: error.response.data.message})
+              } else  {
+                //Send user to error page
+                this.props.history.push('/error');
+              }
+            });
+          }
+
+        return (
 
           <div className='bounds'>
-            <div className='grid-33 centered signin'>
-              <h1>Sign Up</h1>
-              <div>
+              <div className='grid-33 centered signin'>
+                <h1>Sign Up</h1>
 
-                <div>
-                  <h2 className="validation--errors--label">Error</h2>
-                  <div className="validation-errors">
-                    <ul>
-                      <li>{showError}</li>
-                    </ul>
-                  </div>
-                </div>
-
+                  <ul>
+                    <li>{this.state.errors}</li>
+                  </ul>
 
                 <form onSubmit={handleInput}>
                   <div>
@@ -166,7 +163,7 @@ class UserSignUp extends Component {
 
               {/*Link to Sign In Page*/}
               <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
-
+            </div>
           </div>
         );
       }}
