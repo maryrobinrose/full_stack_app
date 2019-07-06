@@ -20,29 +20,20 @@ const Header = () => {
                 <NavLink to='/courses' className='header--logo'>Courses</NavLink>
               </h1>
 
+              {/*Nav changes based on user log in*/}
               <nav className='main-nav'>
-                {/*Wecomes user by name*/}
-
-
-                {/*Link for Signing Out*/}
-
-
-
-
-
-                {/*Link back to main Courses*/}
-                <h1 className='header--logo'>
-                  <NavLink to='/courses' className='header--logo'>Courses</NavLink>
-                </h1>
-
-
-                  {/*Link to Sign In Page*/}
-                  <Link className='signin' to={'/signin'}>Sign In</Link>
-                  {/*Link to Sign Out Page*/}
-                  <Link className='signup' to={'/signup'}>Sign Up</Link>
-
-
-            </nav>
+                <ul>
+                  <li>
+                    {/*Wecomes user by name*/}
+                    <NavLink to={signedIn ? '' : '/signup'}>{signedIn ? `Welcome ${name}` : 'Sign Up'}</NavLink>
+                  </li>
+                  <li>
+                    {/*Link for Signing Out*/}
+                    <NavLink to={signedIn ? '/signout' : '/signin'}>{signedIn ? 'Sign Out' : 'Sign In'}</NavLink>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </header>
       )
