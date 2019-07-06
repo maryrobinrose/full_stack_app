@@ -3,7 +3,6 @@
 //Imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import CourseBox from './CourseBox';
 
 class Courses extends Component {
@@ -17,7 +16,7 @@ class Courses extends Component {
     //When mounted
     componentDidMount() {
       //Request the API
-      axios.get('http://localhost:5000/api/courses/')
+      fetch('http://localhost:5000/api/courses/')
 
       //Returns a promise
       .then(response => response.json())
