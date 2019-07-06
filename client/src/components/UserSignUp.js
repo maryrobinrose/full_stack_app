@@ -100,11 +100,7 @@ class UserSignUp extends Component {
       					});
 
               } else {
-      					// Else, error is due to email already existing
-      					// For security, do not tell user that email already exists
-      					// Instead, route user to error page
-                const { history } = this.props;
-                history.push("/error");
+                this.props.history.push('/error')
               }
       			}
       		});
