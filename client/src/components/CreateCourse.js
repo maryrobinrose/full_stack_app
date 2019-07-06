@@ -1,3 +1,8 @@
+/*This was created with help from:
+https://reactjs.org/docs/refs-and-the-dom.html
+https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
+*/
+
 //**This component provides the "Create Course" screen by rendering a form that allows a user to create a new course. The component also renders a "Create Course" button that when clicked sends a POST request to the REST API's /api/courses route. This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).**//
 
 //Import React library
@@ -15,6 +20,13 @@ class CreateCourse extends Component {
       errors: []
     }
   }
+
+  //Create Refs for user input
+  //Refs are assigned to an instance property so they can be referenced throughout the component
+  title = React.createRef();
+  description = React.createRef();
+  time = React.createRef();
+  materials = React.createRef();
 
   //Handle user changes
   handleChange = e => {
@@ -79,87 +91,87 @@ class CreateCourse extends Component {
 
   render() {
 
-    const {showError, title, description, estimatedTime, materialsNeeded} = this.state;
-
     return(
-      <div className='bounds course--detail'>
-        <h1>Create Course</h1>
-        <div>
-        {showError ? (
+      <Consumer>
+        <div className='bounds course--detail'>
+          <h1>Create Course</h1>
           <div>
-            <h2 className="validation--errors--label">Validation errors</h2>
-            <div className="validation-errors">
-              <ul>
-                <li>{showError}</li>
-              </ul>
-            </div>
-          </div>
-        ) : ''}
-
-          <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'), title, description, estimatedTime, materialsNeeded)}>
-            <div className='grid-66'>
-              <div className='course--header'>
-                <h4 className='course--label'>Course</h4>
-                <div>
-                  <input
-                    id='title'
-                    name='title'
-                    type='text'
-                    className='input-title course--title--input'
-                    placeholder='Course title...'
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <p>By {this.state.username}</p>
-              </div>
-                <div className='course--description'>
-                  <textarea
-                    id='description'
-                    name='description'
-                    className=''
-                    placeholder='Course Description...'
-                    onChange={this.handleChange} />
-                </div>
-            </div>
-            <div className='grid-25 grid-right'>
-              <div className='course--stats'>
-                <ul className='course--stats--list'>
-                  <li className='class--stats--list--item'>
-                    <h4>Estimated Time</h4>
-                    <div>
-                      <input
-                        id='estimatedTime'
-                        name='estimatedTime'
-                        className='course--time--input'
-                        type='text'
-                        placeholder='Hours'
-                        onChange={this.handleChange} />
-                    </div>
-                  </li>
-                  <li className='course--stats--list--item'>
-                    <h4>Materials Needed</h4>
-                    <div>
-                      <textarea
-                        id='materialsNeeded'
-                        name='materialsNeeded'
-                        className=''
-                        placeholder='List materials...'
-                        onChange={this.handleChange} />
-                    </div>
-                  </li>
+          {showError ? (
+            <div>
+              <h2 className="validation--errors--label">Validation errors</h2>
+              <div className="validation-errors">
+                <ul>
+                  <li>{showError}</li>
                 </ul>
               </div>
             </div>
-            <div className='grid-100 pad-bottom'>
-              {/*Create Course button*/}
-              <button className='button' type='submit'>Create Course</button>
+          ) : ''}
 
-              {/*Cancel button*/}
-              <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
-            </div>
-          </form>
+            <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'), title, description, estimatedTime, materialsNeeded)}>
+              <div className='grid-66'>
+                <div className='course--header'>
+                  <h4 className='course--label'>Course</h4>
+                  <div>
+                    <input
+                      id='title'
+                      name='title'
+                      type='text'
+                      className='input-title course--title--input'
+                      placeholder='Course title...'
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <p>By {this.state.username}</p>
+                </div>
+                  <div className='course--description'>
+                    <textarea
+                      id='description'
+                      name='description'
+                      className=''
+                      placeholder='Course Description...'
+                      onChange={this.handleChange} />
+                  </div>
+              </div>
+              <div className='grid-25 grid-right'>
+                <div className='course--stats'>
+                  <ul className='course--stats--list'>
+                    <li className='class--stats--list--item'>
+                      <h4>Estimated Time</h4>
+                      <div>
+                        <input
+                          id='estimatedTime'
+                          name='estimatedTime'
+                          className='course--time--input'
+                          type='text'
+                          placeholder='Hours'
+                          onChange={this.handleChange} />
+                      </div>
+                    </li>
+                    <li className='course--stats--list--item'>
+                      <h4>Materials Needed</h4>
+                      <div>
+                        <textarea
+                          id='materialsNeeded'
+                          name='materialsNeeded'
+                          className=''
+                          placeholder='List materials...'
+                          onChange={this.handleChange} />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className='grid-100 pad-bottom'>
+                {/*Create Course button*/}
+                <button className='button' type='submit'>Create Course</button>
+
+                {/*Cancel button*/}
+                <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </Consumer>
     )
   }
 }
