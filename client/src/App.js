@@ -1,3 +1,5 @@
+//**main container component**//
+
 //Imports
 import React, { Component } from 'react';
 import {
@@ -27,100 +29,9 @@ import Forbidden from './components/Forbidden';
 //Global state
 class App extends Component {
 
-  //Set state
-  state = {
-    showError: '',
-    userData: {},
-    username: '',
-    password: '',
-    authenticated: false
-  }
-
-
-  //Handle sign in
-  onSignIn = (e, user, emailAddress, password, name, props) => {
-    if (e) {
-      e.preventDefault();
-    }
-    //Request user info
-    axios.get('http://localhost:5000/api/users', {
-      auth: {
-        username: emailAddress,
-        password: password
-      }
-    })
-    //Once request is made
-    .then (res => {
-      //If OK
-      if (res.status === 200) {
-        const user = res.data;
-        const name = user.firstName + ' ' + user.lastName;
-        this.setState({
-          user,
-          password: user.password,
-          username: user.emailAddress,
-          showError: '',
-          authenticated: true
-        });
-
-        //Save user preferences locally in the browser
-        localStorage.setItem('username', user);
-        localStorage.setItem('id', user.id);
-        localStorage.setItem('password', password);
-        localStorage.setItem('name', name);
-
-
-        //Brin user back to Main Courses
-        this.props.history.push('/courses');
-
-      } else {
-        localStorage.clear();
-        this.props.history.push('/signup');
-      }
-    })
-    //Catch errors
-    .catch(error => {
-      if(error.response.status === 401) {
-        this.setState({
-          error: error.response
-        });
-      } else if (error.response.status === 500) {
-        this.props.history.push('/error');
-      }
-    });
-  }
-
-  onSignOut = () => {
-    //Clear user info
-    localStorage.clear();
-    console.log('User is signed out');
-
-    //Clear state
-    this.setState({
-      userData: {},
-      username: '',
-      password: '',
-      authenticated: false
-    });
-
-    //Bring user back to main
-    this.props.history.push('/courses')
-  }
-
   render() {
     return (
 
-      <Provider
-        value={{
-          user: this.state.user,
-          emailAddress: this.state.emailAddress,
-          password: this.state.password,
-          authenticated: this.state.authenticated,
-          actions: {
-          signIn: this.onSignIn.bind(this),
-          signOut: this.onSignOut.bind(this)
-          }
-        }}>
         <BrowserRouter>
           <div className='bounds'>
             <Header />
@@ -148,7 +59,6 @@ class App extends Component {
               </Switch>
           </div>
         </BrowserRouter>
-      </Provider>
     );
   }
 }
