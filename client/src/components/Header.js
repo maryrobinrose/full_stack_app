@@ -8,7 +8,7 @@ import { Consumer } from '../components/Context';
 
 const Header = () => {
   return (
-    <Consumer>{ ({signedIn, name}) => {
+    <Consumer>{ ({authenticated, name}) => {
 
       return(
         <header>
@@ -25,11 +25,11 @@ const Header = () => {
                 <ul>
                   <li>
                     {/*Wecomes user by name*/}
-                    <NavLink to={signedIn ? '' : '/signup'}>{signedIn ? `Welcome ${name}` : 'Sign Up'}</NavLink>
+                    <NavLink to={authenticated ? '' : '/signup'}>{authenticated ? `Welcome ${name}` : 'Sign Up'}</NavLink>
                   </li>
                   <li>
                     {/*Link for Signing Out*/}
-                    <NavLink to={signedIn ? '/signout' : '/signin'}>{signedIn ? 'Sign Out' : 'Sign In'}</NavLink>
+                    <NavLink to={authenticated ? '/signout' : '/signin'}>{authenticated ? 'Sign Out' : 'Sign In'}</NavLink>
                   </li>
                 </ul>
               </nav>
