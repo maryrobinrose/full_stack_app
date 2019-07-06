@@ -15,6 +15,7 @@ import { Consumer } from '../components/Context';
 class CourseDetail extends Component {
 
   constructor() {
+    //Super refers to the parent class constructor
     super();
 
     //Set starting state to empty
@@ -43,6 +44,7 @@ class CourseDetail extends Component {
         //Grab the json
         res.json())
 
+      //Set the state to hold user's received data
       .then(resData => {
         //Set state using user's data
         this.setState({
@@ -66,10 +68,9 @@ class CourseDetail extends Component {
 
     //Destructure
     //Allows us to extract multiple pieces of data from an array and assign them their own variables
-    //const {firstName, lastName} = this.state.user;
-    const {id} = this.state.course;
-    //const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
-    //const ownsCourse = `${firstName} ${lastName}`;
+    const {firstName, lastName} = this.state.user;
+    const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
+    const ownsCourse = `${firstName} ${lastName}`;
 
 
     return(
@@ -107,7 +108,7 @@ class CourseDetail extends Component {
                       }
                     })
                     //Take user back to main courses page
-                    .then (res => {
+                    .then (() => {
                       this.props.history.push('/courses');
                     })
                     //Catch any errors
@@ -146,6 +147,7 @@ class CourseDetail extends Component {
                     <li className='button button-secondary'>
                       <Link to='/courses'>Return to List</Link>
                     </li>
+
                   </ul>
                 </div>
               </div>
@@ -159,15 +161,15 @@ class CourseDetail extends Component {
             <div className='grid-66'>
               <div className='course--header'>
                 <h4 className='course-label'>Course</h4>
-                <h3 className='course--title'>{this.state.course.title}</h3>
-                <p>By {this.state.username}</p>
+                <h3 className='course--title'>{title}</h3>
+                <p>By {ownsCourse}</p>
               </div>
             </div>
           </div>
 
           {/*Course Description*/}
           <div className='course--description'>
-            <ReactMarkdown soure={this.state.course.description} />
+            <ReactMarkdown soure={description} />
           </div>
 
             {/*Side Bar*/}
@@ -178,14 +180,14 @@ class CourseDetail extends Component {
                 {/*Estimated Time*/}
                   <li className='course--stats--list--item'>
                     <h4>Estimated Time</h4>
-                    <h3>{this.state.course.estimatedTime}</h3>
+                    <h3>{estimatedTime}</h3>
                   </li>
 
                   {/*Materials Needed*/}
                   <li className='course--stats--list--item'>
                     <h4>Materials Needed</h4>
                     <ul>
-                      <ReactMarkdown source={this.state.course.materialsNeeded} />
+                      <ReactMarkdown source={materialsNeeded} />
                     </ul>
                   </li>
                 </ul>
