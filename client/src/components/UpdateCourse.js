@@ -1,27 +1,35 @@
-//Import React library
+//**This component provides the "Update Course" screen by rendering a form that allows a user to update one of their existing courses. The component also renders an "Update Course" button that when clicked sends a PUT request to the REST API's /api/courses/:id route. This component also renders a "Cancel" button that returns the user to the "Course Detail" screen.**//
+
+//Imports
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { Consumer } from '../components/Context';
 
 class UpdateCourse extends Component {
 
-  state = {
-    id: '',
-    title: '',
-    description: '',
-    estimatedTime: '',
-    materialdsNeeded: '',
-    userid: '',
-    createdBy: '',
-    showError: ''
+  constructor() {
+    super();
+    this.state = {
+      id: '',
+      title: '',
+      description: '',
+      estimatedTime: '',
+      materialdsNeeded: '',
+      userId: '',
+      firstName: '',
+      lastName: '',
+      errores: []
+    }
   }
+
 
   componentDidMount() {
     this.handleCourse();
   }
 
   handleCourse = e => {
-    axios.get('http://localhost:5000/api/courses' + this.props.match.params.id)
+    axios.get(`http://localhost:5000/api/courses/&{this.ptrops.match.params.id}`)
       .then(res => {
         if(res.data.userId !== parseInt(localStorage.getItem('id'))) {
           this.props.history.push('./forbidden')
