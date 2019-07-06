@@ -8,7 +8,6 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import axios from 'axios';
 
 
 //Import Components
