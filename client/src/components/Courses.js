@@ -35,20 +35,18 @@ class Courses extends Component {
 
     render() {
 
-        //Map over courses
-        let showCourses = this.state.courses.map(course => (
-          <CourseBox
-            id={course.id}
-            key={course.id}
-            title={course.title}
-          />
-        ));
-
         return(
           <div>
             <ul>
 
-              {showCourses}
+            {/*Map over courses*/}
+            {this.state.courses.map(course => (
+              <CourseBox
+                id={course.id}
+                key={course.id}
+                title={course.title}
+              />
+            ))}
 
               {/*Show Add New Course button*/}
               <li>
