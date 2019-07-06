@@ -2,7 +2,7 @@
 
 //Imports
 import React, { Component } from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Consumer } from '../components/Context';
 
