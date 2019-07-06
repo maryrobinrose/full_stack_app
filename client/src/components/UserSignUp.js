@@ -1,29 +1,37 @@
-//Import React library
+/*This was created with help from:
+https://reactjs.org/docs/refs-and-the-dom.html
+https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
+*/
+
+//**This component provides the "Sign Up" screen by rendering a form that allows a user to sign up by creating a new account. The component also renders a "Sign Up" button that when clicked sends a POST request to the REST API's /api/users route and signs in the user. This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).**//
+
+//Imports
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import UserContext from './UserContext';
+import { Consumer } from './components/Context';
 
 class UserSignUp extends Component {
 
-  state = {
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    password: '',
-    confirmPassword: '',
-    showError: ''
-  };
+  constructor() {
+    super();
+    //Set errors to empty
+    this.state = {
+      errors: []
+    }
+  }
 
-  //Handle input changes
-  handleInput = e => {
-    e.preventDefault();
-    this.setState({[e.target.name]: e.target.value});
-  };
+  //Create Refs for user input
+  //Refs are assigned to an instance property so they can be referenced throughout the component
+  firstName = React.createRef();
+  lastName = React.createRef();
+  emailAddress = React.createRef();
+  password = React.createRef();
+  confirmPassword = React.createRef();
 
 
   //Handle submit
-  handleSignUp = (e, signIn, props) => {
+  /*handleSignUp = (e, signIn, props) => {
     e.preventDefault();
 
     const {firstName, lastName, emailAddress, password, confirmPassword} = this.state;
@@ -62,108 +70,110 @@ class UserSignUp extends Component {
           }
         });
     }
-  }
+  }*/
 
   render() {
 
-    const {showError, firstName, lastName, emailAddress, password} = this.state;
-
     return(
-      <UserContext.Consumer>
-      {({signUp}) => (
-        <div className='bounds'>
-          <div className='grid-33 centered signin'>
-            <h1>Sign Up</h1>
-            <div>
+      <Consumer>
+      { ({changes}) => {
 
-            {showError ? (
+        //Handle input changes
+        const handleInput = e => {
+          e.preventDefault();
+
+          this.setState({
+            errors: []
+          });
+
+          
+
+
+
+          <div className='bounds'>
+            <div className='grid-33 centered signin'>
+              <h1>Sign Up</h1>
               <div>
-                <h2 className="validation--errors--label">Error</h2>
-                <div className="validation-errors">
-                  <ul>
-                    <li>{showError}</li>
-                  </ul>
-                </div>
-              </div>
-            ) : ''}
-
-              <form onSubmit={e => this.handleSignUp(e, firstName, lastName, emailAddress, password)}>
 
                 <div>
-                  <input
-                    id='firstName'
-                    name='firstName'
-                    className=''
-                    type='text'
-                    placeholder='First Name'
-                    onChange={this.handleInput}
-                  />
+                  <h2 className="validation--errors--label">Error</h2>
+                  <div className="validation-errors">
+                    <ul>
+                      <li>{showError}</li>
+                    </ul>
+                  </div>
                 </div>
 
-                <div>
-                  <input
-                    id='lastName'
-                    name='lastName'
-                    className=''
-                    type='text'
-                    placeholder='Last Name'
-                    onChange={this.handleInput}
-                  />
-                </div>
 
-                <div>
-                  <input
-                    id='emailAddress'
-                    name='emailAddress'
-                    className=''
-                    type='text'
-                    placeholder='Email Address'
-                    onChange={this.handleInput}
-                  />
-                </div>
+                <form onSubmit={handleInput}>
+                  <div>
 
-                <div>
-                  <input
-                    id='password'
-                    name='password'
-                    className=''
-                    type='password'
-                    placeholder='Password'
-                    onChange={this.handleInput}
-                  />
-                </div>
+                    {/*First Name*/}
+                    <input
+                      id='firstName'
+                      name='firstName'
+                      ref={this.firstName}
+                      type='text'
+                      placeholder='First Name'
+                    />
 
-                <div>
-                  <input
-                    id='confirmPassword'
-                    name='confirmPassword'
-                    className=''
-                    type='password'
-                    placeholder='Confirm Password'
-                    onChange={this.handleInput}
-                  />
-                </div>
+                    {/*Last Name*/}
+                    <input
+                      id='lastName'
+                      name='lastName'
+                      ref={this.lastName}
+                      type='text'
+                      placeholder='Last Name'
+                    />
 
-                <div className='grid-100 pad-bottom'>
+                    {/*Email Address*/}
+                    <input
+                      id='emailAddress'
+                      name='emailAddress'
+                      ref={this.emailAddress}
+                      type='text'
+                      placeholder='Email Address'
+                    />
 
-                  {/*Submit Button*/}
-                  <button className='button' type='submit'>Sign Up</button>
+                    {/*Password*/}
+                    <input
+                      id='password'
+                      name='password'
+                      ref={this.password}
+                      type='password'
+                      placeholder='Password'
+                    />
 
-                  {/*Cancel Button*/}
-                  <Link className='button button-secondary' to='/courses'>Cancel</Link>
-                </div>
+                    {/*Confirm Password*/}
+                    <input
+                      id='confirmPassword'
+                      name='confirmPassword'
+                      ref={this.confirmPassword}
+                      type='password'
+                      placeholder='Confirm Password'
+                    />
+                  </div>
 
-              </form>
+                  <div className='grid-100 pad-bottom'>
 
-            </div>
-            <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
+                    {/*Submit Button*/}
+                    <button className='button' type='submit'>Sign Up</button>
+
+                    {/*Cancel Button*/}
+                    <Link className='button button-secondary' to='/courses'>Cancel</Link>
+                  </div>
+                </form>
+
+              {/*Link to Sign In Page*/}
+              <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
+
           </div>
-
-        </div>
-      )}</UserContext.Consumer>
-    )
+        );
+      }}
+      </Consumer>
+    );
   }
 }
 
 
-export default withRouter(UserSignUp);
+export default UserSignUp;
