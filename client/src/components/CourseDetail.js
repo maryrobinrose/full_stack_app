@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
-import { Consumer } from './components/Context';
+import { Consumer } from '../components/Context';
 
 class CourseDetail extends Component {
 
@@ -66,9 +66,10 @@ class CourseDetail extends Component {
 
     //Destructure
     //Allows us to extract multiple pieces of data from an array and assign them their own variables
-    const {firstName, lastName} = this.state.user;
-    const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
-    const ownsCourse = `${firstName} ${lastName}`;
+    //const {firstName, lastName} = this.state.user;
+    const {id} = this.state.course;
+    //const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
+    //const ownsCourse = `${firstName} ${lastName}`;
 
 
     return(
@@ -125,7 +126,7 @@ class CourseDetail extends Component {
             <div className='actions--bar'>
               <div className='bounds'>
                 <div className='grid-100'>
-                  <ul clasName='button-list'>
+                  <ul className='button-list'>
 
                     {/*If the user is the owner, show the update course option*/}
                     <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
@@ -142,7 +143,7 @@ class CourseDetail extends Component {
                     </li>
 
                     {/*Return to List button*/}
-                    <li classname='button button-secondary'>
+                    <li className='button button-secondary'>
                       <Link to='/courses'>Return to List</Link>
                     </li>
                   </ul>

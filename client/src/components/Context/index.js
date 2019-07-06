@@ -65,7 +65,7 @@ export class Provider extends Component {
     //Catch any errors
     .catch(error => {
       //If there's a problem receiving the user's info
-      if (error.response.status = 401) {
+      if (error.response.status === 401) {
         //Take the user to the error page
         this.props.history.push('/error');
       }
@@ -88,8 +88,7 @@ export class Provider extends Component {
   //Show what has just been created
   render() {
     return(
-      //Enclose return in context
-      //Value prop provides actual data that needs to be shared
+
       <CoursesContext.Provider value={{
         authenticated: this.state.authenticated,
         username: this.state.username,
@@ -101,7 +100,7 @@ export class Provider extends Component {
           signOut: this.handleSignOut
         }
       }}>
-        //Displays what's included between opening and closing tags when invoking a component
+        {/*Displays what's included between opening and closing tags when invoking a component*/}
         {this.props.children}
       </CoursesContext.Provider>
     )

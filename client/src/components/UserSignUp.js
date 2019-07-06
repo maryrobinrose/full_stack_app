@@ -9,7 +9,7 @@ https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Consumer } from './components/Context';
+import { Consumer } from '../components/Context';
 
 class UserSignUp extends Component {
 
@@ -58,10 +58,7 @@ class UserSignUp extends Component {
 
             //Show errors
             this.setState(prevState => ({
-              errors: [
-                ...prevState.errors
-                [passwordsNoMatch]
-              ]
+              errors: [...prevState.errors[passwordsNoMatch]]
             }));
           } else {
             //Request the user
@@ -82,15 +79,39 @@ class UserSignUp extends Component {
                 this.props
               );
             })
+            //Catch any errors
             .catch(error => {
-              if (error.response) {
-                this.setState({error: error.response.data.message})
-              } else  {
-                //Send user to error page
-                this.props.history.push('/error');
+      			if (error.response.status === 400) {
+      				// if multiple errors return, it is due to input validation
+      				if (error.response.data.errors) {
+                // update array of errors, use to display messages to user
+                let errors = error.response.data.errors;
+      					let errorAlertMessages = errors.map(
+                  (error, index) => (
+                    <li className="validation-error" key={index}>
+                      {error}
+                    </li>
+                  )
+                );
+
+      					// Update component state with form validation errors
+      					this.setState({
+      						errors: errorAlertMessages
+      					});
+
+              } else {
+      					// Else, error is due to email already existing
+      					// For security, do not tell user that email already exists
+      					// Instead, route user to error page
+                const { history } = this.props;
+                history.push("/error");
               }
-            });
-          }
+      			}
+      		});
+
+
+	}
+};
 
         return (
 

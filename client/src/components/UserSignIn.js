@@ -4,7 +4,7 @@
 //Imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Consumer } from './components/Context';
+import { Consumer } from '../components/Context';
 
 class UserSignIn extends Component {
 

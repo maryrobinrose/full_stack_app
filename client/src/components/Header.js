@@ -3,8 +3,8 @@
 
 //Imports
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Consumer } from './components/Context';
+import { NavLink } from 'react-router-dom';
+import { Consumer } from '../components/Context';
 
 const Header = () => {
   return (
