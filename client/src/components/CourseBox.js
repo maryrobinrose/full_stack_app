@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 const CourseBox = ({ id, title}) => {
   return(
-    <li key={id}>
+    <li className='bounds' key={id}>
      <Link to={`/courses/${id}`}>
-       <div>Course</div>
-       <div>{title}</div>
+       <div className=''>Course</div>
+       <div className=''>{title}</div>
      </Link>
    </li>
   );

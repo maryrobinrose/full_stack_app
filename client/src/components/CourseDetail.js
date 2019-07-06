@@ -82,9 +82,9 @@ class CourseDetail extends Component {
             {/*Render props - returns a React element*/}
             {({ username, password, userId }) => {
 
-              let isOwner = () => {
-                let ownerId = this.state.course.userId;
-                let authUserId = userId;
+              const isOwner = () => {
+                const ownerId = this.state.course.userId;
+                const authUserId = userId;
 
                 if (ownerId === authUserId) {
                   return true;
@@ -100,14 +100,14 @@ class CourseDetail extends Component {
 
                     //Request to delete it
                     axios({
-                    //Use delete method
-                    method: 'DELETE',
-                    url: `http://localhost:5000/api/courses/${this.props.match.params.id}`,
-                    //Authorize user by using their log in
-                    auth: {
-                      username: username,
-                      password: password
-                      }
+                      //Use delete method
+                      method: 'DELETE',
+                      url: `http://localhost:5000/api/courses/${this.props.match.params.id}`,
+                      //Authorize user by using their log in
+                      auth: {
+                        username: username,
+                        password: password
+                        }
                     })
                     //Take user back to main courses page
                     .then (() => {
