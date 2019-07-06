@@ -66,9 +66,8 @@ export class Provider extends Component {
     .catch(error => {
       //If there's a problem receiving the user's info
       if (error.response.status = 401) {
-        const { history } = props;
         //Take the user to the error page
-        history.push('/error')
+        this.props.history.push('/error');
       }
     })
   }

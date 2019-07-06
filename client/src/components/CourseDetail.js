@@ -1,142 +1,184 @@
-//Import React library
+/*This was created with help from:
+https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0
+and Treehouses's React Context API Course
+*/
+
+//**Provides the "Course Detail" screen by retrieving the detail for a course from the REST API's /api/courses/:id route and rendering the course.**//
+
+//Imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
+import { Consumer } from './components/Context';
 
 class CourseDetail extends Component {
 
-  //Set state
-  state = {
-    course: {},
-    courseId: '',
-    createdBy: '',
-    //username: ''
-  };
+  constructor() {
+    super();
+
+    //Set starting state to empty
+    this.state = {
+      course: {},
+      user: {},
+      //User must own the course to edit or delete it
+      ownsCourse: false,
+    }
+  }
+
 
   //When the componenet mounts, get course details
   componentDidMount() {
-    this.handleCourse();
+    this.handleGetCourse();
   }
 
   //Get course details
-  handleCourse = () => {
-    //Request the API and course details
-    axios.get('http://localhost:5000/api/courses/' + this.props.match.params.id)
+  handleGetCourse = () => {
 
-      //When data is received
-      .then (res => {
-        const course = res.data.course;
+    //Request the API and course details by the course's id using the GET method
+    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+
+      //On completion of receiving user data
+      .then (res =>
+        //Grab the json
+        res.json())
+
+      .then(resData => {
+        //Set state using user's data
         this.setState({
-          course,
-          username: course.User.firstName + ' ' + course.User.lastName
+          course: resData.course,
+          user: resData.course.user
         });
       })
 
-      //Log errors
+      //Catch any errors
       .catch(error => {
-        console.log('Error fetching and parsing data', error);
-        if (error.response.status === 400) {
+        //If there is an error
+        if (error) {
+          //Then take user to the Not Found page
           this.props.history.push('/notfound');
-        } else if (error.response.status === 500) {
-          this.props.history.push('/error');
         }
       });
   }
 
-
-  //Delete course
-  handleDeleteCourse = (e, emailAddress, password) => {
-    e.preventDefault();
-
-    axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
-      method: 'DELETE',
-      auth: {
-        username: localStorage.getItem('username'),
-        password: localStorage.getItem('password')
-      }
-    })
-    .then (res => {
-      this.props.history.push('/courses');
-    })
-    .catch(error => {
-      if (error.response.status === 404) {
-        this.props.history.push('/notfound');
-      } else if (error.response.status === 500) {
-        this.props.history.push('/error');
-      }
-    })
-  };
-
-
+  //Show what has just been created
   render() {
 
-    const {createdBy} = this.state;
+    //Destructure
+    //Allows us to extract multiple pieces of data from an array and assign them their own variables
+    const {firstName, lastName} = this.state.user;
+    const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
+    const ownsCourse = `${firstName} ${lastName}`;
+
 
     return(
-
         <div>
-          <div className='actions--bar'>
-            <div className='bounds'>
-              <div className='grid-100'>
+        //Enclose return in Consumer
+          <Consumer>
+            //Render props - returns a React element
+            {({ username, password, userID }) => {
 
-              {(localStorage.getItem('id') !== '') && parseInt(localStorage.getItem('id')) === createdBy ? (
+              //If the user is the owner of the course
+              let isOwner = () => {
+                //Declare variables for authenticated owner
+                let ownerId = this.state.course.userId;
+                let authUserId = userId;
 
-                <span>
-                  {/*Update Course*/}
-                  <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
-
-                  {/*Delete Course*/}
-                  <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
-                </span>
-                ) : (
-
-                  <span></span>
-
-                )
+                //If the user id matches user id of the course
+                if (ownerId === authUserId) {
+                  return true;
+                } else {
+                  return false;
+                }
               }
-                <Link className='button button-secondary' to='/'>Return to List</Link>
+
+              //Handle Delete Course
+              const handleDeleteCourse = () => {
+
+
+                axios.delete('http://localhost:5000/api/courses/' + this.props.match.params.id, {
+                  method: 'DELETE',
+                  auth: {
+                    username: localStorage.getItem('username'),
+                    password: localStorage.getItem('password')
+                  }
+                })
+                .then (res => {
+                  this.props.history.push('/courses');
+                })
+                .catch(error => {
+                  if (error.response.status === 404) {
+                    this.props.history.push('/notfound');
+                  } else if (error.response.status === 500) {
+                    this.props.history.push('/error');
+                  }
+                })
+              };
+
+            }
+
+            <div className='actions--bar'>
+              <div className='bounds'>
+                <div className='grid-100'>
+
+                {(localStorage.getItem('id') !== '') && parseInt(localStorage.getItem('id')) === createdBy ? (
+
+                  <span>
+                    {/*Update Course*/}
+                    <Link className='button' to={'/courses'+this.state.course.id+'/update'}>Update Course</Link>
+
+                    {/*Delete Course*/}
+                    <button className='button' onClick={e => this.handleDeleteCourse()}>Delete Course</button>
+                  </span>
+                  ) : (
+
+                    <span></span>
+
+                  )
+                }
+                  <Link className='button button-secondary' to='/'>Return to List</Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/*Course Title*/}
-          <div className='bounds course--detail'>
-            <div className='grid-66'>
-              <div className='course--header'>
-                <h4 className='course-label'>Course</h4>
-                <h3 className='course--title'>{this.state.course.title}</h3>
-                <p>By {this.state.username}</p>
+            {/*Course Title*/}
+            <div className='bounds course--detail'>
+              <div className='grid-66'>
+                <div className='course--header'>
+                  <h4 className='course-label'>Course</h4>
+                  <h3 className='course--title'>{this.state.course.title}</h3>
+                  <p>By {this.state.username}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/*Course Description*/}
-          <div className='course--description'>
-            <ReactMarkdown soure={this.state.course.description} />
-          </div>
-
-          {/*Side Bar*/}
-          <div className='grid-25 grid-right'>
-            <div className='course--stats'>
-              <ul className='course--stats--list'>
-
-              {/*Estimated Time*/}
-                <li className='course--stats--list--item'>
-                  <h4>Estimated Time</h4>
-                  <h3>{this.state.course.estimatedTime}</h3>
-                </li>
-
-                {/*Materials Needed*/}
-                <li className='course--stats--list--item'>
-                  <h4>Materials Needed</h4>
-                  <ul>
-                    <ReactMarkdown source={this.state.course.materialsNeeded} />
-                  </ul>
-                </li>
-              </ul>
+            {/*Course Description*/}
+            <div className='course--description'>
+              <ReactMarkdown soure={this.state.course.description} />
             </div>
-          </div>
+
+            {/*Side Bar*/}
+            <div className='grid-25 grid-right'>
+              <div className='course--stats'>
+                <ul className='course--stats--list'>
+
+                {/*Estimated Time*/}
+                  <li className='course--stats--list--item'>
+                    <h4>Estimated Time</h4>
+                    <h3>{this.state.course.estimatedTime}</h3>
+                  </li>
+
+                  {/*Materials Needed*/}
+                  <li className='course--stats--list--item'>
+                    <h4>Materials Needed</h4>
+                    <ul>
+                      <ReactMarkdown source={this.state.course.materialsNeeded} />
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Consumer>
         </div>
 
     )
