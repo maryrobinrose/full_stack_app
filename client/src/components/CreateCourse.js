@@ -5,7 +5,7 @@ https://medium.com/@mrewusi/a-gentle-introduction-to-refs-in-react-f407101a5ea6
 
 //**This component provides the "Create Course" screen by rendering a form that allows a user to create a new course. The component also renders a "Create Course" button that when clicked sends a POST request to the REST API's /api/courses route. This component also renders a "Cancel" button that returns the user to the default route (i.e. the list of courses).**//
 
-//Import React library
+//Imports
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
@@ -33,69 +33,73 @@ class CreateCourse extends Component {
 
     return(
       <Consumer>
-        {({ username, password, name, userId}) => {
+        { ({ username, password, name, userId}) => {
 
-          //Handle user changes
+          //Handle user create
           const handleCreate = e => {
             e.preventDefault();
             this.setState({
               errors: []
             });
+
+
+            // Use POST method to send new info
+            axios({
+              method: 'POST',
+              url: 'http://localhost:5000/api/courses',
+              auth: {
+                username: username,
+                password: password
+              },
+              responseType: 'json',
+              data: {
+                title: this.title.current.value,
+                description: this.description.current.value,
+                estimatedTime: this.time.current.value,
+                materialsNeeded: this.materials.current.value,
+                userId: userId
+              }
+            })
+            .then(res => {
+              this.props.history.push(`/courses/${res.data.id}`);
+            })
+            .catch(error => {
+              if (error.response.status === 401) {
+                this.props.history.push('/signin');
+              }
+              if (error.response.status === 400) {
+                let errors = error.response.data.errors;
+                let errorMessage = errors.map(
+                  (error, index) => (
+                    <li key={index}>{error}</li>
+                  )
+                );
+                this.setState({
+                  errors: errorMessage
+                });
+              }
+            });
           }
 
-
-          // Use POST method to send new info
-          axios({
-            method: 'POST',
-            url: 'http://localhost:5000/api/courses',
-            auth: {
-              username: username,
-              password: password
-            },
-            responseType: 'json',
-            data: {
-              title: this.title.current.value,
-              description: this.description.current.value,
-              estimatedTime: this.time.current.value,
-              materialsNeeded: this.materials.current.value,
-              userId: userId
-            }
-          })
-          .then(res => {
-            this.props.history.push(`/courses/${res.data.id}`);
-          })
-          .catch(error => {
-            if (error.response.status === 401) {
-              this.props.history.push('/signin');
-            }
-            if (error.response.status === 400) {
-              let errors = error.response.data.errors;
-              let errorMessage = erros.map(
-                (error, index) => (
-                  <li key={index}>{error}</li>
-                )
-              );
-              this.setState({
-                errors: errorMessage
-              });
-            }
-          });
-        }
-      }
 
 
         return (
 
           <div className='bounds course--detail'>
 
+              {/*Create Form*/}
               <form onSubmit={handleCreate}>
                 <h1>Create Course</h1>
                   <ul>{this.state.errors}</ul>
 
-                  <div className='grid-66'>
-                    <div className='course--header'>
-                      <h4 className='course--label'>Course</h4>
 
+                  <div className='grid-66'>
+
+                    {/*Course Input*/}
+                    <div className='course--header'>
+
+                    {/*Course Title*/}
+                      <h4 className='course--label'>Course</h4>
                         <input
                           id='title'
                           name='title'
@@ -106,6 +110,7 @@ class CreateCourse extends Component {
                         />
 
                       <p>By {name}</p>
+
                       <div className='course--description'>
                         <textarea
                           id='description'
@@ -116,36 +121,36 @@ class CreateCourse extends Component {
                       </div>
 
 
-                <div className='grid-25 grid-right'>
-                  <div className='course--stats'>
-                    <ul className='course--stats--list'>
-                      <li className='class--stats--list--item'>
-                        <h4>Estimated Time</h4>
+                  <div className='grid-25 grid-right'>
+                    <div className='course--stats'>
+                      <ul className='course--stats--list'>
+                        <li className='class--stats--list--item'>
+                          <h4>Estimated Time</h4>
 
-                          <input
-                            id='estimatedTime'
-                            name='estimatedTime'
-                            className='course--time--input'
-                            type='text'
-                            placeholder='Hours'
-                            ref={this.time}
-                            />
-                      </li>
+                            <input
+                              id='estimatedTime'
+                              name='estimatedTime'
+                              className='course--time--input'
+                              type='text'
+                              placeholder='Hours'
+                              ref={this.time}
+                              />
+                        </li>
 
-                      <li className='course--stats--list--item'>
-                        <h4>Materials Needed</h4>
+                        <li className='course--stats--list--item'>
+                          <h4>Materials Needed</h4>
 
-                          <textarea
-                            id='materialsNeeded'
-                            name='materialsNeeded'
-                            placeholder='List materials...'
-                            ref={this.materials}
-                            />
-                      </li>
+                            <textarea
+                              id='materialsNeeded'
+                              name='materialsNeeded'
+                              placeholder='List materials...'
+                              ref={this.materials}
+                              />
+                        </li>
 
-                    </ul>
+                      </ul>
+                    </div>
                   </div>
-                </div>
 
                 <div className='grid-100 pad-bottom'>
                   {/*Create Course button*/}
@@ -154,13 +159,13 @@ class CreateCourse extends Component {
                   {/*Cancel button*/}
                   <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
                 </div>
+
               </form>
-              
-            </div>
           </div>
+          );
         }}
         </Consumer>
-      );
+    );
   }
 }
 
