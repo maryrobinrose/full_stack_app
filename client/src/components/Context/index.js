@@ -3,7 +3,8 @@
 /*This was created with help from:
 https://www.taniarascia.com/using-context-api-in-react/
 https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891
-and Treehouses's React Context API Course
+Treehouses's React Context API Course
+and Zack Mower
 */
 
 //**Provides a way to pass data to components without having to pass props manually at every level**//
@@ -35,7 +36,7 @@ export class Provider extends Component {
   handleSignIn  = (userUsername, userPassword, props) => {
 
     //Request user info from API using axios
-    axios({
+    return axios({
       //User get method
       method: 'GET',
       url: 'http://localhost:5000/api/users',
@@ -63,17 +64,8 @@ export class Provider extends Component {
         userId: user.id
       })
     })
-
-    //Catch any errors
-    .catch(error => {
-      //If there's a problem receiving the user's info
-      if (error.response.status === 401) {
-        //Take the user to the error page
-        this.props.history.push('/error');
-      }
-    })
     //Send user to main courses page after logging in
-    this.props.history.push('/courses');
+    // this.props.history.push('/courses');
   }
 
   //Handle User Sign Out

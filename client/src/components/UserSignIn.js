@@ -25,17 +25,24 @@ class UserSignIn extends Component {
   render() {
     return(
       <Consumer>
-        { ({ changes }) => {
+        { ({ actions }) => {
 
           //Handle imput changes
-          const handleInput = e => {
+          const handleSubmit = e => {
             e.preventDefault();
+            console.log(this.state);
             //Uses input's name and value to set state
-            changes.signIn(
-              this.emailAddress.current.value,
-              this.password.current.value,
+            actions.signIn(
+              this.state.emailAddress,
+              this.state.password,
               this.props
-            );
+            ).then(() => {
+              this.props.history.push("/courses");
+            }).catch(error => {
+              if (error.response && error.response.status === 401) {
+                console.log(error.response.data);
+              }
+            });
           };
 
           return(
@@ -45,16 +52,17 @@ class UserSignIn extends Component {
               <h1>Sign In</h1>
 
                 {/*Sign in with user credentials*/}
-                <form onSubmit={handleInput}>
+                <form onSubmit={handleSubmit}>
 
                   <div>
                     {/*Enter Email Address*/}
                     <input
                     id='emailAddress'
                     name='emailAddress'
-                    ref={this.emailAddress}
                     type='text'
                     placeholder='Email Address'
+                    onChange={this.handleInput}
+                    value={this.state.emailAddress}
                     />
 
                     {/*Enter Password*/}
@@ -62,8 +70,9 @@ class UserSignIn extends Component {
                     id='password'
                     name = 'password'
                     type='password'
-                    ref={this.password}
                     placeholder='Password'
+                    onChange={this.handleInput}
+                    value={this.state.password}
                     />
                   </div>
 

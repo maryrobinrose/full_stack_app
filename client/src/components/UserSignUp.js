@@ -33,7 +33,7 @@ class UserSignUp extends Component {
 
     return(
       <Consumer>
-      { ({changes}) => {
+      { ({actions}) => {
 
         //Handle input changes when user submits the form
         const handleInput = e => {
@@ -73,14 +73,17 @@ class UserSignUp extends Component {
               }
             })
             .then( () => {
-              changes.signIn(
+              return actions.signIn(
                 userEmailAddress,
                 userPassword,
                 this.props
               );
+            }).then(() => {
+              this.props.history.push("/courses");
             })
             //Catch any errors
             .catch(error => {
+              console.log(error);
       			if (error.response.status === 400) {
       				// if multiple errors return, it is due to input validation
       				if (error.response.data.errors) {
@@ -88,7 +91,7 @@ class UserSignUp extends Component {
                 let errors = error.response.data.errors;
       					let errorAlertMessages = errors.map(
                   (error, index) => (
-                    <li className="validation-error" key={index}>
+                    <li className='validation-error' key={index}>
                       {error}
                     </li>
                   )

@@ -25,6 +25,7 @@ class CourseDetail extends Component {
       user: {},
       //User must own the course to edit or delete it
       ownsCourse: false,
+      isLoading: true,
     }
   }
 
@@ -50,7 +51,8 @@ class CourseDetail extends Component {
         //Set state using user's data
         this.setState({
           course: responseData.course,
-          user: responseData.course.user
+          user: responseData.course.user,
+          isLoading: false,
         });
       })
 
@@ -66,11 +68,13 @@ class CourseDetail extends Component {
 
   //Show what has just been created
   render() {
+    if (this.state.isLoading) return <h1>Loading</h1>;
 
+    console.log(this.state);
     //Destructure
     //Allows us to extract multiple pieces of data from an array and assign them their own variables
     const {id, title, description, estimatedTime, materialsNeeded} = this.state.course;
-    const {firstName, lastName} = this.state.user;
+    const {firstName, lastName} = this.state.course.User;
     const ownsCourse = `${firstName} ${lastName}`;
 
 
@@ -170,7 +174,7 @@ class CourseDetail extends Component {
 
           {/*Course Description*/}
           <div className='course--description'>
-            <ReactMarkdown soure={description} />
+            <ReactMarkdown source={description} />
           </div>
 
             {/*Side Bar*/}

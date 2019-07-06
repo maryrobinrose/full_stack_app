@@ -1,5 +1,6 @@
 /*This was created with help from:
 //https://reacttraining.com/react-router/web/example/auth-workflow
+and Zack Mower
 */
 
 //**Configures protected routes**//
@@ -16,8 +17,8 @@ const PrivateRoute = ({ component: Component, path }) => {
       path={path}
       render={(props) => (
         <Consumer>
-          {({ signedIn }) =>
-            signedIn ? (
+          {({ authenticated }) =>
+            authenticated ? (
               <Component  {...props} />
             ) : (
               <Redirect
