@@ -19,7 +19,7 @@ class UpdateCourse extends Component {
       userId: '',
       firstName: '',
       lastName: '',
-      errores: []
+      errors: []
     }
   }
 
@@ -29,21 +29,20 @@ class UpdateCourse extends Component {
   }
 
   handleCourse = e => {
-    axios.get(`http://localhost:5000/api/courses/&{this.ptrops.match.params.id}`)
-      .then(res => {
-        if(res.data.userId !== parseInt(localStorage.getItem('id'))) {
-          this.props.history.push('./forbidden')
-        } else {
+    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+      .then(res => res.json())
+
+      .then(resData => {
           this.setState({
-            id: res.data.id,
-            title: res.data.title,
-            description: res.data.description,
-            estimatedTime: res.data.estimatedTime,
-            materialdsNeeded: res.data.materialdsNeeded,
-            userId: res.data.userId,
-            showError: ''
+            id: resData.course.id,
+            title: resData.course.title,
+            description: resData.course.description,
+            estimatedTime: resData.course.estimatedTime,
+            materialdsNeeded: resData.course.materialdsNeeded,
+            userId: resData.course.userId,
+            firstName: resData.course.firstName,
+            lastName: resData.course.lastName
           })
-        }
       })
       .catch(error => {
         if (error.response.status === 400) {
@@ -54,9 +53,6 @@ class UpdateCourse extends Component {
       })
   }
 
-  handleChange = e => {
-    this.setState({[e.target.name]: e.target.value});
-  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -101,9 +97,20 @@ class UpdateCourse extends Component {
 
   render() {
 
-    const {showError, title, description, estimatedTime, materialsNeeded} = this.state;
-
     return(
+      <Consumer>
+
+        { ({ username, password, userId}) => {
+
+          const {id, title, description, estimatedTime, materialsNeeded, firstName, lastName} = this.state;
+          const ownsCourse = `${firstName} ${lastName}`;
+
+        }}
+
+      const handleChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+      }
+
       <div className='bounds course--detail'>
         <h1>Update Course</h1>
         <div>
