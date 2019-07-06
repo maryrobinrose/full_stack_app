@@ -1,7 +1,10 @@
-//Import React library
+//**This component provides the "Sign In" screen by rendering a form that allows a user to sign using their existing account information. The component also renders a "Sign In" button that when clicked signs in the user and a "Cancel" button that returns the user to the default route (i.e. the list of courses).**//
+
+
+//Imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from './UserContext';
+import { Consumer } from './components/Context';
 
 class UserSignIn extends Component {
 
@@ -19,50 +22,48 @@ class UserSignIn extends Component {
   };
 
 
-  render(){
+  render() {
     return(
-      <UserContext.Consumer>
-        {({signIn, showError}) => (
+      <Consumer>
+        { ({ changes }) => {
+
+          //Handle imput changes
+          const handleInput = e => {
+            e.preventDefault();
+            //Uses input's name and value to set state
+            changes.signIn(
+              this.emailAddress.current.value,
+              this.password.current.value,
+              this.props
+            );
+          };
+
+          return(
+
           <div className='bounds'>
             <div className='grid-33 centered signin'>
               <h1>Sign In</h1>
-              <div>
-
-              {showError ? (
-                <div>
-                  <h2 className="validation--errors--label">Validation Error</h2>
-                  <div className="validation-errors">
-                    <ul>
-                      <li>{showError}</li>
-                    </ul>
-                  </div>
-                </div>
-              ) : ''}
 
                 {/*Sign in with user credentials*/}
-                <form onSubmit={e => signIn(e,  this.state.emailAddress, this.state.password)}>
+                <form onSubmit={handleInput}>
 
-                  {/*Enter Email Address*/}
                   <div>
+                    {/*Enter Email Address*/}
                     <input
                     id='emailAddress'
-                    name = 'emailAddress'
+                    name='emailAddress'
+                    ref={this.emailAddress}
                     type='text'
-                    className=''
                     placeholder='Email Address'
-                    onChange={this.handleInput}
                     />
-                  </div>
 
-                  {/*Enter Password*/}
-                  <div>
+                    {/*Enter Password*/}
                     <input
                     id='password'
                     name = 'password'
                     type='password'
-                    className=''
+                    ref={this.password}
                     placeholder='Password'
-                    onChange={this.handleInput}
                     />
                   </div>
 
@@ -75,14 +76,15 @@ class UserSignIn extends Component {
                     <Link to='/courses' className="button button-secondary">Cancel</Link>
                   </div>
 
-                </form>
-              </div>
+              </form>
+
               <p>&nbsp;</p>
               <p>Don't have a user account? <Link to='/signup'>Click here</Link> to sign up!</p>
             </div>
           </div>
-        )}
-      </UserContext.Consumer>
+          );
+        }}
+      </Consumer>
     )
   }
 }
