@@ -24,7 +24,6 @@ class Courses extends Component {
     }
 
     render() {
-      console.log(this.state.courses);
       return (
         <div className='bounds'>
           {/*Map over and show courses with links*/}

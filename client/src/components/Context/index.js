@@ -11,7 +11,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 //Sets up Provider and Consumer
-const CoursesContext = React.createContext();
+const UserContext = React.createContext();
 
 //Provider is used as high as possible in the component tree. It allows Consumer to subscribe to context changes
 export class Provider extends Component {
@@ -26,7 +26,7 @@ export class Provider extends Component {
       password: '',
       name: '',
       userId: null
-    }
+    };
   }
 
   //Handle User Sign In
@@ -70,6 +70,8 @@ export class Provider extends Component {
         this.props.history.push('/error');
       }
     })
+    //Send user to main courses page after logging in
+    this.props.history.push('/courses');
   }
 
   //Handle User Sign Out
@@ -89,7 +91,7 @@ export class Provider extends Component {
   render() {
     return(
 
-      <CoursesContext.Provider value={{
+      <UserContext.Provider value={{
         authenticated: this.state.authenticated,
         username: this.state.username,
         password: this.state.password,
@@ -102,10 +104,10 @@ export class Provider extends Component {
       }}>
         {/*Displays what's included between opening and closing tags when invoking a component*/}
         {this.props.children}
-      </CoursesContext.Provider>
-    )
+      </UserContext.Provider>
+    );
   }
 }
 
 //Consumer accesses the Provider to get the data it needs and helps avoid prop drilling
-export const Consumer = CoursesContext.Consumer;
+export const Consumer = UserContext.Consumer;
