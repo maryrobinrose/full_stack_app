@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Course from './Course';
+import CourseBox from './CourseBox';
 
 class Courses extends Component {
     //Store the output from API request
@@ -30,8 +30,8 @@ class Courses extends Component {
 
         let showCourses;
 
-        showCourses = this.state.courses.map( course => (
-          <Course
+        showCourses = this.state.courses.map(course => (
+          <CourseBox
             id={course.id}
             key={course.id}
             title={course.title}

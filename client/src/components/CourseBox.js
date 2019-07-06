@@ -4,7 +4,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Course = ({ id, title}) => {
+const CourseBox = ({ id, title}) => {
   return(
     <li key={id}>
      <Link to={`/courses/${id}`}>
@@ -15,4 +15,4 @@ const Course = ({ id, title}) => {
   );
 }
 
-export default Course;
+export default CourseBox;
