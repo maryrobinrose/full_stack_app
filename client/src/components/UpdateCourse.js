@@ -2,7 +2,7 @@
 
 //Imports
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Consumer } from '../components/Context';
 
@@ -53,48 +53,6 @@ class UpdateCourse extends Component {
       })
   }
 
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const {title, description} = this.state;
-
-    if (title === '') {
-      this.setState({showError: 'Please enter a title.'})
-    } else if (description === '') {
-      this.setState({showError: 'Please enter a description.'})
-    } else {
-      axios({
-        method: 'put',
-        url: 'http://localhost:5000/api/courses/' + this.props.match.params.id,
-        auth: {
-          username: localStorage.getItem('username'),
-          password: localStorage.getItem('password')
-        },
-        data: {
-          id: this.state.id,
-          title: this.state.title,
-          description: this.state.description,
-          estimatedTime: this.state.estimatedTime,
-          materialdsNeeded: this.state.materialsNeeded,
-          userId: this.state.userId
-        }
-      })
-      .then (res => {
-        this.props.history.push('/courses/' + this.props.match.params.id);
-      })
-      .catch(error => {
-        if (error.response.status === 400) {
-          this.props.history.push('./notfound')
-        } else if (error.response.status === 500){
-          this.props.history.push('./error')
-        }
-      })
-    }
-
-
-  }
-
   render() {
 
     return(
@@ -102,99 +60,149 @@ class UpdateCourse extends Component {
 
         { ({ username, password, userId}) => {
 
-          const {id, title, description, estimatedTime, materialsNeeded, firstName, lastName} = this.state;
           const ownsCourse = `${firstName} ${lastName}`;
+          const { id, title, description, estimatedTime, materialsNeeded, firstName, lastName } = this.state;
 
-        }}
+          const handleChange = e => {
+            this.setState({[e.target.name]: e.target.value});
+          }
 
-      const handleChange = e => {
-        this.setState({[e.target.name]: e.target.value});
-      }
+          const handleUpdate = e => {
+            e.preventDefault();
 
-      <div className='bounds course--detail'>
-        <h1>Update Course</h1>
-        <div>
+            this.setState({errors: []});
 
-        {showError ? (
-          <div>
-            <h2 className="validation--errors--label">Validation errors</h2>
-            <div className="validation-errors">
-              <ul>
-                <li>{showError}</li>
-              </ul>
-            </div>
-          </div>
-        ) : ''}
+            axios({
+              method: 'PUT',
+              url: `http://localhost:5000/api/courses/${id}`,
+              auth: {
+                username: username,
+                password: password
+              },
+              responseType: 'json',
+              data: {
+                id: this.state.id,
+                title: this.state.title,
+                description: this.state.description,
+                estimatedTime: this.state.estimatedTime,
+                materialdsNeeded: this.state.materialsNeeded,
+                userId: this.state.userId
+              }
+            })
+            .then (res => {
+              this.props.history.push('/courses/' + this.props.match.params.id);
+            })
+            .catch(error => {
+							// if user not signed in
+							if (error.response.status === 401) {
+								const { history } = this.props;
+								history.push("/signin");
+							}
+							// if validation error (empty required fields)
+							if (error.response.status === 400) {
+								// update array of errors, use to display messages to user
+								let errors = error.response.data.errors;
+								let errorAlertMessages = errors.map(
+									(error, index) => (
+										<li className="validation-error" key={index}>
+											{error}
+										</li>
+									)
+								);
+								// Update form validation errors in component state
+								this.setState({
+									errors: errorAlertMessages
+								});
+							}
+						});
+					};
 
-          <form onSubmit={e => this.handleCreate(e, localStorage.getItem('username'), localStorage.getItem('password'), title, description, estimatedTime, materialsNeeded)}>
-            <div className='grid-66'>
-              <div className='course--header'>
-                <h4 className='course--label'>Course</h4>
-                <div>
-                  <input
-                    id='title'
-                    name='title'
-                    type='text'
-                    className='input-title course--title--input'
-                    placeholder='Course Title'
-                    onChange={this.handleSubmit}
-                    value={this.course.title}
-                  />
-                </div>
-                <p>By {this.state.username}</p>
-              </div>
-              <div className='course--description'>
-                <textarea
-                  id='description'
-                  name='description'
-                  className=''
-                  placeholder='Course Description'
-                  onChange={this.handleSubmit}
-                  value={this.course.description}
-                />
-              </div>
-            </div>
-            <div className='grid-25 grid-right'>
-              <div className='course--stats'>
-                <ul className='courses--stats--list'>
-                  <li className='course--stats--list--item'>
-                    <h4>Estimated Time</h4>
-                    <input
-                      id='estimatedTime'
-                      name='estimatedTime'
-                      type='text'
-                      className='course--time--input'
-                      placeholder='Hours'
-                      onChange={this.handleSubmit}
-                      value={this.course.estimatedTime}
-                    />
-                  </li>
-                  <li className='course--stats--list--item'>
-                    <h4>Materials Needed</h4>
-                    <div>
+
+          return (
+
+            <div className='bounds course--detail'>
+
+              {/*Update Form*/}
+              <form onSubmit={handleUpdate}>
+                <h1>Update Course</h1>
+
+                {/*Error*/}
+                <ul>{this.state.errors}</ul>
+
+                <div className='grid-66'>
+                  <div className='course--header'>
+
+                    {/*Course Title*/}
+                    <h4 className='course--label'>Course</h4>
+                      <input
+                        id='title'
+                        name='title'
+                        type='text'
+                        className='input-title course--title--input'
+                        placeholder='Course Title'
+                        onChange={handleChange}
+                        value={title}
+                      />
+
+                    {/*Name of Course Owner*/}
+                    <p>By {ownsCourse}</p>
+
+                    {/*Course Description*/}
+                    <div className='course--description'>
                       <textarea
-                        id='materialdsNeeded'
-                        name='materialdsNeeded'
-                        placeholder='Materials Needed'
+                        id='description'
+                        name='description'
                         className=''
-                        onChange={this.handleSubmit}
-                        value={this.course.materialsNeeded}
+                        placeholder='Course Description'
+                        onChange={handleChange}
+                        value={description}
                       />
                     </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className='grid-100 pad-bottom'>
-              <button className='button' type='submit'>Update Course</button>
-              <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
-            </div>
-          </form>
-        </div>
-      </div>
-    )
-  }
+                  </div>
 
+                  {/*Estimated Time*/}
+                  <div className='grid-25 grid-right'>
+                    <div className='course--stats'>
+                      <h4>Estimated Time</h4>
+                        <input
+                          id='estimatedTime'
+                          name='estimatedTime'
+                          type='text'
+                          className='course--time--input'
+                          placeholder='Hours'
+                          onChange={handleChange}
+                          value={estimatedTime}
+                        />
+
+                      {/*Materials Needed*/}
+                      <h4>Materials Needed</h4>
+
+                        <textarea
+                          id='materialdsNeeded'
+                          name='materialdsNeeded'
+                          placeholder='Materials Needed'
+                          className=''
+                          onChange={handleChange}
+                          value={materialsNeeded}
+                        />
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className='grid-100 pad-bottom'>
+                    <button className='button' type='submit'>Update Course</button>
+                    <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+                </div>
+
+              </form>
+            </div>
+          );
+				}}
+			</Consumer>
+    );
+  }
 }
 
-export default UpdateCourse;
+export default withRouter (UpdateCourse);
