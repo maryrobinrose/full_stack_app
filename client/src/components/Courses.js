@@ -1,4 +1,4 @@
-//Import React library
+//Imports
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -13,7 +13,7 @@ class Courses extends Component {
     componentDidMount() {
       //Request the API
       axios.get('http://localhost:5000/api/courses/')
-    
+
       .then (resData => {
         this.setState({
           courses: resData.courses
