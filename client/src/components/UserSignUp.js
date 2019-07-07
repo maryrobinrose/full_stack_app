@@ -84,30 +84,28 @@ class UserSignUp extends Component {
             //Catch any errors
             .catch(error => {
               console.log('Please enter all credentials.');
-              //If there's a bad request (credentials aren't filled in)
-              if (error.response.status === 400) {
-									// Or is there's multiple errors
-									if (error.response.data.errors) {
-                    // Fill empty validation errors
-                    let errors = error.response.data.errors;
-										let errorAlertMessages = errors.map(
-                      (error, index) => (
-                        <li className='validation-error' key={index}>
-                          {error}
-                        </li>
-                      )
-                    );
+							// If there's an error
+							if (error.response.data.errors) {
+                //Grab the errors
+                const errors = error.response.data.errors;
+								const errorAlertMessages = errors.map(
+                  (error, index) => (
+                    <li className='validation-error' key={index}>
+                      {error}
+                    </li>
+                  )
+                );
 
-										// Update component state with form validation errors
-										this.setState({
-											errors: errorAlertMessages
-										});
+								//Fill in empty error state with errors
+								this.setState({
+									errors: errorAlertMessages
+								});
 
-                  } else {
-                    //Bring user to error page
-                    this.props.history.push('/error');
-                  }
-								}
+              } else {
+                //Bring user to error page
+                this.props.history.push('/error');
+              }
+
       		});
 	}
 };
