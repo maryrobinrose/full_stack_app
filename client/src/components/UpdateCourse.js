@@ -15,7 +15,7 @@ class UpdateCourse extends Component {
       title: '',
       description: '',
       estimatedTime: '',
-      materialdsNeeded: '',
+      materialsNeeded: '',
       userId: null,
       firstName: '',
       lastName: '',
@@ -23,7 +23,7 @@ class UpdateCourse extends Component {
       errors: []
     }
   }
-  
+
 
 
   componentDidMount() {
@@ -40,7 +40,7 @@ class UpdateCourse extends Component {
             title: responseData.course.title,
             description: responseData.course.description,
             estimatedTime: responseData.course.estimatedTime,
-            materialdsNeeded: responseData.course.materialdsNeeded,
+            materialsNeeded: responseData.course.materialsNeeded,
             userId: responseData.course.userId,
             firstName: responseData.course.firstName,
             lastName: responseData.course.lastName
@@ -88,7 +88,7 @@ class UpdateCourse extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 estimatedTime: this.state.estimatedTime,
-                materialdsNeeded: this.state.materialsNeeded,
+                materialsNeeded: this.state.materialsNeeded,
                 userId: this.state.userId
               }
             })
