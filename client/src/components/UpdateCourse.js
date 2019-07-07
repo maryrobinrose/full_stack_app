@@ -61,8 +61,9 @@ class UpdateCourse extends Component {
 
         { ({ username, password, userId}) => {
 
-          const ownsCourse = `${firstName} ${lastName}`;
+
           const { id, title, description, estimatedTime, materialsNeeded, firstName, lastName } = this.state;
+          const ownsCourse = `${firstName} ${lastName}`;
 
           const handleChange = e => {
             this.setState({[e.target.name]: e.target.value});
