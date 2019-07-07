@@ -95,8 +95,9 @@ class UpdateCourse extends Component {
               this.props.history.push('/courses/' + this.props.match.params.id);
             })
             .catch(error => {
+              console.log('Please enter all credentials.')
 							// if user not signed in
-							if (error.response.status === 401) {
+							/*if (error.response.status === 401) {
 								const { history } = this.props;
 								history.push("/signin");
 							}
@@ -115,7 +116,7 @@ class UpdateCourse extends Component {
 								this.setState({
 									errors: errorAlertMessages
 								});
-							}
+							}*/
 						});
 					};
 
