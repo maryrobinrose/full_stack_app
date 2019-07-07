@@ -84,6 +84,30 @@ class UserSignUp extends Component {
             //Catch any errors
             .catch(error => {
               console.log('Please enter all credentials.');
+              //If there's a bad request (credentials aren't filled in)
+              if (error.response.status === 400) {
+									// Or is there's multiple errors
+									if (error.response.data.errors) {
+                    // Fill empty validation errors
+                    let errors = error.response.data.errors;
+										let errorAlertMessages = errors.map(
+                      (error, index) => (
+                        <li className='validation-error' key={index}>
+                          {error}
+                        </li>
+                      )
+                    );
+
+										// Update component state with form validation errors
+										this.setState({
+											errors: errorAlertMessages
+										});
+
+                  } else {
+                    //Bring user to error page
+                    this.props.history.push('/error');
+                  }
+								}
       		});
 	}
 };
@@ -94,9 +118,12 @@ class UserSignUp extends Component {
               <div className='grid-33 centered signin'>
                 <h1>Sign Up</h1>
 
+                {/*Show Validation Errors*/}
+                <div className='validation-errors'>
                   <ul>
                     <li>{this.state.errors}</li>
                   </ul>
+                </div>
 
                 <form onSubmit={handleInput}>
                   <div>
