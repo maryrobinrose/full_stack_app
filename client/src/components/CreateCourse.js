@@ -56,17 +56,17 @@ class CreateCourse extends Component {
               data: {
                 title: this.title.current.value,
                 description: this.description.current.value,
-                estimatedTime: this.estimatedTime.current.value,
-                materialsNeeded: this.materialsNeeded.current.value,
+                time: this.time.current.value,
+                materials: this.materials.current.value,
                 userId: userId
               }
             })
             .then(res => {
-              this.props.history.push(`/courses/${res.data.id}`);
+              this.props.history.push('/courses/');
             })
             .catch(error => {
               console.log('error');
-              /*if (error.response.status === 401) {
+              if (error.response.status === 401) {
                 this.props.history.push('/signin');
               }
               if (error.response.status === 400) {
@@ -79,7 +79,7 @@ class CreateCourse extends Component {
                 this.setState({
                   errors: errorMessage
                 });
-              }*/
+              }
             });
           }
 
