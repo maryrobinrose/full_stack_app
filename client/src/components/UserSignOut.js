@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Consumer } from '../components/Context';
 
-class UserSignOut extends Component {
-  render() {
-    return(<Redirect to='/courses' />);
-  }
-}
+const UserSignOut = () => {
+  return (
+   <Consumer>
+     { ({ actions }) => {
+
+       actions.signOut();
+
+       return (
+         <Redirect to="/" />
+       );
+     }}
+   </Consumer>
+ );
+};
 
 export default UserSignOut;
