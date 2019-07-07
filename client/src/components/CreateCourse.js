@@ -66,6 +66,15 @@ class CreateCourse extends Component {
             })
             .catch(error => {
               console.log('Please enter all credentials.');
+              if (error.response.data.errors) {
+								//Fill in empty error state with errors
+                this.setState(prevState => ({
+                  errors: 'Please enter all credentials.'
+                }));
+              } else {
+                //Bring user to error page
+                this.props.history.push('/error');
+              }
 
             });
           }
