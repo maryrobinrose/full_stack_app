@@ -135,15 +135,15 @@ class CourseDetail extends Component {
                                 <ul className='button-list'>
 
                                   {/*If the user is the owner, show the update course option*/}
-                                  <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
+                                  <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
                                     <Link to={`/courses${id}/update`}>
-                                      <div className='button-text'>Update Course</div>
+                                      <div className='button button-secondary'>Update Course</div>
                                     </Link>
                                   </li>
 
                                   {/*If the user is the owner, show the delete course option*/}
-                                  <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
-                                    <button onClick={handleDeleteCourse} className='button-primary'>
+                                  <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
+                                    <button onClick={handleDeleteCourse} className='button button-secondary'>
                                         <div>Delete Course</div>
                                     </button>
                                   </li>
@@ -169,13 +169,14 @@ class CourseDetail extends Component {
                 <h3 className='course--title'>{title}</h3>
                 <p>By {ownsCourse}</p>
               </div>
+              {/*Course Description*/}
+              <div className='course--description'>
+                <ReactMarkdown source={description} />
+              </div>
             </div>
           </div>
 
-          {/*Course Description*/}
-          <div className='course--description'>
-            <ReactMarkdown source={description} />
-          </div>
+
 
             {/*Side Bar*/}
             <div className='grid-25 grid-right'>
