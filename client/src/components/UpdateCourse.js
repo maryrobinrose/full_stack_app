@@ -23,6 +23,7 @@ class UpdateCourse extends Component {
       errors: []
     }
   }
+  
 
 
   componentDidMount() {

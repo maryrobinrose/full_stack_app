@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+li.course-card {
+  background: lightgray;
+  border-radius: 8px;
+  border: 10px;
+  padding: 30px;
+  margin-bottom: 30px;
+  min-height: 107px;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  display: inline-grid;
+}
