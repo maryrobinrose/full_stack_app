@@ -26,8 +26,8 @@ class CreateCourse extends Component {
   //Refs are assigned to an instance property so they can be referenced throughout the component
   title = React.createRef();
   description = React.createRef();
-  time = React.createRef();
-  materials = React.createRef();
+  estimatedTime = React.createRef();
+  materialsNeeded = React.createRef();
 
 
   render() {
@@ -56,8 +56,8 @@ class CreateCourse extends Component {
               data: {
                 title: this.title.current.value,
                 description: this.description.current.value,
-                time: this.time.current.value,
-                materials: this.materials.current.value,
+                estimatedTime: this.estimatedTime.current.value,
+                materialsNeeded: this.materialsNeeded.current.value,
                 userId: userId
               }
             })
@@ -127,13 +127,14 @@ class CreateCourse extends Component {
                   <div className='grid-25 grid-right'>
                     <div className='course--stats'>
                       <h4>Estimated Time</h4>
+
                         <input
                           id='estimatedTime'
                           name='estimatedTime'
                           className='course--time--input'
                           type='text'
                           placeholder='Hours'
-                          ref={this.time}
+                          ref={this.estimatedTime}
                           />
 
                       {/*Course Materials*/}
@@ -142,7 +143,7 @@ class CreateCourse extends Component {
                           id='materialsNeeded'
                           name='materialsNeeded'
                           placeholder='List materials...'
-                          ref={this.materials}
+                          ref={this.materialsNeeded}
                           />
 
                     </div>
