@@ -1,4 +1,4 @@
-//** Fix CSS classnames 
+//** Fix CSS classnames
 
 /*This was created with help from:
 https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0
@@ -138,7 +138,7 @@ class CourseDetail extends Component {
 
                                   {/*If the user is the owner, show the update course option*/}
                                   <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
-                                    <Link to={`/courses${id}/update`}>
+                                    <Link to={`/courses/${id}/update`}>
                                       <div className='button button-secondary'>Update Course</div>
                                     </Link>
                                   </li>
