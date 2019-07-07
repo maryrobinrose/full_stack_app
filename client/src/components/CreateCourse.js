@@ -65,21 +65,8 @@ class CreateCourse extends Component {
               this.props.history.push('/courses/');
             })
             .catch(error => {
-              console.log('error');
-              if (error.response.status === 401) {
-                this.props.history.push('/signin');
-              }
-              if (error.response.status === 400) {
-                let errors = error.response.data.errors;
-                let errorMessage = errors.map(
-                  (error, index) => (
-                    <li className='validation-error' key={index}>{error}</li>
-                  )
-                );
-                this.setState({
-                  errors: errorMessage
-                });
-              }
+              console.log('Please enter all credentials.');
+
             });
           }
 

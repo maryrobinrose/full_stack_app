@@ -83,32 +83,8 @@ class UserSignUp extends Component {
             })
             //Catch any errors
             .catch(error => {
-              console.log(error);
-      			if (error.response.status === 400) {
-      				// if multiple errors return, it is due to input validation
-      				if (error.response.data.errors) {
-                // update array of errors, use to display messages to user
-                let errors = error.response.data.errors;
-      					let errorAlertMessages = errors.map(
-                  (error, index) => (
-                    <li className='validation-error' key={index}>
-                      {error}
-                    </li>
-                  )
-                );
-
-      					// Update component state with form validation errors
-      					this.setState({
-      						errors: errorAlertMessages
-      					});
-
-              } else {
-                this.props.history.push('/error')
-              }
-      			}
+              console.log('Please enter all credentials.');
       		});
-
-
 	}
 };
 
