@@ -127,37 +127,37 @@ class CourseDetail extends Component {
                   }
               }
 
-    return(
+                  return(
 
-            <div className='actions--bar'>
-              <div className='bounds'>
-                <div className='grid-100'>
-                  <ul className='button-list'>
+                          <div className='actions--bar'>
+                            <div className='bounds'>
+                              <div className='grid-100'>
+                                <ul className='button-list'>
 
-                    {/*If the user is the owner, show the update course option*/}
-                    <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
-                      <Link to={`/courses${id}/update`}>
-                        <div className='button-text'>Update Course</div>
-                      </Link>
-                    </li>
+                                  {/*If the user is the owner, show the update course option*/}
+                                  <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
+                                    <Link to={`/courses${id}/update`}>
+                                      <div className='button-text'>Update Course</div>
+                                    </Link>
+                                  </li>
 
-                    {/*If the user is the owner, show the delete course option*/}
-                    <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
-                    <button onClick={handleDeleteCourse} className='button-primary'>
-                        <div>Delete Course</div>
-                      </button>
-                    </li>
+                                  {/*If the user is the owner, show the delete course option*/}
+                                  <li className='button primary' style={{display: isOwner() ? 'block' : 'none'}}>
+                                    <button onClick={handleDeleteCourse} className='button-primary'>
+                                        <div>Delete Course</div>
+                                    </button>
+                                  </li>
 
-                    {/*Return to List button*/}
-                    <li className='button button-secondary'>
-                      <Link to='/courses'>Return to List</Link>
-                    </li>
+                                  {/*Return to List button*/}
+                                  <li className='button button-secondary'>
+                                    <Link to='/courses'>Return to List</Link>
+                                  </li>
 
-                  </ul>
-                </div>
-              </div>
-            </div>
-          );
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        );
         }}
         </Consumer>
 

@@ -1,10 +1,10 @@
-//
+//**
 
 /*This was created with help from:
 https://www.taniarascia.com/using-context-api-in-react/
 https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891
 Treehouses's React Context API Course
-and Zack Mower
+and Zack from Slack
 */
 
 //**Provides a way to pass data to components without having to pass props manually at every level**//
