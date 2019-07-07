@@ -31,7 +31,6 @@ class App extends Component {
     return (
 
         <BrowserRouter>
-          <div className='bounds'>
             <Header />
               <Switch>
 
@@ -39,23 +38,22 @@ class App extends Component {
                 <Route exact path='/' render={() => <Redirect to='courses'/>} />
 
                 {/*Routes for Courses*/}
-                <Route exact path='/courses' render={() => <Courses />} />
+                <Route exact path='/courses' component = {Courses} />
                 <PrivateRoute exact path='/courses/create' component = {CreateCourse} />
-                <Route exact path='/courses/:id' component={CourseDetail}/>
-                <PrivateRoute exact path='/courses/:id/update' render={() => <UpdateCourse />} />
+                <Route exact path='/courses/:id' component = {CourseDetail}/>
+                <PrivateRoute exact path='/courses/:id/update' component = {UpdateCourse} />
 
                 {/*Sign In, Out, and Up routes */}
-                <Route path='/signin' component={UserSignIn} />
-                <Route path='/signout' component={UserSignOut} />
-                <Route path='/signup' component={UserSignUp} />
+                <Route path='/signin' component = {UserSignIn} />
+                <Route path='/signout' component = {UserSignOut} />
+                <Route path='/signup' component = {UserSignUp} />
 
                 {/*Route for errors*/}
-                <Route exact path="/error" render={() => <Error />} />
+                <Route exact path="/error" component = {Error} />
                 <Route exact path='/notfound' component = {NotFound} />
                 <Route exact path='/forbidden' component = {Forbidden} />
 
               </Switch>
-          </div>
         </BrowserRouter>
     );
   }
