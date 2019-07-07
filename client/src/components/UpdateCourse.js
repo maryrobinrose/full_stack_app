@@ -11,12 +11,12 @@ class UpdateCourse extends Component {
   constructor() {
     super();
     this.state = {
-      id: '',
+      id: null,
       title: '',
       description: '',
       estimatedTime: '',
       materialdsNeeded: '',
-      userId: '',
+      userId: null,
       firstName: '',
       lastName: '',
       emailAddress: '',
@@ -33,16 +33,16 @@ class UpdateCourse extends Component {
     fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
       .then(response => response.json())
 
-      .then(resData => {
+      .then(responseData => {
           this.setState({
-            id: resData.course.id,
-            title: resData.course.title,
-            description: resData.course.description,
-            estimatedTime: resData.course.estimatedTime,
-            materialdsNeeded: resData.course.materialdsNeeded,
-            userId: resData.course.userId,
-            firstName: resData.course.firstName,
-            lastName: resData.course.lastName
+            id: responseData.course.id,
+            title: responseData.course.title,
+            description: responseData.course.description,
+            estimatedTime: responseData.course.estimatedTime,
+            materialdsNeeded: responseData.course.materialdsNeeded,
+            userId: responseData.course.userId,
+            firstName: responseData.course.firstName,
+            lastName: responseData.course.lastName
           })
       })
       .catch(error => {
