@@ -1,6 +1,6 @@
 /*This was created with help from:
 //https://reacttraining.com/react-router/web/example/auth-workflow
-and Zack Mower
+and Zack from Slack
 */
 
 //**Configures protected routes**//
