@@ -189,11 +189,14 @@ class UpdateCourse extends Component {
 
                     </div>
                   </div>
-
                 </div>
 
+                {/*Buttons*/}
                 <div className='grid-100 pad-bottom'>
+                    {/*Update Course button*/}
                     <button className='button' type='submit'>Update Course</button>
+
+                    {/*Cancel button*/}
                     <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
                 </div>
 

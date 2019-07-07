@@ -54,10 +54,10 @@ class CreateCourse extends Component {
               },
               responseType: 'json',
               data: {
-                title: this.title.current.value,
-                description: this.description.current.value,
-                estimatedTime: this.time.current.value,
-                materialsNeeded: this.materials.current.value,
+                title: this.state.title,
+                description: this.state.description,
+                estimatedTime: this.state.estimatedTime,
+                materialsNeeded: this.state.materialsNeeded,
                 userId: userId
               }
             })
@@ -65,7 +65,8 @@ class CreateCourse extends Component {
               this.props.history.push(`/courses/${res.data.id}`);
             })
             .catch(error => {
-              if (error.response.status === 401) {
+              console.log('error');
+              /*if (error.response.status === 401) {
                 this.props.history.push('/signin');
               }
               if (error.response.status === 400) {
@@ -76,9 +77,9 @@ class CreateCourse extends Component {
                   )
                 );
                 this.setState({
-                  error: errorMessage
+                  errors: errorMessage
                 });
-              }
+              }*/
             });
           }
 
@@ -124,7 +125,7 @@ class CreateCourse extends Component {
 
                   {/*Course Time*/}
                   <div className='grid-25 grid-right'>
-                    <div class='course--stats'>
+                    <div className='course--stats'>
                       <h4>Estimated Time</h4>
                         <input
                           id='estimatedTime'
