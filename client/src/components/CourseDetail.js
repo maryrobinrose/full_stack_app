@@ -1,3 +1,5 @@
+//** Fix CSS classnames 
+
 /*This was created with help from:
 https://medium.com/@lcriswell/destructuring-props-in-react-b1c295005ce0
 https://stackoverflow.com/questions/37555031/why-does-json-return-a-promise
