@@ -51,6 +51,7 @@ class Courses extends Component {
               />
             ))}
 
+
               {/*Show Add New Course button*/}
               <li>
                 <Link className='course--module course--add--module' to='/courses/create'>

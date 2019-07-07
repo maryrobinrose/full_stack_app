@@ -19,6 +19,7 @@ class UpdateCourse extends Component {
       userId: '',
       firstName: '',
       lastName: '',
+      emailAddress: '',
       errors: []
     }
   }
@@ -29,8 +30,8 @@ class UpdateCourse extends Component {
   }
 
   handleCourse = e => {
-    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
-      .then(res => res.json())
+    fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+      .then(response => response.json())
 
       .then(resData => {
           this.setState({
@@ -89,7 +90,7 @@ class UpdateCourse extends Component {
                 userId: this.state.userId
               }
             })
-            .then (res => {
+            .then ( () => {
               this.props.history.push('/courses/' + this.props.match.params.id);
             })
             .catch(error => {
