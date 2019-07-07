@@ -54,10 +54,10 @@ class CreateCourse extends Component {
               },
               responseType: 'json',
               data: {
-                title: this.state.title,
-                description: this.state.description,
-                estimatedTime: this.state.estimatedTime,
-                materialsNeeded: this.state.materialsNeeded,
+                title: this.title.current.value,
+                description: this.description.current.value,
+                estimatedTime: this.estimatedTime.current.value,
+                materialsNeeded: this.materialsNeeded.current.value,
                 userId: userId
               }
             })
