@@ -88,14 +88,12 @@ class UserSignUp extends Component {
 							if (error.response.data.errors) {
                 //Grab the errors
                 const errors = error.response.data.errors;
+                //Map over the errors
 								const errorAlertMessages = errors.map(
-                  (error, index) => (
-                    <li className='validation-error' key={index}>
-                      {error}
-                    </li>
+                  (error) => (
+                    <li className='validation-error'>{error}</li>
                   )
                 );
-
 								//Fill in empty error state with errors
 								this.setState({
 									errors: errorAlertMessages
