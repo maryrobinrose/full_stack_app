@@ -96,27 +96,15 @@ class UpdateCourse extends Component {
             })
             .catch(error => {
               console.log('Please enter all credentials.')
-							// if user not signed in
-							/*if (error.response.status === 401) {
-								const { history } = this.props;
-								history.push("/signin");
-							}
-							// if validation error (empty required fields)
-							if (error.response.status === 400) {
-								// update array of errors, use to display messages to user
-								let errors = error.response.data.errors;
-								let errorAlertMessages = errors.map(
-									(error, index) => (
-										<li className="validation-error" key={index}>
-											{error}
-										</li>
-									)
-								);
-								// Update form validation errors in component state
-								this.setState({
-									errors: errorAlertMessages
-								});
-							}*/
+              if (error.response.data.errors) {
+								//Fill in empty error state with errors
+                this.setState(prevState => ({
+                  errors: 'Please enter all credentials.'
+                }));
+              } else {
+                //Bring user to error page
+                this.props.history.push('/error');
+              }
 						});
 					};
 
@@ -181,8 +169,8 @@ class UpdateCourse extends Component {
                       <h4>Materials Needed</h4>
 
                         <textarea
-                          id='materialdsNeeded'
-                          name='materialdsNeeded'
+                          id='materialsNeeded'
+                          name='materialsNeeded'
                           placeholder='Materials Needed'
                           className=''
                           onChange={handleChange}

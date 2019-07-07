@@ -78,26 +78,17 @@ class UserSignUp extends Component {
                 this.props
               );
             }).then(() => {
-              this.props.history.push("/courses");
+              this.props.history.push('/courses');
             })
             //Catch any errors
             .catch(error => {
               console.log('Please enter all credentials.');
 							// If there's an error
 							if (error.response.data.errors) {
-                //Grab the errors
-                const errors = error.response.data.errors;
-                //Map over the errors
-								const errorAlertMessages = errors.map(
-                  (error) => (
-                    <li className='validation-error'>{error}</li>
-                  )
-                );
 								//Fill in empty error state with errors
-								this.setState({
-									errors: errorAlertMessages
-								});
-
+                this.setState(prevState => ({
+                  errors: 'Please enter all credentials.'
+                }));
               } else {
                 //Bring user to error page
                 this.props.history.push('/error');
