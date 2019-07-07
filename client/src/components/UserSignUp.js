@@ -54,12 +54,11 @@ class UserSignUp extends Component {
           //If passwords are not a match
           if (userPassword !== userConfirmPassword) {
 
-            let passwordsNoMatch = <li className='validation-error'>Passwords must match.</li>
-
             //Show errors
             this.setState(prevState => ({
-              errors: [...prevState.errors[passwordsNoMatch]]
+              errors: 'Passwords must match.'
             }));
+
           } else {
             //Request the user
             axios({
