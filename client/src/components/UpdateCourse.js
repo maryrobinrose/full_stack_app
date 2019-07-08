@@ -21,7 +21,7 @@ class UpdateCourse extends Component {
       firstName: '',
       lastName: '',
       emailAddress: '',
-      errors: []
+      errorMessage: []
     }
   }
 
@@ -71,11 +71,11 @@ class UpdateCourse extends Component {
           const handleUpdate = e => {
             e.preventDefault();
 
-            this.setState({errors: []});
+            this.setState({errorMessage: []});
 
             if (title === ''  && description === '' && estimatedTime === '' && materialsNeeded === '') {
               this.setState(prevState => ({
-                errors: 'Please enter all credentials.'
+                errorMessage: 'Please enter all credentials.'
               }));
             } else {
 
@@ -101,15 +101,17 @@ class UpdateCourse extends Component {
               })
               .catch(error => {
                 console.log('Please enter all credentials.')
-                if (error.response.data.errors) {
-  								//Fill in empty error state with errors
-                  this.setState(prevState => ({
-                    errors: 'Please enter all credentials.'
-                  }));
-                } //else {
-                  //Bring user to error page
-                  //this.props.history.push('/error');
-                //}
+                if (error.response.status === 400) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else if (error.response.status === 401) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else {
+                  this.props.history.push('/error');
+                }
   						});
   					};
           }
@@ -120,10 +122,10 @@ class UpdateCourse extends Component {
             <div className='bounds course--detail'>
               <h1>Update Course</h1>
 
-              {/*Show Validation Errors*/}
-              <div className='validation-errors'>
+              {/*Show Validation errorMessage*/}
+              <div className='validation-errorMessage'>
                 <ul>
-                  <li>{this.state.errors}</li>
+                  <li>{this.state.errorMessage}</li>
                 </ul>
               </div>
 
