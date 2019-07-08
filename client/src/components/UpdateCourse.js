@@ -28,10 +28,6 @@ class UpdateCourse extends Component {
 
 
   componentDidMount() {
-    this.handleCourse();
-  }
-
-  handleCourse = e => {
     fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
       .then(response => response.json())
 
@@ -55,6 +51,7 @@ class UpdateCourse extends Component {
         }
       })
   }
+
 
   render() {
 
