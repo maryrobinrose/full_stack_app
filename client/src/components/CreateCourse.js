@@ -8,9 +8,8 @@ and Zack from Slack
 
 //Imports
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { Consumer } from '../components/Context';
 
 class CreateCourse extends Component {
