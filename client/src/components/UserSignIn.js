@@ -37,10 +37,13 @@ class UserSignIn extends Component {
               this.state.password,
               this.props
             ).then(() => {
-              this.props.history.push("/courses");
+              this.props.history.push('/courses');
             }).catch(error => {
               if (error.response && error.response.status === 401) {
                 console.log(error.response.data);
+                this.setState(prevState => ({
+                  errors: 'Credentials are not valid.'
+                }));
               }
             });
           };
@@ -50,6 +53,13 @@ class UserSignIn extends Component {
           <div className='bounds'>
             <div className='grid-33 centered signin'>
               <h1>Sign In</h1>
+
+              {/*Show Validation Errors*/}
+              <div className='validation-errors'>
+                <ul>
+                  <li>{this.state.errors}</li>
+                </ul>
+              </div>
 
                 {/*Sign in with user credentials*/}
                 <form onSubmit={handleSubmit}>
