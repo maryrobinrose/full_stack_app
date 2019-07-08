@@ -13,7 +13,7 @@ router.get('/', authenticate, (req, res) => {
   //Bring back formatted JSON data
   res.json({
       id: req.currentUser.id,
-      firstName: req.currentUser.emailAddress,
+      firstName: req.currentUser.firstName,
       lastName: req.currentUser.lastName,
       emailAddress: req.currentUser.emailAddress,
   });
