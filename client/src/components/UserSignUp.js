@@ -38,7 +38,6 @@ class UserSignUp extends Component {
         //Handle input changes when user submits the form
         const handleInput = e => {
           e.preventDefault();
-
           //Set errors to empty
           this.setState({
             errors: []
