@@ -73,18 +73,19 @@ class CreateCourse extends Component {
                 this.props.history.push('/courses/');
               })
               .catch(error => {
-                console.log('Please enter all credentials.');
-                if (error.response.data.errors) {
-  								//Fill in empty error state with errors
-                  this.setState(prevState => ({
-                    errors: 'Please enter all credentials.'
-                  }));
-                } //else {
-                  //Bring user to error page
-                  //this.props.history.push('/error');
-                //}
-
-              });
+                console.log('Please enter all credentials.')
+                if (error.response.status === 400) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else if (error.response.status === 401) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else {
+                  this.props.history.push('/error');
+                }
+  						});
           }
         }
 

@@ -81,19 +81,19 @@ class UserSignUp extends Component {
             })
             //Catch any errors
             .catch(error => {
-              console.log('Please enter all credentials.');
-							// If there's an error
-							if (error.response.data.errors) {
-								//Fill in empty error state with errors
-                this.setState(prevState => ({
-                  errors: 'Please enter all credentials.'
-                }));
+              console.log('Please enter all credentials.')
+              if (error.response.status === 400) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
+              } else if (error.response.status === 401) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
               } else {
-                //Bring user to error page
                 this.props.history.push('/error');
               }
-
-      		});
+            });
 	}
 };
 
