@@ -75,51 +75,62 @@ class UpdateCourse extends Component {
 
             this.setState({errors: []});
 
-            axios({
-              method: 'PUT',
-              url: `http://localhost:5000/api/courses/${id}`,
-              auth: {
-                username: username,
-                password: password
-              },
-              responseType: 'json',
-              data: {
-                id: this.state.id,
-                title: this.state.title,
-                description: this.state.description,
-                estimatedTime: this.state.estimatedTime,
-                materialsNeeded: this.state.materialsNeeded,
-                userId: this.state.userId
-              }
-            })
-            .then ( () => {
-              this.props.history.push('/courses/' + this.props.match.params.id);
-            })
-            .catch(error => {
-              console.log('Please enter all credentials.')
-              if (error.response.data.errors) {
-								//Fill in empty error state with errors
-                this.setState(prevState => ({
-                  errors: 'Please enter all credentials.'
-                }));
-              } else {
-                //Bring user to error page
-                this.props.history.push('/error');
-              }
-						});
-					};
+            if (title === ''  && description === '' && estimatedTime === '' && materialsNeeded === '') {
+              this.setState(prevState => ({
+                errors: 'Please enter all credentials.'
+              }));
+            } else {
+
+              axios({
+                method: 'PUT',
+                url: `http://localhost:5000/api/courses/${id}`,
+                auth: {
+                  username: username,
+                  password: password
+                },
+                responseType: 'json',
+                data: {
+                  id: this.state.id,
+                  title: this.state.title,
+                  description: this.state.description,
+                  estimatedTime: this.state.estimatedTime,
+                  materialsNeeded: this.state.materialsNeeded,
+                  userId: this.state.userId
+                }
+              })
+              .then ( () => {
+                this.props.history.push('/courses/' + this.props.match.params.id);
+              })
+              .catch(error => {
+                console.log('Please enter all credentials.')
+                if (error.response.data.errors) {
+  								//Fill in empty error state with errors
+                  this.setState(prevState => ({
+                    errors: 'Please enter all credentials.'
+                  }));
+                } else {
+                  //Bring user to error page
+                  this.props.history.push('/error');
+                }
+  						});
+  					};
+          }
 
 
           return (
 
             <div className='bounds course--detail'>
+              <h1>Update Course</h1>
+
+              {/*Show Validation Errors*/}
+              <div className='validation-errors'>
+                <ul>
+                  <li>{this.state.errors}</li>
+                </ul>
+              </div>
 
               {/*Update Form*/}
               <form onSubmit={handleUpdate}>
-                <h1>Update Course</h1>
-
-                {/*Error*/}
-                <ul>{this.state.errors}</ul>
 
                 <div className='grid-66'>
                   <div className='course--header'>
