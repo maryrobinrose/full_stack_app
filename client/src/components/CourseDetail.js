@@ -171,6 +171,7 @@ class CourseDetail extends Component {
                 <h3 className='course--title'>{title}</h3>
                 <p>By {ownsCourse}</p>
               </div>
+
               {/*Course Description*/}
               <div className='course--description'>
                 <ReactMarkdown source={description} />
@@ -195,7 +196,7 @@ class CourseDetail extends Component {
                   <li className='course--stats--list--item'>
                     <h4>Materials Needed</h4>
                     <ul>
-                      <ReactMarkdown source={materialsNeeded} />
+                      <ReactMarkdown className='materials'source={materialsNeeded} />
                     </ul>
                   </li>
                 </ul>

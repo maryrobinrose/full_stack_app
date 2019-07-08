@@ -166,28 +166,34 @@ class UpdateCourse extends Component {
                   {/*Estimated Time*/}
                   <div className='grid-25 grid-right'>
                     <div className='course--stats'>
-                      <h4>Estimated Time</h4>
-                        <input
-                          id='estimatedTime'
-                          name='estimatedTime'
-                          type='text'
-                          className='course--time--input'
-                          placeholder='Hours'
-                          onChange={handleChange}
-                          value={estimatedTime}
-                        />
+                      <ul className='course--stats--list'>
+                        <li className='course--stats--list--item'>
 
-                      {/*Materials Needed*/}
-                      <h4>Materials Needed</h4>
+                          <h4>Estimated Time</h4>
+                            <input
+                              id='estimatedTime'
+                              name='estimatedTime'
+                              type='text'
+                              className='course--time--input'
+                              placeholder='Hours'
+                              onChange={handleChange}
+                              value={estimatedTime}
+                            />
+                        </li>
+                        <li className='course--stats--list--item'>
+                          {/*Materials Needed*/}
+                          <h4>Materials Needed</h4>
 
-                        <textarea
-                          id='materialsNeeded'
-                          name='materialsNeeded'
-                          placeholder='Materials Needed'
-                          className=''
-                          onChange={handleChange}
-                          value={materialsNeeded}
-                        />
+                            <textarea
+                              id='materialsNeeded'
+                              name='materialsNeeded'
+                              placeholder='Materials Needed'
+                              className=''
+                              onChange={handleChange}
+                              value={materialsNeeded}
+                            />
+                        </li>
+                      </ul>
 
                     </div>
                   </div>
