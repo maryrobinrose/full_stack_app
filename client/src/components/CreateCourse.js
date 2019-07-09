@@ -124,7 +124,7 @@ class CreateCourse extends Component {
                         </div>
 
                         {/*Course Time*/}
-                        <div className='grid-25 grid-right'>
+
                           <div className='course--stats'>
                             <ul className='course--stats--list'>
                               <li className="course--stats--list--item">
@@ -150,7 +150,7 @@ class CreateCourse extends Component {
                               </li>
                             </ul>
                           </div>
-                      </div>
+
                     </div>
                   </div>
 
