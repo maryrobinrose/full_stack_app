@@ -8,12 +8,14 @@ import { Link } from 'react-router-dom';
 
 const CourseBox = ({ id, title}) => {
   return(
+      <div className="grid-33">
         <li className='course-card' key={id}>
          <Link to={`/courses/${id}`}>
            <div className='course--label'>Course</div>
            <div className='course--title'>{title}</div>
          </Link>
-       </li>
+        </li>
+      </div>
   );
 }
 
