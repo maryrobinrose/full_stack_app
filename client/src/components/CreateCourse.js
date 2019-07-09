@@ -39,7 +39,7 @@ class CreateCourse extends Component {
           const handleCreate = e => {
             e.preventDefault();
             this.setState({
-              errors: []
+              errorMessage: []
             });
 
 
@@ -99,57 +99,57 @@ class CreateCourse extends Component {
                   <div className='grid-66'>
                     <div className='course--header'>
 
-                      {/*Course Title*/}
-                      <h4 className='course--label'>Course</h4>
-                        <input
-                          id='title'
-                          name='title'
-                          type='text'
-                          className='input-title course--title--input'
-                          placeholder='Course title...'
-                          ref={this.title}
-                        />
+                        {/*Course Title*/}
+                        <h4 className='course--label'>Course</h4>
+                          <input
+                            id='title'
+                            name='title'
+                            type='text'
+                            className='input-title course--title--input'
+                            placeholder='Course title...'
+                            ref={this.title}
+                          />
 
-                      {/*Course Creator*/}
-                      <p>By {name}</p>
+                        {/*Course Creator*/}
+                        <p>By {name}</p>
 
-                      {/*Course Description*/}
-                      <div className='course--description'>
-                        <textarea
-                              id='description'
-                              name='description'
-                              placeholder='Course Description...'
-                              ref={this.description}
-                              />
-                      </div>
-                    </div>
-
-                    {/*Course Time*/}
-                    <div className='grid-25 grid-right'>
-                      <div className='course--stats'>
-                        <ul className='course--stats--list'>
-                          <li className="course--stats--list--item">
-                            <h4>Estimated Time</h4>
-
-                              <input
-                                id='estimatedTime'
-                                name='estimatedTime'
-                                className='course--time--input'
-                                type='text'
-                                placeholder='Hours'
-                                ref={this.estimatedTime}
+                        {/*Course Description*/}
+                        <div className='course--description'>
+                          <textarea
+                                id='description'
+                                name='description'
+                                placeholder='Course Description...'
+                                ref={this.description}
                                 />
+                        </div>
 
-                            {/*Course Materials*/}
-                            <h4>Materials Needed</h4>
-                              <textarea
-                                id='materialsNeeded'
-                                name='materialsNeeded'
-                                placeholder='List materials...'
-                                ref={this.materialsNeeded}
-                                />
-                          </li>
-                        </ul>
+                        {/*Course Time*/}
+                        <div className='grid-25 grid-right'>
+                          <div className='course--stats'>
+                            <ul className='course--stats--list'>
+                              <li className="course--stats--list--item">
+                                <h4>Estimated Time</h4>
+
+                                  <input
+                                    id='estimatedTime'
+                                    name='estimatedTime'
+                                    className='course--time--input'
+                                    type='text'
+                                    placeholder='Hours'
+                                    ref={this.estimatedTime}
+                                    />
+
+                                {/*Course Materials*/}
+                                <h4>Materials Needed</h4>
+                                  <textarea
+                                    id='materialsNeeded'
+                                    name='materialsNeeded'
+                                    placeholder='List materials...'
+                                    ref={this.materialsNeeded}
+                                    />
+                              </li>
+                            </ul>
+                          </div>
                       </div>
                     </div>
                   </div>
