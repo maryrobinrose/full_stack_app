@@ -17,7 +17,7 @@ class UserSignUp extends Component {
     super();
     //Set errors to empty
     this.state = {
-      errors: []
+      errorMessage: ''
     }
   }
 
@@ -84,11 +84,11 @@ class UserSignUp extends Component {
               console.log('Please enter all credentials.')
               if (error.response.status === 400) {
                 this.setState({
-                  errorMessage: error.response.data.error.message
+                  errorMessage: error.response.data.message
                 });
               } else if (error.response.status === 401) {
                 this.setState({
-                  errorMessage: error.response.data.error.message
+                  errorMessage: error.response.data.message
                 });
               } else {
                 this.props.history.push('/error');
@@ -106,7 +106,7 @@ class UserSignUp extends Component {
                 {/*Show Validation Errors*/}
                 <div className='validation-errors'>
                   <ul>
-                    <li>{this.state.errors}</li>
+                    <li>{this.state.errorMessage}</li>
                   </ul>
                 </div>
 
