@@ -122,7 +122,7 @@ class UpdateCourse extends Component {
             <div className='bounds course--detail'>
               <h1>Update Course</h1>
 
-              {/*Show Validation errorMessage*/}
+              {/*Show Validation Errors*/}
               <div className='validation-errorMessage'>
                 <ul>
                   <li>{this.state.errorMessage}</li>
@@ -205,7 +205,7 @@ class UpdateCourse extends Component {
                     <button className='button' type='submit'>Update Course</button>
 
                     {/*Cancel button*/}
-                    <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+                    <NavLink to={'/courses/' + this.props.match.params.id} className='button button-secondary'>Cancel</NavLink>
                 </div>
 
               </form>
