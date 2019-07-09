@@ -133,26 +133,27 @@ class CreateCourse extends Component {
                     <div className='grid-25 grid-right'>
                       <div className='course--stats'>
                         <ul className='course--stats--list'>
-                          <h4>Estimated Time</h4>
+                          <li className="course--stats--list--item">
+                            <h4>Estimated Time</h4>
 
-                            <input
-                              id='estimatedTime'
-                              name='estimatedTime'
-                              className='course--time--input'
-                              type='text'
-                              placeholder='Hours'
-                              ref={this.estimatedTime}
-                              />
+                              <input
+                                id='estimatedTime'
+                                name='estimatedTime'
+                                className='course--time--input'
+                                type='text'
+                                placeholder='Hours'
+                                ref={this.estimatedTime}
+                                />
 
-                          {/*Course Materials*/}
-                          <h4>Materials Needed</h4>
-                            <textarea
-                              id='materialsNeeded'
-                              name='materialsNeeded'
-                              placeholder='List materials...'
-                              ref={this.materialsNeeded}
-                              />
-
+                            {/*Course Materials*/}
+                            <h4>Materials Needed</h4>
+                              <textarea
+                                id='materialsNeeded'
+                                name='materialsNeeded'
+                                placeholder='List materials...'
+                                ref={this.materialsNeeded}
+                                />
+                          </li>
                         </ul>
                       </div>
                     </div>
