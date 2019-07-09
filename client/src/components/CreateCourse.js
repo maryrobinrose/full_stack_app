@@ -42,16 +42,12 @@ class CreateCourse extends Component {
               errors: []
             });
 
-            let title = this.title.current.value;
+            /*let title = this.title.current.value;
             let description = this.description.current.value;
             let estimatedTime = this.estimatedTime.current.value;
-            let materialsNeeded = this.materialsNeeded.current.value;
+            let materialsNeeded = this.materialsNeeded.current.value;*/
 
-            if (title === ''  && description === '' && estimatedTime === '' && materialsNeeded === '') {
-              this.setState(prevState => ({
-                errors: 'Please enter all credentials.'
-              }));
-            } else {
+
               // Use POST method to send new info
               axios({
                 method: 'POST',
@@ -86,7 +82,6 @@ class CreateCourse extends Component {
                   this.props.history.push('/error');
                 }
   						});
-          }
         }
 
 
