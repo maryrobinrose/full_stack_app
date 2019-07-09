@@ -132,29 +132,31 @@ class CreateCourse extends Component {
                     {/*Course Time*/}
                     <div className='grid-25 grid-right'>
                       <div className='course--stats'>
-                        <h4>Estimated Time</h4>
+                        <ul className='course--stats--list'>
+                          <h4>Estimated Time</h4>
 
-                          <input
-                            id='estimatedTime'
-                            name='estimatedTime'
-                            className='course--time--input'
-                            type='text'
-                            placeholder='Hours'
-                            ref={this.estimatedTime}
-                            />
+                            <input
+                              id='estimatedTime'
+                              name='estimatedTime'
+                              className='course--time--input'
+                              type='text'
+                              placeholder='Hours'
+                              ref={this.estimatedTime}
+                              />
 
-                        {/*Course Materials*/}
-                        <h4>Materials Needed</h4>
-                          <textarea
-                            id='materialsNeeded'
-                            name='materialsNeeded'
-                            placeholder='List materials...'
-                            ref={this.materialsNeeded}
-                            />
+                          {/*Course Materials*/}
+                          <h4>Materials Needed</h4>
+                            <textarea
+                              id='materialsNeeded'
+                              name='materialsNeeded'
+                              placeholder='List materials...'
+                              ref={this.materialsNeeded}
+                              />
 
+                        </ul>
                       </div>
-
                     </div>
+
                   </div>
 
                   {/*Buttons*/}

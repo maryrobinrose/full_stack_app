@@ -148,7 +148,7 @@ class CourseDetail extends Component {
                                       <button onClick={handleDeleteCourse} className='button'>
                                           <div>Delete Course</div>
                                       </button>
-                                    
+
                                 </span>
 
                                   {/*Return to List button*/}
@@ -188,18 +188,14 @@ class CourseDetail extends Component {
                 <ul className='course--stats--list'>
 
                 {/*Estimated Time*/}
-                  <li className='course--stats--list--item'>
-                    <h4>Estimated Time</h4>
-                    <h3>{estimatedTime}</h3>
-                  </li>
 
-                  {/*Materials Needed*/}
-                  <li className='course--stats--list--item'>
-                    <h4>Materials Needed</h4>
-                    <ul>
-                      <ReactMarkdown className='materials'source={materialsNeeded} />
-                    </ul>
-                  </li>
+                <h4>Estimated Time</h4>
+                <h3>{estimatedTime}</h3>
+
+
+                {/*Materials Needed*/}
+                <h4>Materials Needed</h4>
+                  <ReactMarkdown className='materials'source={materialsNeeded} />
                 </ul>
 
               </div>
