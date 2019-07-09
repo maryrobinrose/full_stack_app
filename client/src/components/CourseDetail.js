@@ -134,7 +134,7 @@ class CourseDetail extends Component {
                           <div className='actions--bar'>
                             <div className='bounds'>
                               <div className='grid-100'>
-                                <ul className='button-list'>
+                                <ul>
 
                                   {/*If the user is the owner, show the update course option*/}
                                   <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
