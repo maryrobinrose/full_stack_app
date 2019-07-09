@@ -28,11 +28,9 @@ class Courses extends Component {
       })
       //Log errors
       .catch(error => {
-        //Not working
-        /*if (error) {
-          //Then take user to the Not Found page
-          this.props.history.push('/notfound');
-        }*/
+        if (error.response.status === 500) {
+            this.props.history.push('/error');
+          }
       })
     }
 
