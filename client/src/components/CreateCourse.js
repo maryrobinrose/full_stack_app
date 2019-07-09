@@ -121,10 +121,11 @@ class CreateCourse extends Component {
                                 placeholder='Course Description...'
                                 ref={this.description}
                                 />
+
                         </div>
 
                         {/*Course Time*/}
-
+                        <div>
                           <div className='course--stats'>
                             <ul className='course--stats--list'>
                               <li className="course--stats--list--item">
@@ -139,6 +140,7 @@ class CreateCourse extends Component {
                                     ref={this.estimatedTime}
                                     />
 
+
                                 {/*Course Materials*/}
                                 <h4>Materials Needed</h4>
                                   <textarea
@@ -150,7 +152,7 @@ class CreateCourse extends Component {
                               </li>
                             </ul>
                           </div>
-
+                        </div>
                     </div>
                   </div>
 
