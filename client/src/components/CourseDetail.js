@@ -81,7 +81,7 @@ class CourseDetail extends Component {
 
 
     return(
-      <div>
+      <div id="root">
         {/*Enclose return in Consumer*/}
         <Consumer>
             {/*Render props - returns a React element*/}
@@ -182,7 +182,7 @@ class CourseDetail extends Component {
 
 
             {/*Side Bar*/}
-            <div className='grid-25 grid-right'>
+            <div className="grid-25 grid-right">
               <div className='course--stats'>
                 <ul className='course--stats--list'>
 
