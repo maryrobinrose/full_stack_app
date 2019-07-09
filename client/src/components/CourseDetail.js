@@ -137,15 +137,15 @@ class CourseDetail extends Component {
                                 <ul>
 
                                   {/*If the user is the owner, show the update course option*/}
-                                  <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
+                                  <li className='button' style={{display: isOwner() ? 'block' : 'none'}}>
                                     <Link to={`/courses/${id}/update`}>
-                                      <div className='button button-secondary'>Update Course</div>
+                                      <div className='button'>Update Course</div>
                                     </Link>
                                   </li>
 
                                   {/*If the user is the owner, show the delete course option*/}
-                                  <li className='button button-secondary' style={{display: isOwner() ? 'block' : 'none'}}>
-                                    <button onClick={handleDeleteCourse} className='button button-secondary'>
+                                  <li className='button' style={{display: isOwner() ? 'block' : 'none'}}>
+                                    <button onClick={handleDeleteCourse} className='button'>
                                         <div>Delete Course</div>
                                     </button>
                                   </li>
