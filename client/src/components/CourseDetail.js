@@ -134,28 +134,29 @@ class CourseDetail extends Component {
                           <div className='actions--bar'>
                             <div className='bounds'>
                               <div className='grid-100'>
-                                <ul>
 
-                                  {/*If the user is the owner, show the update course option*/}
-                                  <li className='button' style={{display: isOwner() ? 'block' : 'none'}}>
-                                    <Link to={`/courses/${id}/update`}>
-                                      <div className='button'>Update Course</div>
-                                    </Link>
-                                  </li>
+                                <span style={{display: isOwner() ? 'initial' : 'none'}}>
+                                    {/*If the user is the owner, show the update course option*/}
 
-                                  {/*If the user is the owner, show the delete course option*/}
-                                  <li className='button' style={{display: isOwner() ? 'block' : 'none'}}>
-                                    <button onClick={handleDeleteCourse} className='button'>
-                                        <div>Delete Course</div>
-                                    </button>
-                                  </li>
+                                      <Link to={`/courses/${id}/update`}>
+                                        <div className='button'>Update Course</div>
+                                      </Link>
+
+
+                                    {/*If the user is the owner, show the delete course option*/}
+
+                                      <button onClick={handleDeleteCourse} className='button'>
+                                          <div>Delete Course</div>
+                                      </button>
+                                    
+                                </span>
 
                                   {/*Return to List button*/}
                                   <li className='button button-secondary'>
                                     <Link to='/courses'>Return to List</Link>
                                   </li>
 
-                                </ul>
+
                               </div>
                             </div>
                           </div>
