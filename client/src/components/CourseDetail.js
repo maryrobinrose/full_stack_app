@@ -201,7 +201,6 @@ class CourseDetail extends Component {
                 </ul>
               </div>
             </div>
-
         </div>
     )
   }
