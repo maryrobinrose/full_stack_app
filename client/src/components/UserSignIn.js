@@ -18,7 +18,9 @@ class UserSignIn extends Component {
   handleInput = e => {
     e.preventDefault();
     //Uses input's name and value to set state
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
 
@@ -39,11 +41,17 @@ class UserSignIn extends Component {
             ).then(() => {
               this.props.history.push('/courses');
             }).catch(error => {
-              if (error.response && error.response.status === 401) {
-                console.log(error.response.data);
-                this.setState(prevState => ({
-                  errors: 'Credentials are not valid.'
-                }));
+              console.log('Please enter all credentials.')
+              if (error.response.status === 400) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
+              } else if (error.response.status === 401) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
+              } else {
+                this.props.history.push('/error');
               }
             });
           };
