@@ -188,16 +188,19 @@ class CourseDetail extends Component {
             <div className="grid-25 grid-right">
               <div className='course--stats'>
                 <ul className='course--stats--list'>
+                  <li className="course--stats--list--item">
 
-                {/*Estimated Time*/}
+                        {/*Estimated Time*/}
 
-                <h4>Estimated Time</h4>
-                <h3>{estimatedTime}</h3>
+                        <h4>Estimated Time</h4>
+                        <h3>{estimatedTime}</h3>
 
-
-                {/*Materials Needed*/}
-                <h4>Materials Needed</h4>
-                  <ReactMarkdown className='materials'source={materialsNeeded} />
+                  </li>
+                  <li className="course--stats--list--item">
+                      {/*Materials Needed*/}
+                      <h4>Materials Needed</h4>
+                        <ReactMarkdown className='materials'source={materialsNeeded} />
+                  </li>
                 </ul>
               </div>
             </div>
