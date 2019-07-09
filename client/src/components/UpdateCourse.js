@@ -71,13 +71,9 @@ class UpdateCourse extends Component {
           const handleUpdate = e => {
             e.preventDefault();
 
-            this.setState({errorMessage: []});
-
-            if (title === ''  && description === '' && estimatedTime === '' && materialsNeeded === '') {
-              this.setState(prevState => ({
-                errorMessage: 'Please enter all credentials.'
-              }));
-            } else {
+            this.setState({
+              errorMessage: []
+            });
 
               axios({
                 method: 'PUT',
@@ -113,7 +109,7 @@ class UpdateCourse extends Component {
                   this.props.history.push('/error');
                 }
   						});
-  					};
+
           }
 
 
