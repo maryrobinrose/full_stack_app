@@ -92,84 +92,87 @@ class CreateCourse extends Component {
 
 
           return (
+
             <div className='bounds course--detail'>
-              <h1>Create Course</h1>
+                <h1>Create Course</h1>
 
-              {/*Show Validation Errors*/}
-              <div className='validation-errors'>
-                <ul>
-                  <li>{this.state.errors}</li>
-                </ul>
-              </div>
+                {/*Show Validation Errors*/}
+                <div className='validation-errors'>
+                  <ul>
+                    <li>{this.state.errors}</li>
+                  </ul>
+                </div>
 
-              {/*Create Form*/}
-              <form onSubmit={handleCreate}>
+                {/*Create Form*/}
+                <form onSubmit={handleCreate}>
 
-                <div className='grid-66'>
-                  <div className='course--header'>
+                  <div className='grid-66'>
+                    <div className='course--header'>
 
-                    {/*Course Title*/}
-                    <h4 className='course--label'>Course</h4>
-                      <input
-                        id='title'
-                        name='title'
-                        type='text'
-                        className='input-title course--title--input'
-                        placeholder='Course title...'
-                        ref={this.title}
-                      />
-
-                    {/*Course Creator*/}
-                    <p>By {name}</p>
-
-                    {/*Course Description*/}
-                    <div className='course--description'>
-                      <textarea
-                            id='description'
-                            name='description'
-                            placeholder='Course Description...'
-                            ref={this.description}
-                            />
-                    </div>
-                  </div>
-
-                  {/*Course Time*/}
-                  <div className='grid-25 grid-right'>
-                    <div className='course--stats'>
-                      <h4>Estimated Time</h4>
-
+                      {/*Course Title*/}
+                      <h4 className='course--label'>Course</h4>
                         <input
-                          id='estimatedTime'
-                          name='estimatedTime'
-                          className='course--time--input'
+                          id='title'
+                          name='title'
                           type='text'
-                          placeholder='Hours'
-                          ref={this.estimatedTime}
-                          />
+                          className='input-title course--title--input'
+                          placeholder='Course title...'
+                          ref={this.title}
+                        />
 
-                      {/*Course Materials*/}
-                      <h4>Materials Needed</h4>
+                      {/*Course Creator*/}
+                      <p>By {name}</p>
+
+                      {/*Course Description*/}
+                      <div className='course--description'>
                         <textarea
-                          id='materialsNeeded'
-                          name='materialsNeeded'
-                          placeholder='List materials...'
-                          ref={this.materialsNeeded}
-                          />
+                              id='description'
+                              name='description'
+                              placeholder='Course Description...'
+                              ref={this.description}
+                              />
+                      </div>
+                    </div>
+
+                    {/*Course Time*/}
+                    <div className='grid-25 grid-right'>
+                      <div className='course--stats'>
+                        <h4>Estimated Time</h4>
+
+                          <input
+                            id='estimatedTime'
+                            name='estimatedTime'
+                            className='course--time--input'
+                            type='text'
+                            placeholder='Hours'
+                            ref={this.estimatedTime}
+                            />
+
+                        {/*Course Materials*/}
+                        <h4>Materials Needed</h4>
+                          <textarea
+                            id='materialsNeeded'
+                            name='materialsNeeded'
+                            placeholder='List materials...'
+                            ref={this.materialsNeeded}
+                            />
+
+                      </div>
 
                     </div>
                   </div>
-                </div>
 
-                {/*Buttons*/}
-                <div className='grid-100 pad-bottom'>
-                    {/*Create Course button*/}
-                    <button className='button' type='submit'>Create Course</button>
+                  {/*Buttons*/}
+                  <div className='grid-100 pad-bottom'>
+                      {/*Create Course button*/}
+                      <button className='button' type='submit'>Create Course</button>
 
-                    {/*Cancel button*/}
-                    <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
-                </div>
+                      {/*Cancel button*/}
+                      <NavLink to='/courses' className='button button-secondary'>Cancel</NavLink>
+                  </div>
 
-              </form>
+                </form>
+
             </div>
           );
 				}}
