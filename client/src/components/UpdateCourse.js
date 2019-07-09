@@ -104,11 +104,10 @@ class UpdateCourse extends Component {
       return(
         <Consumer>
 
-          { ({ username, password, userId}) => {
+          { ({ username, password, name, userId}) => {
 
 
             const { id, title, description, estimatedTime, materialsNeeded, firstName, lastName } = this.state;
-            const ownsCourse = `${firstName} ${lastName}`;
 
 
               <div className='bounds course--detail'>
@@ -140,7 +139,7 @@ class UpdateCourse extends Component {
                         />
 
                       {/*Name of Course Owner*/}
-                      <p>By {ownsCourse}</p>
+                      <p>By {name}</p>
 
                       {/*Course Description*/}
                       <div className='course--description'>
