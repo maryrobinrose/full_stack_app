@@ -10,8 +10,8 @@ const CourseBox = ({ id, title}) => {
   return(
         <li className='course-card' key={id}>
          <Link to={`/courses/${id}`}>
-           <div className=''>Course</div>
-           <div className=''>{title}</div>
+           <div className='course--label'>Course</div>
+           <div className='course--title'>{title}</div>
          </Link>
        </li>
   );

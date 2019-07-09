@@ -37,7 +37,7 @@ module.exports = (req, res, next) => {
            next();
          } else {
          //If password isn't a match
-         message = `Authentication failure for username: ${user.username}`;
+         message = `Authentication failure. Please enter correct password.`;
          //Set status code
          res.status(401);
          //Show the message
@@ -45,7 +45,7 @@ module.exports = (req, res, next) => {
          }
       } else {
        //If user isn't a match
-       message = `User not found for username: ${credentials.name}`;
+       message = `User not found.`;
        //Set status code
        res.status(401);
        //Show the message
