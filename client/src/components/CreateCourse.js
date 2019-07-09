@@ -156,7 +156,6 @@ class CreateCourse extends Component {
                         </ul>
                       </div>
                     </div>
-
                   </div>
 
                   {/*Buttons*/}
