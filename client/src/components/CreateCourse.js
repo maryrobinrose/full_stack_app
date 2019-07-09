@@ -42,11 +42,6 @@ class CreateCourse extends Component {
               errors: []
             });
 
-            /*let title = this.title.current.value;
-            let description = this.description.current.value;
-            let estimatedTime = this.estimatedTime.current.value;
-            let materialsNeeded = this.materialsNeeded.current.value;*/
-
 
               // Use POST method to send new info
               axios({
