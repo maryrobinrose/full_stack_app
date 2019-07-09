@@ -28,57 +28,6 @@ class CreateCourse extends Component {
   estimatedTime = React.createRef();
   materialsNeeded = React.createRef();
 
-  //Handle user create
-  handleInput = e => {
-    e.preventDefault();
-    this.setState({
-      errors: []
-    });
-
-    let title = this.title.current.value;
-    let description = this.description.current.value;
-    let estimatedTime = this.estimatedTime.current.value;
-    let materialsNeeded = this.materialsNeeded.current.value;
-
-  handleCreate = e => {
-      e.preventDefault();
-      // Use POST method to send new info
-      axios({
-        method: 'POST',
-        url: 'http://localhost:5000/api/courses',
-        auth: {
-          username: username,
-          password: password
-        },
-        responseType: 'json',
-        data: {
-          title: this.title.current.value,
-          description: this.description.current.value,
-          estimatedTime: this.estimatedTime.current.value,
-          materialsNeeded: this.materialsNeeded.current.value,
-          userId: userId
-        }
-      })
-      .then(res => {
-        this.props.history.push('/courses/');
-      })
-      .catch(error => {
-        console.log('Please enter all credentials.')
-        if (error.response.status === 400) {
-          this.setState({
-            errorMessage: error.response.data.error.message
-          });
-        } else if (error.response.status === 401) {
-          this.setState({
-            errorMessage: error.response.data.error.message
-          });
-        } else {
-          this.props.history.push('/error');
-        }
-      });
-  }
-
-
 
   render() {
 
@@ -86,19 +35,75 @@ class CreateCourse extends Component {
       <Consumer>
         { ({ username, password, name, userId}) => {
 
+          //Handle user create
+          const handleCreate = e => {
+            e.preventDefault();
+            this.setState({
+              errors: []
+            });
 
+            let title = this.title.current.value;
+            let description = this.description.current.value;
+            let estimatedTime = this.estimatedTime.current.value;
+            let materialsNeeded = this.materialsNeeded.current.value;
+
+            if (title === ''  && description === '' && estimatedTime === '' && materialsNeeded === '') {
+              this.setState(prevState => ({
+                errors: 'Please enter all credentials.'
+              }));
+            } else {
+              // Use POST method to send new info
+              axios({
+                method: 'POST',
+                url: 'http://localhost:5000/api/courses',
+                auth: {
+                  username: username,
+                  password: password
+                },
+                responseType: 'json',
+                data: {
+                  title: this.title.current.value,
+                  description: this.description.current.value,
+                  estimatedTime: this.estimatedTime.current.value,
+                  materialsNeeded: this.materialsNeeded.current.value,
+                  userId: userId
+                }
+              })
+              .then(res => {
+                this.props.history.push('/courses/');
+              })
+              .catch(error => {
+                console.log('Please enter all credentials.')
+                if (error.response.status === 400) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else if (error.response.status === 401) {
+                  this.setState({
+                    errorMessage: error.response.data.error.message
+                  });
+                } else {
+                  this.props.history.push('/error');
+                }
+  						});
+          }
+        }
+
+
+
+          return (
             <div className='bounds course--detail'>
               <h1>Create Course</h1>
 
               {/*Show Validation Errors*/}
               <div className='validation-errors'>
                 <ul>
-                  <li>{this.state.errorMessage}</li>
+                  <li>{this.state.errors}</li>
                 </ul>
               </div>
 
               {/*Create Form*/}
-              <form onSubmit={this.handleInput}>
+              <form onSubmit={handleCreate}>
 
                 <div className='grid-66'>
                   <div className='course--header'>
@@ -166,7 +171,7 @@ class CreateCourse extends Component {
 
               </form>
             </div>
-
+          );
 				}}
 			</Consumer>
     );

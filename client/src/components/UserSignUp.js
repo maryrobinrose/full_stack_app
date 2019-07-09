@@ -15,9 +15,9 @@ class UserSignUp extends Component {
 
   constructor() {
     super();
-    //Set errorMessage to empty
+    //Set errors to empty
     this.state = {
-      errorMessage: []
+      errors: []
     }
   }
 
@@ -29,85 +29,84 @@ class UserSignUp extends Component {
   password = React.createRef();
   confirmPassword = React.createRef();
 
-  //Handle input changes when user submits the form
-  handleInput = e => {
-    e.preventDefault();
-    //Set errorMessage to empty
-    this.setState({
-      errorMessage: []
-    });
-
-    //Set values of each user input
-    let userFirstName = this.firstName.current.value;
-    let userLastName = this.lastName.current.value;
-    let userEmailAddress = this.emailAddress.current.value;
-    let userPassword = this.password.current.value;
-    let userConfirmPassword = this.confirmPassword.current.value;
-
-    handleSignUp = e => {
-      e.preventDefault();
-      //If passwords are not a match
-      if (userPassword !== userConfirmPassword) {
-
-        //Show errorMessage
-        this.setState(prevState => ({
-          errorMessage: 'Passwords must match.'
-        }));
-
-      } else {
-        //Request the user
-        axios({
-          method: 'POST',
-          url: 'http://localhost:5000/api/users',
-          data: {
-            firstName: userFirstName,
-            lastName: userLastName,
-            emailAddress: userEmailAddress,
-            password: userPassword
-          }
-        })
-        .then( () => {
-          return actions.signIn(
-            userEmailAddress,
-            userPassword,
-            this.props
-          );
-        }).then(() => {
-          this.props.history.push('/courses');
-        })
-        //Catch any errorMessage
-        .catch(error => {
-          console.log('Please enter all credentials.')
-          if (error.response.status === 400) {
-            this.setState({
-              errorMessage: error.response.data.error.message
-            });
-          } else if (error.response.status === 401) {
-            this.setState({
-              errorMessage: error.response.data.error.message
-            });
-          } else {
-            this.props.history.push('/error');
-          }
-        });
-      }
-};
-
-
   render() {
 
+    return(
+      <Consumer>
+      { ({actions}) => {
+
+        //Handle input changes when user submits the form
+        const handleInput = e => {
+          e.preventDefault();
+          //Set errors to empty
+          this.setState({
+            errors: []
+          });
+
+          //Set values of each user input
+          let userFirstName = this.firstName.current.value;
+          let userLastName = this.lastName.current.value;
+          let userEmailAddress = this.emailAddress.current.value;
+          let userPassword = this.password.current.value;
+          let userConfirmPassword = this.confirmPassword.current.value;
+
+          //If passwords are not a match
+          if (userPassword !== userConfirmPassword) {
+
+            //Show errors
+            this.setState(prevState => ({
+              errors: 'Passwords must match.'
+            }));
+
+          } else {
+            //Request the user
+            axios({
+              method: 'POST',
+              url: 'http://localhost:5000/api/users',
+              data: {
+                firstName: userFirstName,
+                lastName: userLastName,
+                emailAddress: userEmailAddress,
+                password: userPassword
+              }
+            })
+            .then( () => {
+              return actions.signIn(
+                userEmailAddress,
+                userPassword,
+                this.props
+              );
+            }).then(() => {
+              this.props.history.push('/courses');
+            })
+            //Catch any errors
+            .catch(error => {
+              console.log('Please enter all credentials.')
+              if (error.response.status === 400) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
+              } else if (error.response.status === 401) {
+                this.setState({
+                  errorMessage: error.response.data.error.message
+                });
+              } else {
+                this.props.history.push('/error');
+              }
+            });
+	}
+};
+
         return (
-          <Consumer>
-            { ({actions}) => {
 
           <div className='bounds'>
               <div className='grid-33 centered signin'>
                 <h1>Sign Up</h1>
 
-                {/*Show Validation errorMessage*/}
-                <div className='validation-errorMessage'>
+                {/*Show Validation Errors*/}
+                <div className='validation-errors'>
                   <ul>
-                    <li>{this.state.errorMessage}</li>
+                    <li>{this.state.errors}</li>
                   </ul>
                 </div>
 
@@ -174,8 +173,8 @@ class UserSignUp extends Component {
               <p>Already have a user account?<Link to='/signin'> Click here</Link> to sign in!</p>
             </div>
           </div>
-          }}
         );
+      }}
       </Consumer>
     );
   }
